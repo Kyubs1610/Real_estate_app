@@ -1,7 +1,8 @@
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { LoginSuccessComponent } from './components/login-success/login-success.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+
 // import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -11,8 +12,8 @@ const routes: Routes = [
   },
 
   {
-    path:'auth',
-    component : LoginSuccessComponent
+    path:'homepage',
+    component : HomepageComponent
     // canActivate: [
     //   AuthGuard
     // ],
@@ -27,4 +28,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  
+ }

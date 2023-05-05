@@ -11,15 +11,17 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { LoginSuccessComponent } from './components/login-success/login-success.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    LoginSuccessComponent
+    HomepageComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
