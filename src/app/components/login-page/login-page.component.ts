@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { AuthService } from 'src/app/services/http.service';
 import { Router } from '@angular/router';
-
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -46,19 +46,21 @@ get email(): FormControl{
  
 
   onSubmit() {
-    const { email, password } = this.loginForm.value;
+    // const { email, password } = this.loginForm.value;
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
    
 
-    this.authService.login(email, password).subscribe(
-      (response) => {
-        console.log(response); 
-        this.router.navigate(['/auth']) ;
-        },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+    this.authService.login(email, password).subscribe({
+      next: (response) => {
+       console.log(response); 
+      this.router.navigate(['/auth']);
+    },
+    error: (error) => {
+      console.error(error);
+    }
+  });
+}
   getErrorMessage() {
     if (this.email?.hasError('required')) {
       return 'You must enter a value';
