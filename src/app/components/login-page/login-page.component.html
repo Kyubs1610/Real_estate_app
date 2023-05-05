@@ -1,0 +1,25 @@
+
+<main> 
+<section>
+        <img src="assets/y_white.png" alt="Logo" />
+        <form>
+        <div class="example-container">
+            <mat-form-field appearance="outline"   class="border-red">
+              <mat-label>Enter your email</mat-label>
+              <input matInput placeholder="ama@example.com" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+        </div>
+        <div class="example-button-row">
+          <button class="login" type="submit" mat-stroked-button onClick="this.form.submit(); this.disabled=true; this.value='Sending…'; ">Login</button>
+        </div>
+      </form>
+</section>
+</main>
