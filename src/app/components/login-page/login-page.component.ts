@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { AuthService } from 'src/app/services/http.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -13,39 +16,54 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 export class LoginPageComponent implements OnInit {
 
   loginForm !:FormGroup;
+  hide = false; 
 
   constructor(
-    private formBuilder:FormBuilder
-  ) { }
+    private formBuilder: FormBuilder, 
+    private authService: AuthService,
+    private router: Router
+    ) {}
+
 
   ngOnInit(): void {
     this.initForm();
   }
 
-  initForm(){
+  initForm() {
     this.loginForm = this.formBuilder.group({
-      email:['',Validators.required],
-      password:['',Validators.required]
-    })
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)],],
+    });
   }
-
-  getEmail(){
-    return this.loginForm.get('email');
-  }
-
-
-  hide = false; 
   
-  email = new FormControl('', [Validators.required, Validators.email]);
+get email(): FormControl{
+    return this.loginForm.get('email') as FormControl;
+  }
+ get password(): FormControl{
+    return this.loginForm.get('password') as FormControl;
+  }
 
+ 
+
+  onSubmit() {
+    const { email, password } = this.loginForm.value;
+   
+
+    this.authService.login(email, password).subscribe(
+      (response) => {
+        console.log(response); 
+        this.router.navigate(['/auth']) ;
+        },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.email?.hasError('required')) {
       return 'You must enter a value';
     }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
-
   
-
+    return this.email?.hasError('email') ? 'Not a valid email' : '';
+  }
 }

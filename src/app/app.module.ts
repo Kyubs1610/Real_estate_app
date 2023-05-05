@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { LoginSuccessComponent } from './components/login-success/login-success.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { LoginSuccessComponent } from './components/login-success/login-success.
     ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
+    HttpClientModule,
 
 
   ],
