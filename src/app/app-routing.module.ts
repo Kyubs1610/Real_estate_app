@@ -2,26 +2,25 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
-
-// import { AuthGuard } from './services/auth.guard';
+import { NofoundComponent } from './nofound/nofound.component';
 
 const routes: Routes = [
   {
     path:'',
-    component : LoginPageComponent
+    component : LoginPageComponent,
   },
 
   {
     path:'homepage',
-    component : HomepageComponent
-    // canActivate: [
-    //   AuthGuard
-    // ],
-    // resolve: {
-      
-    // }
+    component : HomepageComponent,
+    canActivate: []
+    
+  },
+  {
+    path:'unauthorized',
+    component : NofoundComponent
   }
-  
+
 ];
 
 @NgModule({

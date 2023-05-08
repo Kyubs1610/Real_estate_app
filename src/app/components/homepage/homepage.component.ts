@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-homepage',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent {
+
+  username: string = 'Guillaume';
+
+  constructor(private cookieService: CookieService) {
+    this.username = this.cookieService.get('monCookie');
+  }
+
 
 }

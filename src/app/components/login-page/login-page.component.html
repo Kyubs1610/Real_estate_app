@@ -12,13 +12,14 @@
             <mat-form-field appearance="outline">
                 <mat-label>Enter your password</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+                <mat-error *ngIf="password?.invalid">{{ getErrorMessagePassword() }}</mat-error>
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
               </mat-form-field>
         </div>
         <div class="example-button-row">
-          <button class="login" type="submit" mat-stroked-button>Login</button>
+          <br><br><button class="login" type="submit" mat-stroked-button [disabled]="!loginForm.valid">Login</button>
         </div>
       </form>
 </section>

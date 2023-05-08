@@ -14,6 +14,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CookieService } from 'ngx-cookie-service';
+import { NofoundComponent } from './nofound/nofound.component';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { HeaderComponent } from './components/header/header.component';
     AppComponent,
     LoginPageComponent,
     HomepageComponent,
-    HeaderComponent
+    HeaderComponent,
+    NofoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,11 +37,14 @@ import { HeaderComponent } from './components/header/header.component';
     MatIconModule,
     MatButtonModule,
     HttpClientModule,
+    
+    
 
 
   ],
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}}
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

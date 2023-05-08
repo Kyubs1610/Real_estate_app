@@ -1,17 +1,15 @@
 header{
-    position: relative;
      top: 0;
      left: 0;
      width: 100dvw;
      display: flex;
      justify-content: space-between;
      align-self: center;
-     z-index: 2000000;
+    
     
    }
    
    header img{
-       position: absolute;
        top: 0;
        left: 0;
        color: white;
@@ -23,11 +21,9 @@ header{
        
    }
    header ul{
-       position: absolute;
        top: 0;
        right: 0;
        padding: 1rem;
-       z-index: 5;
        display: flex;
        list-style: none;
        gap: 1rem;
