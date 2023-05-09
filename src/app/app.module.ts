@@ -16,7 +16,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NofoundComponent } from './nofound/nofound.component';
-
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { NofoundComponent } from './nofound/nofound.component';
     HomepageComponent,
     HeaderComponent,
     NofoundComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,10 +38,7 @@ import { NofoundComponent } from './nofound/nofound.component';
     MatIconModule,
     MatButtonModule,
     HttpClientModule,
-    
-    
-
-
+    AuthModule,
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},

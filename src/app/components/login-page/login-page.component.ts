@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
 
+
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -21,12 +23,14 @@ export class LoginPageComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private authService: AuthService,
     private router: Router,
+
     ) {}
   
 
 
   ngOnInit(): void {
     this.initForm();
+   
   }
 
   initForm() {
@@ -49,8 +53,8 @@ export class LoginPageComponent implements OnInit {
     // const { email, password } = this.loginForm.value;
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
-      this.authService.logIn(email, password).subscribe({
-      next: (response) => {
+    this.authService.logIn(email, password).subscribe({
+    next: (response) => {
        console.log(response); 
        this.router.navigate(['/homepage']);
     },

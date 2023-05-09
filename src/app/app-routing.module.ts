@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { NofoundComponent } from './nofound/nofound.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
   {
     path:'homepage',
     component : HomepageComponent,
-    canActivate: []
+    canActivate: [AuthGuard]
     
   },
   {

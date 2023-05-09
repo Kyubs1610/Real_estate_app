@@ -1,57 +1,58 @@
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { Router, CanActivate, UrlTree } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
+interface AuthResponse {
+  message: string;
+  info: {
+    fullname: string;
+    token: string;
+  };
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements CanActivate {
-  private authenticated: boolean = false;
+export class AuthService {
+  private authenticated = false;
 
-  constructor(private cookieService: CookieService, 
-              private router: Router, 
-              private http: HttpClient
-              ) {}
-  private apiUrl = 'https://1303-194-78-194-166.ngrok-free.app';
-  
-  logIn(email: string, password: string) {
-    // Send HTTP POST request to server to authenticate user
-    // If authentication is successful, set the authentication cookie
-    this.cookieService.set('authToken', 'res.info.token');
-    this.authenticated = true;
-    // Navigate to homepage
-    // this.router.navigate(['/homepage']);
-    return this.http.post(`${this.apiUrl}/v1/auth/login`, { email, password });
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
+  logIn(email: string, password: string): Observable<AuthResponse> {
+    const body = { email, password };
+    return this.http.post<AuthResponse>('https://b1de-194-78-194-166.ngrok-free.app/v1/auth/login', body).pipe(
+      tap(response => {
+        console.log('response from server', response.info.token);
+        // Set the authentication cookie with URL encoding
+        document.cookie = `authToken=${encodeURIComponent(response.info.token)}`;
+        // Set the authenticated flag
+        this.authenticated = true;
+        // Navigate to homepage
+        this.router.navigate(['/homepage']);
+      })
+    );
   }
 
-    logOut(): void {
-      // Clear the authentication cookie
-      this.cookieService.delete('res.info.token');
-      this.authenticated = false;
-      // Navigate to login page
-      this.router.navigate(['/']);
-    }
+  logOut(): void {
+    // Calculate the expiration time to 24 hours from the current time
+    const expirationDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+    // Set the authentication cookie with the calculated expiration time
+    document.cookie = `authToken=;expires=${expirationDate.toUTCString()}`;
+    // Set the authenticated flag
+    this.authenticated = false;
+    // Navigate to login page
+    this.router.navigate(['/']);
+  }
 
   isAuthenticated(): boolean {
-    // Check if the authentication cookie is present
-    const authToken = this.cookieService.get('authToken');
-    
-    return this.authenticated || !!authToken;
-  }
-   canActivate(): true |UrlTree {
-    return this.authenticatedOrRedirect();
+    return this.authenticated;
   }
 
-  authenticatedOrRedirect(): true | UrlTree {
-    if (this.isAuthenticated()) {
-      return true;
-    } else {
-      return this.router.parseUrl('');
-    }
-  }
 
 }
 
