@@ -12,6 +12,8 @@ interface AuthResponse {
   };
 }
 
+const BASEURL = 'https://b1de-194-78-194-166.ngrok-free.app/v1/auth/login';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,9 +25,12 @@ export class AuthService {
     private router: Router
   ) {}
 
+  
+
   logIn(email: string, password: string): Observable<AuthResponse> {
     const body = { email, password };
-    return this.http.post<AuthResponse>('https://b1de-194-78-194-166.ngrok-free.app/v1/auth/login', body).pipe(
+    const options = { withCredentials: true }; // send the info with the cookie
+    return this.http.post<AuthResponse>(`'${BASEURL}'`, body,options).pipe(
       tap(response => {
         console.log('response from server', response.info.token);
         // Set the authentication cookie with URL encoding
@@ -52,6 +57,7 @@ export class AuthService {
   isAuthenticated(): boolean {
     return this.authenticated;
   }
+
 
 
 }

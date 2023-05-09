@@ -17,6 +17,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NofoundComponent } from './nofound/nofound.component';
 import { AuthModule } from './auth/auth.module';
+import { ResetComponent } from './components/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
     HomepageComponent,
     HeaderComponent,
     NofoundComponent,
+    ResetComponent,
     
   ],
   imports: [

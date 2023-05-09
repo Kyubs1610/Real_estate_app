@@ -4,7 +4,7 @@
         <img src="assets/y_white.png" alt="Logo" />
         <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="example-container">
-            <mat-form-field appearance="outline"   class="border-red">
+            <mat-form-field appearance="outline">
               <mat-label>Enter your email</mat-label>
               <input matInput placeholder="ama@example.com" [formControl]="email" required>
               <mat-error *ngIf="email?.invalid">{{ getErrorMessage() }}</mat-error>

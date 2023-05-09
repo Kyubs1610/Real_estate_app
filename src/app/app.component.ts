@@ -14,7 +14,7 @@ export class AppComponent {
 
 
   isValid(): boolean {
-    if ((this.router.url != '/' && this.router.url != '/unauthorized'))  {
+    if ((this.router.url != '/' && this.router.url != '/unauthorized' && this.router.url != '/reset'))  {
               return true;
       }
     return false;
