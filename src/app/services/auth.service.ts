@@ -12,7 +12,7 @@ interface AuthResponse {
   };
 }
 
-const BASEURL = 'https://b1de-194-78-194-166.ngrok-free.app/v1/auth/login';
+const BASEURL = 'https://4be3-194-78-194-166.ngrok-free.app/';
 
 @Injectable({
   providedIn: 'root'
@@ -20,17 +20,18 @@ const BASEURL = 'https://b1de-194-78-194-166.ngrok-free.app/v1/auth/login';
 export class AuthService {
   private authenticated = false;
 
+  
+
   constructor(
     private http: HttpClient,
     private router: Router
   ) {}
 
-  
 
   logIn(email: string, password: string): Observable<AuthResponse> {
     const body = { email, password };
     const options = { withCredentials: true }; // send the info with the cookie
-    return this.http.post<AuthResponse>(`'${BASEURL}'`, body,options).pipe(
+    return this.http.post<AuthResponse>(`${BASEURL}v1/auth/login`, body, options).pipe(
       tap(response => {
         console.log('response from server', response.info.token);
         // Set the authentication cookie with URL encoding
@@ -44,19 +45,28 @@ export class AuthService {
   }
 
   logOut(): void {
+    
+    if (this.isAuthenticated()) {
     // Calculate the expiration time to 24 hours from the current time
     const expirationDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
     // Set the authentication cookie with the calculated expiration time
-    document.cookie = `authToken=;expires=${expirationDate.toUTCString()}`;
+    const options : Intl.DateTimeFormatOptions = { 
+      timeZone: 'Europe/Brussels', 
+      timeZoneName: 'long' 
+    };
+    document.cookie = `authToken=;expires=${expirationDate.toLocaleString('fr-FR', options)}`;
+    console.log('cookie', document.cookie);
     // Set the authenticated flag
     this.authenticated = false;
     // Navigate to login page
     this.router.navigate(['/']);
+   }
   }
 
   isAuthenticated(): boolean {
     return this.authenticated;
   }
+
 
 
 
