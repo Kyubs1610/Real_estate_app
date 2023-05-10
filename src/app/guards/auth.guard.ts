@@ -7,18 +7,15 @@ import { AuthService } from "../services/auth.service";
 })
 
 export class AuthGuard implements CanActivate {
-    constructor(private auth: AuthService,
-                private router: Router) { }
+  constructor(private auth: AuthService,
+              private router: Router) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
-        if (this.auth.isAuthenticated()) {
-            // If user is already authenticated, redirect to homepage
-            this.router.navigate(['/homepage']);
-            return false;
-          } else {
-            // If user is not authenticated, redirect to login page
-            this.router.navigate(['']);
-            return true;
-          }
-        }
-    }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
+      if (this.auth.isAuthenticated()) {
+          return true;
+      }else{
+          this.router.navigate(['/unauthorized']);
+          return false;
+      }
+  }
+  }

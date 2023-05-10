@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+
 
 interface AuthResponse {
   message: string;
@@ -10,9 +12,10 @@ interface AuthResponse {
     fullname: string;
     token: string;
   };
+  reset: boolean;
 }
 
-const BASEURL = 'https://4be3-194-78-194-166.ngrok-free.app/';
+const BASEURL = 'http://localhost:3000/';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +27,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService // Inject CookieService
   ) {}
 
 
@@ -34,41 +38,39 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${BASEURL}v1/auth/login`, body, options).pipe(
       tap(response => {
         console.log('response from server', response.info.token);
-        // Set the authentication cookie with URL encoding
-        document.cookie = `authToken=${encodeURIComponent(response.info.token)}`;
+        console.log('cookie', this.cookieService.get('authToken'));
+        // Set the authentication cookie with URL encoding using CookieService
+        this.cookieService.set('authToken', response.info.token, 2, '/');
         // Set the authenticated flag
         this.authenticated = true;
-        // Navigate to homepage
+      // Check if it's the user's first login
+      if (response.reset) {
+        // Redirect to the reset password page
+        this.router.navigate(['/reset']);
+      } else {
+        // Redirect to the homepage
         this.router.navigate(['/homepage']);
-      })
-    );
-  }
+      }
+    })
+  );
+}
 
   logOut(): void {
     
     if (this.isAuthenticated()) {
-    // Calculate the expiration time to 24 hours from the current time
-    const expirationDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
-    // Set the authentication cookie with the calculated expiration time
-    const options : Intl.DateTimeFormatOptions = { 
-      timeZone: 'Europe/Brussels', 
-      timeZoneName: 'long' 
-    };
-    document.cookie = `authToken=;expires=${expirationDate.toLocaleString('fr-FR', options)}`;
-    console.log('cookie', document.cookie);
-    // Set the authenticated flag
-    this.authenticated = false;
-    // Navigate to login page
-    this.router.navigate(['/']);
-   }
+      // Remove the authentication cookie using CookieService
+      this.cookieService.delete('authToken', '/');
+      console.log('cookie', this.cookieService.get('authToken'));
+      // Set the authenticated flag
+      this.authenticated = false;
+      // Navigate to login page
+      this.router.navigate(['/']);
+    }
   }
 
   isAuthenticated(): boolean {
-    return this.authenticated;
+    // Get the authentication cookie using CookieService
+    const authToken = this.cookieService.get('authToken');
+    return authToken !== null && authToken !== '';
   }
-
-
-
-
 }
-

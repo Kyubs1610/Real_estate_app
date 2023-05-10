@@ -2,13 +2,15 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
-   
+ 
 }
 
 
-html{ height: 100%; 
+html{ height: 100vh; 
+      width: auto;
     }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;height: 100%;
+    
+body {font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: #4158D0;
-    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);  }
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
