@@ -58,6 +58,8 @@ header {
     display: none;
    }
 
+   
+
    @media (max-width: 767px){
     nav{
       display: none;
@@ -69,7 +71,6 @@ header {
       font-size: 30px;
       height: 30px;
       width: 30px;
-      
     }
     ::ng-deep .customize {
       background-color:  transparent;
