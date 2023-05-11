@@ -21,18 +21,18 @@ import { ResetComponent } from './components/reset/reset.component';
 import { FormsModule } from '@angular/forms';
 import { HouseComponent } from './components/house/house.component';
 import { TenantComponent } from './components/tenant/tenant.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     HomepageComponent,
-    HeaderComponent,
     NofoundComponent,
     ResetComponent,
     HouseComponent,
     TenantComponent,
-    
+    HeaderComponent,
     
   ],
   imports: [
@@ -47,7 +47,10 @@ import { TenantComponent } from './components/tenant/tenant.component';
     MatButtonModule,
     HttpClientModule,
     AuthModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule,
+    MatButtonModule,
+    
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},
