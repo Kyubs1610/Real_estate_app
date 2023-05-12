@@ -14,9 +14,14 @@ export class AppComponent {
 
 
   isValid(): boolean {
-    if ((this.router.url != '/' && this.router.url != '/unauthorized' && this.router.url != '/reset'))  {
-              return true;
-      }
+    if (
+      this.router.url !== '/' &&
+      this.router.url !== '/unauthorized' &&
+      this.router.url !== '/email' &&
+      !this.router.url.startsWith('/reset/')
+    ) {
+      return true;
+    }
     return false;
   }
 

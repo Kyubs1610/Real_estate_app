@@ -14,7 +14,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 
 export class HeaderComponent {
   isMobileView: boolean = false;
-  @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
+  @ViewChild(MatMenuTrigger, { static: true }) trigger!: MatMenuTrigger;
 
   constructor(public auth: AuthService,
               private breakpointObserver: BreakpointObserver){}
@@ -24,12 +24,15 @@ export class HeaderComponent {
       .observe(['(max-width: 767px)'])
       .subscribe((state: BreakpointState) => {
         this.isMobileView = state.matches;
+        if (this.trigger && !this.isMobileView) {
+          // Hide the menu when viewport size exceeds 767px
+          this.trigger.closeMenu();
+        }
       });
+   
     } 
-    someMethod() {
-      this.trigger.openMenu();
-    }
     
+   
 }
 
 

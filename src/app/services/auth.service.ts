@@ -38,15 +38,16 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${BASEURL}v1/auth/login`, body, options).pipe(
       tap(response => {
         console.log('response from server', response.info.token);
-        console.log('cookie', this.cookieService.get('authToken'));
+        console.log('response from server', response.info.fullname);
+        console.log('response from server', response.reset);
         // Set the authentication cookie with URL encoding using CookieService
         this.cookieService.set('authToken', response.info.token, 2, '/');
         // Set the authenticated flag
         this.authenticated = true;
       // Check if it's the user's first login
-      if (response.reset) {
+      if (response.reset === true) {
         // Redirect to the reset password page
-        this.router.navigate(['/reset']);
+        this.router.navigate(['/email']);
       } else {
         // Redirect to the homepage
         this.router.navigate(['/homepage']);

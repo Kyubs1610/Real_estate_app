@@ -55,7 +55,6 @@ export class LoginPageComponent implements OnInit {
     this.authService.logIn(email, password ).subscribe({
     next: (response) => {
        console.log(response); 
-       this.router.navigate(['/homepage']);
     },
     error: (error) => {
       console.error(error);
@@ -75,7 +74,7 @@ export class LoginPageComponent implements OnInit {
 
   getErrorMessagePassword() {
     if(this.password?.hasError('required')){
-      return 'You must enter a password with at least 8 characters and at least one number, one uppercase letter and one special character' ;
+      return 'Your passsword must contain at least 8 characters, one number, one uppercase letter and one special character' ;
     }
     return this.password?.hasError('pattern') ? 'Not a valid password' : '';
   }

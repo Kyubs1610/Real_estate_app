@@ -1,12 +1,13 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
-import { NofoundComponent } from './nofound/nofound.component';
+import { NofoundComponent } from './components/nofound/nofound.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ResetComponent } from './components/reset/reset.component';
 import { HouseComponent } from './components/house/house.component';
 import { TenantComponent } from './components/tenant/tenant.component';
+import { EmailsentComponent } from './components/emailsent/emailsent.component';
 
 const routes: Routes = [
   {
@@ -14,8 +15,14 @@ const routes: Routes = [
     component : LoginPageComponent,
   },
   {
-   path:'reset',
+    path:'email',
+    component : EmailsentComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+   path: 'reset/:token',
    component : ResetComponent,
+   
   },
   {
     path:'homepage',
@@ -44,5 +51,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
+
   
  }

@@ -54,10 +54,12 @@ header {
    nav {
     display: block;
    }
-   .hamburger{
+   .hamburger {
     display: none;
    }
-
+   .customize {
+    display: none !important;
+  }
 
 
    @media (max-width: 767px){

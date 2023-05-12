@@ -15,13 +15,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CookieService } from 'ngx-cookie-service';
-import { NofoundComponent } from './nofound/nofound.component';
+import { NofoundComponent } from './components/nofound/nofound.component';
 import { AuthModule } from './auth/auth.module';
 import { ResetComponent } from './components/reset/reset.component';
 import { FormsModule } from '@angular/forms';
 import { HouseComponent } from './components/house/house.component';
 import { TenantComponent } from './components/tenant/tenant.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { EmailsentComponent } from './components/emailsent/emailsent.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatMenuModule} from '@angular/material/menu';
     HouseComponent,
     TenantComponent,
     HeaderComponent,
+    EmailsentComponent,
     
   ],
   imports: [
