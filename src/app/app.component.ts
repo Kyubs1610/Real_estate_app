@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,7 @@ export class AppComponent {
       this.router.url !== '/' &&
       this.router.url !== '/unauthorized' &&
       this.router.url !== '/email' &&
-      !this.router.url.startsWith('/reset/')
+      !this.router.url.startsWith('/reset')
     ) {
       return true;
     }

@@ -23,8 +23,6 @@ const BASEURL = 'http://localhost:3000/';
 export class AuthService {
   private authenticated = false;
 
-  
-
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -38,7 +36,6 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${BASEURL}v1/auth/login`, body, options).pipe(
       tap(response => {
         console.log('response from server', response.info.token);
-        console.log('response from server', response.info.fullname);
         console.log('response from server', response.reset);
         // Set the authentication cookie with URL encoding using CookieService
         this.cookieService.set('authToken', response.info.token, 2, '/');

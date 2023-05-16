@@ -20,7 +20,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-   path: 'reset/:token',
+   path: 'reset',
    component : ResetComponent,
    
   },
