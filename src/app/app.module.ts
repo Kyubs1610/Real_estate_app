@@ -23,6 +23,8 @@ import { HouseComponent } from './components/house/house.component';
 import { TenantComponent } from './components/tenant/tenant.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { EmailsentComponent } from './components/emailsent/emailsent.component';
+import { MatListModule } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { EmailsentComponent } from './components/emailsent/emailsent.component';
     FormsModule,
     MatMenuModule,
     MatButtonModule,
+    MatListModule,
+    RouterModule,
     
   ],
   providers: [

@@ -1,1 +1,66 @@
-<p>house works!</p>
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <span matPrefix> </span>
+      <input type="tel" matInput placeholder="Search" name="search" [(ngModel)]="search">
+      <button matSuffix mat-button ><mat-icon>search</mat-icon></button>
+    </mat-form-field>
+  </form>
+  
+  <div class="list">
+    <button *ngFor="let house of houses" mat-button 
+      [style.display]="isHouseVisible(house) ? 'block' : 'none'">
+      {{ house.name }}
+    </button>
+
+  
+<button mat-button [matMenuTriggerFor]="menu">FLAGATOR</button>
+<mat-menu #menu="matMenu" class="customize">
+  <button mat-menu-item>FLAGATOR (COMMERCE)</button>
+  <button mat-menu-item>FLAGATOR (STUDIO)</button>
+  <button mat-menu-item>FLAGATOR (FLAT 1)</button>
+  <button mat-menu-item>FLAGATOR (FLAT 2)</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="menu1">FLAGATORETTE</button>
+<mat-menu #menu1="matMenu" class="customize" >
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="menu2">WATERCOOL</button>
+<mat-menu #menu2="matMenu" class="customize">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="menu3">PORTLAND</button>
+<mat-menu #menu3="matMenu" class="customize">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="menu4">DUCATUS</button>
+<mat-menu #menu4="matMenu" class="customize">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="menu5">CHATELAINE</button>
+<mat-menu #menu5="matMenu" class="customize">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="menu6">OFFICE</button>
+<mat-menu #menu6="matMenu" class="customize">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="menu7">BERTO</button>
+<mat-menu #menu7="matMenu" class="customize">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+<!-- <div #menuContainer></div> -->
+<br>
+<button mat-mini-fab color="secondary" aria-label="add new house" >
+    <mat-icon>add</mat-icon>
+</button>
+</div>
+
+
+

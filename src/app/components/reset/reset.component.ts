@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PasswordResetService } from 'src/app/services/passwordreset.service';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.component.html',
@@ -10,9 +10,9 @@ import { PasswordResetService } from 'src/app/services/passwordreset.service';
 })
 export class ResetComponent implements OnInit {
   hide = true;
-  confirmPassword = true;
-  newPassword = '';
-  confirmNewPassword = '';
+  confirmNewPassword = true;
+  confirmPassword = '';
+  password = '';
   passwordsDoNotMatch = false;
   id!: string;
   token!: string;
@@ -23,7 +23,8 @@ export class ResetComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private resetService: PasswordResetService
+    private resetService: PasswordResetService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -41,11 +42,11 @@ export class ResetComponent implements OnInit {
 
   initForm() {
     this.reset = this.formBuilder.group({
-      newPassword: [
+      password: [
         '',
         [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$/)],
       ],
-      confirmNewPassword: [
+      confirmPassword: [
         '',
         [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$/)],
       ],
@@ -53,14 +54,14 @@ export class ResetComponent implements OnInit {
   }
 
   passwordsMatch(): boolean {
-    return this.newPassword === this.confirmNewPassword;
+    return this.password === this.confirmPassword;
   }
 
   onReset(): void {
     if (this.passwordsMatch()) {
       const body = {
-        newPassword: this.newPassword,
-        confirmNewPassword: this.confirmNewPassword,
+        password: this.reset.value.password,
+        confirmPassword: this.reset.value.confirmPassword,
       };
       
       this.resetService.resetPassword(this.token, this.id, body,

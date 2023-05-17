@@ -1,0 +1,21 @@
+form{
+    display: flex;
+    justify-content: center;
+}
+
+.list{
+    display: flex;
+    flex-direction: row;
+    gap:2rem;
+    align-items:center;
+    justify-content: center;
+}
+::ng-deep .customize {
+    background-color:  transparent;
+    border: 1px solid white;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+

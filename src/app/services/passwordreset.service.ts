@@ -16,16 +16,16 @@ export class PasswordResetService {
 
   resetPassword(token: string, id: string, body: any, callBack: Function, errorCallBack: Function) {
     this.http
-      .patch(`${BASEURL}/reset?token=${token}&id=${id}`, body)
-      .subscribe(
-        (res: any) => {
+      .patch(`${BASEURL}/v1/auth/resetPassword/id/${id}/token/${token}`, body)
+      .subscribe({
+        next: (res: any) => {
           callBack(res);
           // Redirect to login
           this.router.navigate(['/']);
         },
-        (error: HttpErrorResponse) => {
+        error: (error: HttpErrorResponse) => {
           errorCallBack(error);
         }
-      );
+      });
+    }
   }
-}

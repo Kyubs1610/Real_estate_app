@@ -9,7 +9,6 @@ import { CookieService } from 'ngx-cookie-service';
 interface AuthResponse {
   message: string;
   info: {
-    fullname: string;
     token: string;
   };
   reset: boolean;
@@ -37,6 +36,7 @@ export class AuthService {
       tap(response => {
         console.log('response from server', response.info.token);
         console.log('response from server', response.reset);
+        
         // Set the authentication cookie with URL encoding using CookieService
         this.cookieService.set('authToken', response.info.token, 2, '/');
         // Set the authenticated flag
