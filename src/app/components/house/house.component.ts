@@ -5,8 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './house.component.html',
   styleUrls: ['./house.component.scss']
 })
+
 export class HouseComponent {
 search!: string;
+newMaison: any = {}; // Declare newMaison property
 
 maisons = [
   {
@@ -84,6 +86,7 @@ filteredMaisons: any[] = this.maisons;
 selectedMaison: any;
 selectedChambre: any;
 
+
 selectMaison(maison: any) {
   this.selectedMaison = maison;
   this.selectedChambre = null;
@@ -95,17 +98,25 @@ selectChambre(chambre: any) {
 addMaison() {
   const newMaison = {
     id: this.maisons.length + 1,
-    nom: 'New Maison',
-    adresse: 'New Address',
-    ville : 'New Ville',
+    nom: '', // Initialize with empty values
+    adresse: '',
+    ville: '',
     chambres: [],
     showDetails: false,
   };
+
+
+  // Assign input values if they are not null or empty strings
+  newMaison.nom = this.newMaison.nom || '';
+  newMaison.adresse = this.newMaison.adresse|| '';
+  newMaison.ville = this.newMaison.ville || '';
+    
   this.maisons.unshift(newMaison);
 }
 toggleDetails(maison: any) {
   maison.showDetails = !maison.showDetails;
 }
+
 // Make the searchbar functionnal
 searchMaison() {
   if (this.search === '') {

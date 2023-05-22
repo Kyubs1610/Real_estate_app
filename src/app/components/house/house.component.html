@@ -8,10 +8,24 @@
   </form>
 
 <div class="maison-container">
-  <mat-card class="customize add-card" (click)="addMaison()">
+  <mat-card class="customize add-card" >
     <mat-card-content>
-      <mat-icon>add</mat-icon>
+      <mat-icon >add</mat-icon>
       <h4> Add New House </h4>
+
+      <mat-form-field appearance="outline">
+        <mat-label>House Name</mat-label>
+          <input type="text"  matInput [(ngModel)]="newMaison.nom" placeholder="House Name">
+        </mat-form-field><br>
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input type="text"  matInput [(ngModel)]="newMaison.adresse" placeholder="Address">
+        </mat-form-field>&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input type="text"  matInput [(ngModel)]="newMaison.ville" placeholder="City">
+        </mat-form-field>&nbsp;
+          <button mat-button (click)="addMaison()">Save</button>
     </mat-card-content>
   </mat-card>
 

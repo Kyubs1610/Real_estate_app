@@ -1,4 +1,6 @@
-
+main{
+    min-height: 100dvh;
+}
 form{
     display: flex;
     justify-content: center;
@@ -43,3 +45,8 @@ mat-icon{
     color: rgb(112, 12, 243) !important;
   }
 
+  .add-card input{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
