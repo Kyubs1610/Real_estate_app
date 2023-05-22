@@ -3,6 +3,7 @@
 form{
     display: flex;
     justify-content: center;
+
 }
 
 .maison-container{
@@ -43,9 +44,7 @@ mat-icon{
   }
 
   @media (max-width: 1023px){
-    main{
-        height: 100dvh;
-        }
+ 
     .maison-container{
         display: flex;
         flex-direction: column;
@@ -53,6 +52,10 @@ mat-icon{
         justify-content: center;
         color: white;
         align-items: center;
+    }
+
+    .customize{
+        width: 80%;
     }
 
   }
