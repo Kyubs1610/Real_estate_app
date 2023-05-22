@@ -8,6 +8,13 @@
   </form>
 
 <div class="maison-container">
+  <mat-card class="customize add-card" (click)="addMaison()">
+    <mat-card-content>
+      <mat-icon>add</mat-icon>
+      <h4> Add New House </h4>
+    </mat-card-content>
+  </mat-card>
+
   <mat-card class="customize" *ngFor="let maison of filteredMaisons">
     <mat-card-header>
       <mat-card-title>{{ maison.nom }}</mat-card-title>
@@ -28,12 +35,7 @@
         </mat-list-item>
       </mat-list>
     </mat-card-content>
-  </mat-card>
-  <mat-card class="customize add-card" (click)="addMaison()">
-    <mat-card-content>
-      <mat-icon>add</mat-icon>
-      <h4> Add New House </h4>
-    </mat-card-content>
-  </mat-card>
+  </mat-card><br>
+ 
 </div>
 </main>

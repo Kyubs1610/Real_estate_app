@@ -101,7 +101,7 @@ addMaison() {
     chambres: [],
     showDetails: false,
   };
-  this.maisons.push(newMaison);
+  this.maisons.unshift(newMaison);
 }
 toggleDetails(maison: any) {
   maison.showDetails = !maison.showDetails;
