@@ -21,10 +21,12 @@ import { ResetComponent } from './components/reset/reset.component';
 import { FormsModule } from '@angular/forms';
 import { HouseComponent } from './components/house/house.component';
 import { TenantComponent } from './components/tenant/tenant.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { EmailsentComponent } from './components/emailsent/emailsent.component';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,6 @@ import { RouterModule } from '@angular/router';
     TenantComponent,
     HeaderComponent,
     EmailsentComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -56,7 +57,9 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatListModule,
     RouterModule,
-    
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatCardModule,
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},

@@ -1,21 +1,58 @@
+
+
 form{
     display: flex;
     justify-content: center;
 }
 
-.list{
+.maison-container{
     display: flex;
     flex-direction: row;
     gap:2rem;
-    align-items:center;
     justify-content: center;
+    color: white;
+    align-items: baseline;
+    
 }
-::ng-deep .customize {
+::ng-deep .customize, mat-card {
     background-color:  transparent;
-    border: 1px solid white;
-    position: absolute;
-    top: 0;
-    right: 0;
+    background: rgba( 255, 255, 255, 0.15 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11px );
+    -webkit-backdrop-filter: blur( 11px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+::ng-deep .customize:hover, mat-card:hover {
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11px );
+    -webkit-backdrop-filter: blur( 11px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    transition: .3s;
+}
+
+mat-icon{
+
+    align-items: center;
+}
+
+.details {
+    color: rgb(112, 12, 243) !important;
   }
 
+  @media (max-width: 1023px){
+    main{
+        height: 100dvh;
+        }
+    .maison-container{
+        display: flex;
+        flex-direction: column;
+        gap:2rem;
+        justify-content: center;
+        color: white;
+        align-items: center;
+    }
 
+  }

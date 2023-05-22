@@ -1,7 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { HomepageService } from 'src/app/services/homepage.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';;
+
+interface AuthResponse {
+  [index: number]: 
+  {
+  fullname: string;
+  id: number;
+  firstname: string;
+  lastname: string;
+  phoneNumber: string;
+  email: string;
+  isPasswordRequired: boolean;
+  createdAt: string;
+  updatedAt: string;
+}}
 
 @Component({
   selector: 'app-homepage',
@@ -9,24 +21,16 @@ import { Router, ActivatedRoute, Params } from '@angular/router';;
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  fullname!: string;
+  firstname!: string;
 
-  constructor(
-    private route: ActivatedRoute,
-    private http: HttpClient,
-    private homepageService: HomepageService,
-    private router: Router
-  ) {}
+  constructor(private homepageService: HomepageService) {}
 
   ngOnInit() {
-    this.homepageService.getFullname().subscribe({
-      next: (response) => {
-        this.fullname = response.info.fullname;
-        console.log(response.info.fullname);
-      },
-      error: (error) => {
-        console.error(error);
-      }
+    this.homepageService.getFirstname().subscribe((response: AuthResponse) => {
+      console.log(response[0].firstname); // Log the firstname property of the first object
+      this.firstname = response[0].firstname; // Assign the firstname property to the template variable
+    }, (error) => {
+      console.error(error);
     });
   }
 }

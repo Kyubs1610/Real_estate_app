@@ -6,26 +6,19 @@ main{
    height: 100vh;
 }
 
-
 section, form{
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-   
-
-  
     img {
        border: 10px solid white;
        border-radius: 50%;
        height: 300px;
        margin: 20px auto ;
-       
      }
     }
-
 .example-container{
     display: flex;
     flex-direction: column;
@@ -35,9 +28,7 @@ section, form{
    
      mat-form-field{
          width: 300px;
-          
       }
-
       
       mat-icon{
          color: white;
@@ -47,9 +38,6 @@ section, form{
          border:none;
          padding: 0 15px;
          color: white;
-         
       }
-     
     }
-
  
