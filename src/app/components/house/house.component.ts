@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 
 export class HouseComponent {
 search!: string;
-newMaison: any = {}; // Declare newMaison property
+newhouse: any = {}; // Declare newhouse property
 
-maisons = [
+houses = [
   {
     id: 1,
     nom: 'FLAGATOR',
@@ -81,23 +81,23 @@ maisons = [
   },
   
 ];
-filteredMaisons: any[] = this.maisons;
+filteredhouses: any[] = this.houses;
 
-selectedMaison: any;
+selectedhouse: any;
 selectedChambre: any;
 
 
-selectMaison(maison: any) {
-  this.selectedMaison = maison;
+selecthouse(house: any) {
+  this.selectedhouse = house;
   this.selectedChambre = null;
 }
 
 selectChambre(chambre: any) {
   this.selectedChambre = chambre;
 }
-addMaison() {
-  const newMaison = {
-    id: this.maisons.length + 1,
+addhouse() {
+  const newhouse = {
+    id: this.houses.length + 1,
     nom: '', // Initialize with empty values
     adresse: '',
     ville: '',
@@ -107,27 +107,43 @@ addMaison() {
 
 
   // Assign input values if they are not null or empty strings
-  newMaison.nom = this.newMaison.nom || '';
-  newMaison.adresse = this.newMaison.adresse|| '';
-  newMaison.ville = this.newMaison.ville || '';
+  newhouse.nom = this.newhouse.nom || '';
+  newhouse.adresse = this.newhouse.adresse|| '';
+  newhouse.ville = this.newhouse.ville || '';
     
-  this.maisons.unshift(newMaison);
+  this.houses.unshift(newhouse);
 }
-toggleDetails(maison: any) {
-  maison.showDetails = !maison.showDetails;
+toggleDetails(house: any) {
+  house.showDetails = !house.showDetails;
 }
 
 // Make the searchbar functionnal
-searchMaison() {
+searchhouse() {
   if (this.search === '') {
-    this.filteredMaisons = this.maisons; // No search term, show all maisons
+    this.filteredhouses = this.houses; // No search term, show all houses
     return;
   }
-  this.filteredMaisons = this.maisons.filter((maison) =>
-    maison.nom.toLowerCase().includes(this.search.toLowerCase())
+  this.filteredhouses = this.houses.filter((house) =>
+    house.nom.toLowerCase().includes(this.search.toLowerCase())
   );
 }
+
+// add a remove and edit button on the mat-card of the house component
+
+edithouse(house: any) {
+  house.editMode = true;
+
 }
+
+removehouse(house: any) {
+  this.houses = this.houses.filter((m) => m.id !== house.id);
+  }
+
+
+
+}
+
+
 
 
 

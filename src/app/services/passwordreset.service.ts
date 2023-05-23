@@ -14,7 +14,7 @@ export class PasswordResetService {
     private router: Router
   ) {}
 
-  resetPassword(token: string, id: string, body: any, callBack: Function, errorCallBack: Function) {
+  resetPassword(id: number,token: string, body: any, callBack: Function, errorCallBack: Function) {
     this.http
       .patch(`${BASEURL}/v1/auth/resetPassword/id/${id}/token/${token}`, body)
       .subscribe({

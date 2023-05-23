@@ -14,7 +14,7 @@ export class ResetComponent implements OnInit {
   confirmPassword = '';
   password = '';
   passwordsDoNotMatch = false;
-  id!: string;
+  id!: number;
   token!: string;
   reset!: FormGroup;
   resetEmail!: FormGroup;
@@ -29,11 +29,13 @@ export class ResetComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.route.queryParamMap.subscribe(params => {
-      this.token = params.get('token') || '';
-      this.id = params.get('id') || '';
+
+    this.route.params.subscribe(params => {
+      this.id = params['id'] || '';
+      this.token = params['token'] || '';
       console.log(this.id);
       console.log(this.token);
+
     });
     this.resetEmail = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
@@ -64,7 +66,7 @@ export class ResetComponent implements OnInit {
         confirmPassword: this.reset.value.confirmPassword,
       };
       
-      this.resetService.resetPassword(this.token, this.id, body,
+      this.resetService.resetPassword(this.id, this.token, body,
         (res: any) => {
           // handle success response from backend
           console.log(res);
@@ -83,4 +85,6 @@ export class ResetComponent implements OnInit {
   get email() {
     return this.resetEmail.controls["email"];
   }
+
+
 }
