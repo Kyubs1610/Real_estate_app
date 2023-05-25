@@ -5,7 +5,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { NofoundComponent } from './components/nofound/nofound.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ResetComponent } from './components/reset/reset.component';
-import { HouseComponent } from './components/house/house.component';
+import { buildingComponent } from './components/house/house.component';
 import { TenantComponent } from './components/tenant/tenant.component';
 import { EmailsentComponent } from './components/emailsent/emailsent.component';
 
@@ -35,7 +35,7 @@ const routes: Routes = [
     component : NofoundComponent
   },
   { path:'house',
-    component : HouseComponent,
+    component : buildingComponent,
     canActivate: [AuthGuard]
   },
   { path:'tenant',  

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+
 interface AuthResponse {
-  [index: number]: 
-  {
+
   fullname: string;
   id: number;
   firstname: string;
@@ -13,18 +14,26 @@ interface AuthResponse {
   isPasswordRequired: boolean;
   createdAt: string;
   updatedAt: string;
-}}
+}
 
 
-const BASEURL = 'http://localhost:3000/';
+const BASEURL = 'http://192.168.1.254:3000/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomepageService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
+
 
   getFirstname(): Observable<AuthResponse> {
-    return this.http.get<AuthResponse>(`${BASEURL}v1/Users/getUsers`);
+    const options = {
+      headers: new HttpHeaders({
+       'Authorization': this.cookieService.get('authToken')
+      }),
+      withCredentials: true
+     };
+    console.log(options)
+    return this.http.get<AuthResponse>(`${BASEURL}v1/Users/user`, options);
   }
 }

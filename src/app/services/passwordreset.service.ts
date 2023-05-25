@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
-const BASEURL = 'http://localhost:3000';
+const BASEURL = 'http://192.168.1.254:3000';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,7 @@ export class PasswordResetService {
   ) {}
 
   resetPassword(id: number,token: string, body: any, callBack: Function, errorCallBack: Function) {
+    
     this.http
       .patch(`${BASEURL}/v1/auth/resetPassword/id/${id}/token/${token}`, body)
       .subscribe({

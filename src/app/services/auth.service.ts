@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
 
@@ -14,7 +14,8 @@ interface AuthResponse {
   reset: boolean;
 }
 
-const BASEURL = 'http://localhost:3000/';
+const BASEURL = 'http://192.168.1.254:3000/';
+ 
 
 @Injectable({
   providedIn: 'root'
@@ -31,14 +32,19 @@ export class AuthService {
 
   logIn(email: string, password: string): Observable<AuthResponse> {
     const body = { email, password };
-    const options = { withCredentials: true }; // send the info with the cookie
+    const options = {
+      headers: new HttpHeaders({
+       'Authorization': this.cookieService.get('authToken')
+      }),
+      withCredentials: true
+     };
     return this.http.post<AuthResponse>(`${BASEURL}v1/auth/login`, body, options).pipe(
       tap(response => {
         console.log('response from server', response.info.token);
         console.log('response from server', response.reset);
         
         // Set the authentication cookie with URL encoding using CookieService
-        this.cookieService.set('authToken', response.info.token, 2, '/');
+        this.cookieService.set('authToken', response.info.token);
         // Set the authenticated flag
         this.authenticated = true;
       // Check if it's the user's first login

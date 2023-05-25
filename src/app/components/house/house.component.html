@@ -2,54 +2,84 @@
   <form class="example-form">
     <mat-form-field class="example-full-width" appearance="outline">
       <span matPrefix></span>
-      <input type="text" matInput placeholder="Search" name="search" [(ngModel)]="search" (input)="searchhouse()">
+      <input type="text" matInput placeholder="Search" name="search" [(ngModel)]="search" (keyup)="searchBuilding()">
       <button matSuffix mat-button><mat-icon>search</mat-icon></button>
     </mat-form-field>
   </form>
 
-<div class="house-container">
+<div class="building-container">
   <mat-card class="customize add-card" >
     <mat-card-content>
-      <mat-icon >add</mat-icon>
-      <h4> Add New House </h4>
-
+      <button mat-button (click)="tooglerooms()"> <mat-card-title> {{ showAddBuildingSection ? '- Hide' : '+ Add New building' }}</mat-card-title></button><br><br>
+      <div *ngIf="showAddBuildingSection">
       <mat-form-field appearance="outline">
-        <mat-label>House Name</mat-label>
-          <input type="text"  matInput [(ngModel)]="newhouse.nom" placeholder="House Name">
+        <mat-label>Building Name</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.name" placeholder="Building Name">
         </mat-form-field><br>
         <mat-form-field appearance="outline">
           <mat-label>Address</mat-label>
-          <input type="text"  matInput [(ngModel)]="newhouse.adresse" placeholder="Address">
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressStreet" placeholder="Address">
+        </mat-form-field>&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>Number</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressNumber" placeholder="Number">
+        </mat-form-field>&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>Zip Code</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressPostalCode" placeholder="Zip Code">
         </mat-form-field>&nbsp;
         <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
-          <input type="text"  matInput [(ngModel)]="newhouse.ville" placeholder="City">
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressCity" placeholder="City">
         </mat-form-field>&nbsp;
-          <button mat-button (click)="addhouse()">Save</button>
+        <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressCountry" placeholder="Country">
+        </mat-form-field>&nbsp; <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Door Code</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.doorCode" placeholder="Door Code">
+        </mat-form-field>&nbsp;
+        
+        
+      
+        <button mat-button >Add Room</button>
+        <!-- <div *ngFor="let chambre of newbuilding.chambres; let i = index">
+    <mat-form-field appearance="outline">
+      <mat-label>Room Name</mat-label>
+      <input type="text" matInput [(ngModel)]="chambre.nom" placeholder="Room Name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Locataire Name</mat-label>
+      <input type="text" matInput [(ngModel)]="chambre.locataire" placeholder="Locataire Name">
+    </mat-form-field>
+    <button mat-button >Remove</button>
+  </div> -->
+          <button mat-button (click)="addBuilding()" >Save</button>
+        </div>
     </mat-card-content>
   </mat-card>
-  
 
-  <mat-card class="customize" *ngFor="let house of filteredhouses">
-    <div class="iconsButton">
-      <button mat-icon-button (click)="removehouse(house)">
-      <mat-icon>delete</mat-icon>
-      </button>
-      <button mat-icon-button (click)="edithouse(house)">
-      <mat-icon>edit</mat-icon>
-      </button>
-    </div>
+  <mat-card class="customize" *ngFor="let building of filteredbuildings">
     <mat-card-header>
-      <mat-card-title>{{ house.nom }}</mat-card-title>
+      <div class="iconsButton">
+        <button mat-icon-button >
+          <mat-icon>edit</mat-icon>
+          </button>
+        <button mat-icon-button >
+        <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <mat-card-title>{{ building.name }}</mat-card-title>
       <mat-card-subtitle>
-          {{ house.adresse }} <br>
-          {{ house.ville }} 
+          {{ building.addressStreet }} {{ building.addressNumber }}, <br>
+          {{ building.addressPostalCode }} {{ building.addressCity }} 
       </mat-card-subtitle>
     </mat-card-header><br>
-    <button class="details" mat-button (click)="toggleDetails(house)">SEE THE ROOMS</button>
-    <mat-card-content *ngIf="house.showDetails">
+    <button class="details" mat-button (click)="toggleDetails(building)">SEE THE ROOMS</button>
+    <mat-card-content *ngIf="building.showDetails">
       <mat-list>
-        <mat-list-item *ngFor="let chambre of house.chambres" (click)="selectChambre(chambre)">
+        <mat-list-item *ngFor="let chambre of building.chambres" >
           {{ chambre.nom }} :
           <span class="room-details" *ngIf="selectedChambre === chambre">
             {{ chambre.locataire }}

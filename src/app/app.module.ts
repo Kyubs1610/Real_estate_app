@@ -19,13 +19,15 @@ import { NofoundComponent } from './components/nofound/nofound.component';
 import { AuthModule } from './auth/auth.module';
 import { ResetComponent } from './components/reset/reset.component';
 import { FormsModule } from '@angular/forms';
-import { HouseComponent } from './components/house/house.component';
+import { buildingComponent } from './components/house/house.component';
 import { TenantComponent } from './components/tenant/tenant.component';
-import { MatMenuModule, MatMenuPanel } from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { EmailsentComponent } from './components/emailsent/emailsent.component';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule, MatDialog } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -34,10 +36,11 @@ import { MatCardModule } from '@angular/material/card';
     HomepageComponent,
     NofoundComponent,
     ResetComponent,
-    HouseComponent,
+    buildingComponent,
     TenantComponent,
     HeaderComponent,
     EmailsentComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,9 @@ import { MatCardModule } from '@angular/material/card';
     BrowserModule,
     BrowserAnimationsModule,
     MatCardModule,
-
+    MatTableModule,
+    MatDialogModule,
+    
     
   ],
   providers: [
