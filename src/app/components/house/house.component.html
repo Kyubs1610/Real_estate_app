@@ -8,43 +8,12 @@
   </form>
 
 <div class="building-container">
-  <mat-card class="customize add-card" >
-    <mat-card-content>
-      <button mat-button (click)="tooglerooms()"> <mat-card-title> {{ showAddBuildingSection ? '- Hide' : '+ Add New building' }}</mat-card-title></button><br><br>
-      <div *ngIf="showAddBuildingSection">
-      <mat-form-field appearance="outline">
-        <mat-label>Building Name</mat-label>
-          <input type="text"  matInput [(ngModel)]="newbuilding.name" placeholder="Building Name">
-        </mat-form-field><br>
-        <mat-form-field appearance="outline">
-          <mat-label>Address</mat-label>
-          <input type="text"  matInput [(ngModel)]="newbuilding.addressStreet" placeholder="Address">
-        </mat-form-field>&nbsp;
-        <mat-form-field appearance="outline">
-          <mat-label>Number</mat-label>
-          <input type="text"  matInput [(ngModel)]="newbuilding.addressNumber" placeholder="Number">
-        </mat-form-field>&nbsp;
-        <mat-form-field appearance="outline">
-          <mat-label>Zip Code</mat-label>
-          <input type="text"  matInput [(ngModel)]="newbuilding.addressPostalCode" placeholder="Zip Code">
-        </mat-form-field>&nbsp;
-        <mat-form-field appearance="outline">
-          <mat-label>City</mat-label>
-          <input type="text"  matInput [(ngModel)]="newbuilding.addressCity" placeholder="City">
-        </mat-form-field>&nbsp;
-        <mat-form-field appearance="outline">
-          <mat-label>Country</mat-label>
-          <input type="text"  matInput [(ngModel)]="newbuilding.addressCountry" placeholder="Country">
-        </mat-form-field>&nbsp; <br>
-        <mat-form-field appearance="outline">
-          <mat-label>Door Code</mat-label>
-          <input type="text"  matInput [(ngModel)]="newbuilding.doorCode" placeholder="Door Code">
-        </mat-form-field>&nbsp;
-        
+  <button mat-button (click)="openDialog()"> <mat-card-title> {{ '+ Add New building' }}</mat-card-title></button><br><br>
+
         
       
-        <button mat-button >Add Room</button>
-        <!-- <div *ngFor="let chambre of newbuilding.chambres; let i = index">
+        <!-- <button mat-button >Add Room</button>
+        <div *ngFor="let chambre of newbuilding.chambres; let i = index">
     <mat-form-field appearance="outline">
       <mat-label>Room Name</mat-label>
       <input type="text" matInput [(ngModel)]="chambre.nom" placeholder="Room Name">
@@ -55,10 +24,7 @@
     </mat-form-field>
     <button mat-button >Remove</button>
   </div> -->
-          <button mat-button (click)="addBuilding()" >Save</button>
-        </div>
-    </mat-card-content>
-  </mat-card>
+
 
   <mat-card class="customize" *ngFor="let building of filteredbuildings">
     <mat-card-header>
@@ -66,8 +32,8 @@
         <button mat-icon-button >
           <mat-icon>edit</mat-icon>
           </button>
-        <button mat-icon-button >
-        <mat-icon>delete</mat-icon>
+        <button mat-icon-button (click)="removeBuilding(building.id)" >
+        <mat-icon >delete</mat-icon>
         </button>
       </div>
       <mat-card-title>{{ building.name }}</mat-card-title>
@@ -79,10 +45,12 @@
     <button class="details" mat-button (click)="toggleDetails(building)">SEE THE ROOMS</button>
     <mat-card-content *ngIf="building.showDetails">
       <mat-list>
-        <mat-list-item *ngFor="let chambre of building.chambres" >
-          {{ chambre.nom }} :
-          <span class="room-details" *ngIf="selectedChambre === chambre">
-            {{ chambre.locataire }}
+        <mat-list-item *ngFor="let room of building.rooms">
+          {{ room.roomNumber }} occupied by :
+       
+          <span class="room-details" *ngFor="let tenants of room.tenants">
+            {{ tenants.firstname }} {{ tenants.lastname }} <br>
+         
           </span>
         </mat-list-item>
       </mat-list>

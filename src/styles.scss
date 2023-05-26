@@ -24,4 +24,21 @@ body {
 body::-webkit-scrollbar {
     display: none;
   }
+
   
+ // dialog box for the house component (addform)
+.dialog-content{
+    
+    background-color: #7d5add;
+    border: 1px solid #fff;
+    margin: -40px;
+}
+
+.dialog-title {
+    .title-container {
+      display: flex!important;
+      justify-content: space-between !important;
+      align-items: center;
+      margin: -25px 0;
+    }
+  }

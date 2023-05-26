@@ -1,0 +1,41 @@
+    <mat-dialog-content class="dialog-content">
+      <div mat-dialog-title class="dialog-title">
+        <div class="title-container">
+          <h2> Add Building </h2>
+          <button mat-icon-button mat-dialog-close class="close-button">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div><br>
+      <mat-form-field appearance="outline">
+        <mat-label>Building Name</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.name" placeholder="Building Name">
+        </mat-form-field><br>
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressStreet" placeholder="Address">
+        </mat-form-field>&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>Number</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressNumber" placeholder="Number">
+        </mat-form-field><br>
+        <mat-form-field appearance="outline">
+          <mat-label>Zip Code</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressPostalCode" placeholder="Zip Code">
+        </mat-form-field>&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressCity" placeholder="City">
+        </mat-form-field><br>
+        <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.addressCountry" placeholder="Country">
+        </mat-form-field>&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>Door Code</mat-label>
+          <input type="text"  matInput [(ngModel)]="newbuilding.doorCode" placeholder="Door Code">
+        </mat-form-field>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close (click)="addBuilding()" >Save</button>
+        </div>
+    </mat-dialog-content>

@@ -28,6 +28,8 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { addformComponent } from './components/house/addform.component';
+import { SnackBar } from './components/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import {MatDialogModule, MatDialog } from '@angular/material/dialog';
     TenantComponent,
     HeaderComponent,
     EmailsentComponent,
+    addformComponent,
     
   ],
   imports: [
@@ -64,12 +67,12 @@ import {MatDialogModule, MatDialog } from '@angular/material/dialog';
     MatCardModule,
     MatTableModule,
     MatDialogModule,
-    
+    SnackBar,
     
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},
-    CookieService
+    CookieService, SnackBar
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,7 @@
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HouseService } from './../../services/house.service';
 import { Component, OnInit } from '@angular/core';
+import { addformComponent } from './addform.component';
 
 interface building extends Array<{
   id: number;
@@ -11,6 +13,7 @@ interface building extends Array<{
   doorCode: string;
   updatedAt: string;
   createdAt: string;
+  rooms: any[];
   
 }> {}
 
@@ -27,12 +30,13 @@ export class buildingComponent implements OnInit {
   showAddBuildingSection: boolean = false;
   buildings:  any[] = [];
   filteredbuildings: any[] = this.buildings;
-  selectedbuilding: any;
-  selectedChambre: any;
+  id!: number 
 
   
   constructor(
-    private HouseService : HouseService) {}
+    private HouseService : HouseService,
+    private dialog: MatDialog,
+    ) {}
 
     ngOnInit() {
       this.HouseService.getbuilding().subscribe((response: building) => {
@@ -47,6 +51,11 @@ export class buildingComponent implements OnInit {
   toggleDetails(building: any) {
       building.showDetails = !building.showDetails;
   }  
+
+  openDialog() {
+   this.dialog.open(addformComponent, { panelClass: 'custom' })
+  }
+
     
   tooglerooms() {
     this.showAddBuildingSection = !this.showAddBuildingSection;
@@ -58,42 +67,20 @@ searchBuilding() {
     return building.name.toLowerCase().includes(this.search.toLowerCase());
   });
 }
-    
-// add building on the list and the database
+    //remove building
 
-addBuilding() {
-  const newBuilding = {
-    id: this.buildings.length + 1 ,
-    name: '', // Initialize with empty values
-    addressStreet: '',
-    addressNumber: '',
-    addressCity: '',
-    addressPostalCode: '',
-    addressCountry: '',
-    doorCode: '',
-  };
-  // Assign input values if they are not null or empty strings
-  newBuilding.name = newBuilding.name || '';
-  newBuilding.addressStreet = newBuilding.addressStreet || '';
-  newBuilding.addressNumber = newBuilding.addressNumber || '';
-  newBuilding.addressCity = newBuilding.addressCity || '';
-  newBuilding.addressPostalCode = newBuilding.addressPostalCode || '';
-  newBuilding.addressCountry = newBuilding.addressCountry || '';
-  newBuilding.doorCode = newBuilding.doorCode || '';
-
-
- 
-  this.HouseService.addbuilding(this.newbuilding).subscribe(
-    (response: building) => {
-      console.log(response); // Log the response object
-      this.buildings = [response, ...this.buildings]; // Update buildings array with the response
-      this.filteredbuildings = [response, ...this.filteredbuildings]; // Update filteredbuildings array with the response
-    },
-    (error) => {
-      console.error(error);
+    removeBuilding(id: number) {
+      this.HouseService.removebuilding(id).subscribe(
+        (response: building) => {
+          console.log(response); // Log the response object
+          this.buildings = response; // Assign the response to buildings array
+          this.filteredbuildings = response; // Assign the response to filteredbuildings array
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     }
-  );
-}
 
 // addRoom() {
 //   if (!this.newbuilding.chambres || this.newbuilding.chambres.length === 0) {

@@ -13,6 +13,7 @@ interface building extends Array<{
   doorCode: string;
   updatedAt: string;
   createdAt: string;
+  rooms: any[];
 }> {}
 
 const BASEURL = 'http://192.168.1.254:3000/';
@@ -48,13 +49,14 @@ export class HouseService {
      }; // send the info with the cookie
     return this.http.post<building>(`${BASEURL}v1/buildings/createBuilding`, newbuilding ,  options);
   }
+
   removebuilding(id: number): Observable<building> {
     const options = {
       headers: new HttpHeaders({
        'Authorization': this.cookieService.get('authToken')
       }),
       withCredentials: true
-     };; // send the info with the cookie
+     }; // send the info with the cookie
     return this.http.delete<building>(`${BASEURL}v1/buildings/deleteBuilding/${id}`, options);
   }
 }
