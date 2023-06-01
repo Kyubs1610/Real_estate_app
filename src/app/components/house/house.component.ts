@@ -2,6 +2,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HouseService } from './../../services/house.service';
 import { Component, OnInit } from '@angular/core';
 import { addformComponent } from './addform.component';
+import { SnackBar } from '../snackbar/snackbar.component';
+import { UpdateFormComponent } from './updateform.component';
 
 interface building extends Array<{
   id: number;
@@ -36,6 +38,7 @@ export class buildingComponent implements OnInit {
   constructor(
     private HouseService : HouseService,
     private dialog: MatDialog,
+    private snackBar: SnackBar,
     ) {}
 
     ngOnInit() {
@@ -56,7 +59,40 @@ export class buildingComponent implements OnInit {
    this.dialog.open(addformComponent, { panelClass: 'custom' })
   }
 
-    
+
+      
+// Open the update dialog
+openUpdateDialog(id: number) {
+  // Find the building to update based on the id
+  const buildingToUpdate = this.buildings.find((building) => building.id === id);
+
+  // If the building is found, open the dialog with the building data
+  if (buildingToUpdate) {
+    const dialogRef = this.dialog.open(UpdateFormComponent, {
+      panelClass: 'custom',
+      data: {
+        id: id,
+        buildings: this.buildings
+      }
+    });
+
+    // Optional: Subscribe to the dialog's afterClosed event to perform any necessary actions after the dialog is closed
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle refresh data & show snackbar
+      this.HouseService.getbuilding().subscribe((response: building) => {
+        console.log(response); // Log the response object
+        this.buildings = response; // Assign the response to buildings array
+        this.snackBar.updateSnackBar();
+      }, (error) => {
+        console.error(error);
+      });
+    });
+  } else {
+    console.error(`Building with ID ${id} not found.`);
+  }
+}
+        
+       
   tooglerooms() {
     this.showAddBuildingSection = !this.showAddBuildingSection;
     this.newbuilding = {}; // Reset newbuilding object when toggling the section
@@ -74,13 +110,16 @@ searchBuilding() {
         (response: building) => {
           console.log(response); // Log the response object
           this.buildings = response; // Assign the response to buildings array
-          this.filteredbuildings = response; // Assign the response to filteredbuildings array
+          this.snackBar.deleteSnackBar();
         },
         (error) => {
           console.error(error);
         }
       );
     }
+
+
+
 
 // addRoom() {
 //   if (!this.newbuilding.chambres || this.newbuilding.chambres.length === 0) {

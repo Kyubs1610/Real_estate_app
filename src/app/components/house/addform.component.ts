@@ -34,7 +34,6 @@ export class addformComponent {
     newbuilding: any = {}; // Declare newbuilding property
     showAddBuildingSection: boolean = false;
     buildings:  any[] = [];
-    filteredbuildings: any[] = this.buildings;
 
     addBuilding() {
         const newBuilding = {
@@ -60,7 +59,6 @@ export class addformComponent {
           (response: building) => {
             console.log(response); // Log the response object
             this.buildings = [response, ...this.buildings]; // Update buildings array with the response
-            this.filteredbuildings = [response, ...this.filteredbuildings]; // Update filteredbuildings array with the response
             // reload the page to see the change
             this.snackBar.openSnackBar();
           },
@@ -69,5 +67,9 @@ export class addformComponent {
             this.snackBar.openSnackBarError();
           }
         );
+      }
+
+      isMobile() {
+        return window.innerWidth <= 767;
       }
 }

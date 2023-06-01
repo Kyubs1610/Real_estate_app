@@ -26,15 +26,37 @@ export class SnackBar {
   constructor(private _snackBar: MatSnackBar) {}
 
   openSnackBar() {
-    this._snackBar.open('Building well added to the database', 'confirmed', {
+    let snackBarRef = this._snackBar.open('Building well added to the database', 'confirmed', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
-  }
+  snackBarRef.onAction().subscribe(() => {
+    window.location.reload();
+  });
+}
+
   openSnackBarError() {
     this._snackBar.open('Building has not been added', 'ERROR', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
+    });
+  }
+  deleteSnackBar() {
+    let snackBarRef = this._snackBar.open('Building removed successfully', 'confirmed', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+    snackBarRef.onAction().subscribe(() => {
+      window.location.reload();
+    });
+  }
+  updateSnackBar() {
+    let snackBarRef = this._snackBar.open('Building updated successfully', 'confirmed', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+    snackBarRef.onAction().subscribe(() => {
+      window.location.reload();
     });
   }
 }

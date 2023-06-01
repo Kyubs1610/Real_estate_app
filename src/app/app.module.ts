@@ -30,7 +30,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { addformComponent } from './components/house/addform.component';
 import { SnackBar } from './components/snackbar/snackbar.component';
-
+import { UpdateFormComponent } from './components/house/updateform.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +43,7 @@ import { SnackBar } from './components/snackbar/snackbar.component';
     HeaderComponent,
     EmailsentComponent,
     addformComponent,
-    
+    UpdateFormComponent,
   ],
   imports: [
     BrowserModule,

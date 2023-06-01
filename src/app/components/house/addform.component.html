@@ -1,10 +1,11 @@
-    <mat-dialog-content class="dialog-content">
+    <mat-dialog-content class="dialog-content" [style.max-width.%]="isMobile ? 100 : null" [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null" [style.width.%]="isMobile ? 100 : null">
+      <button mat-icon-button mat-dialog-close class="close-button">
+        <mat-icon>close</mat-icon>
+      </button>
       <div mat-dialog-title class="dialog-title">
         <div class="title-container">
           <h2> Add Building </h2>
-          <button mat-icon-button mat-dialog-close class="close-button">
-            <mat-icon>close</mat-icon>
-          </button>
+
         </div>
       </div><br>
       <mat-form-field appearance="outline">
