@@ -1,33 +1,28 @@
 export class Room {
-    roomInfos: {
-      roomNumber: string;
-      status: RoomStatus;
-      availableFrom: string;
-      type: RoomType;
-      rent: number;
-      rentReview: string;
-      specialConditions: string;
-      doorCode: string;
-      charges: number;
-    };
-    typeCharges: string[];
-  
-    constructor() {
-      this.roomInfos = {
-        roomNumber: '',
-        status: RoomStatus.free,
-        availableFrom: '',
-        type: RoomType.room,
-        rent: 0,
-        rentReview: '',
-        specialConditions: '',
-        doorCode: '',
-        charges: 0,
-      };
-      this.typeCharges = [];
-    }
-  }
-  
+  roomInfos: {
+    roomNumber: string;
+    status: RoomStatus;
+    availableFrom: string;
+    type: RoomType;
+    rent: string;
+    rentReview: string;
+    specialConditions: string;
+    doorCode: string;
+    charges: string;
+  } = {
+    roomNumber: '',
+    status: RoomStatus.free,
+    availableFrom: '',
+    type: RoomType.room,
+    rent: '',
+    rentReview: '',
+    specialConditions: '',
+    doorCode: '',
+    charges: '',
+  };
+ 
+}
+ 
   export enum RoomType {
     room = 'room',
     flat = 'flat',

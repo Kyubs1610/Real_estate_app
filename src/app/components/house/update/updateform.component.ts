@@ -3,22 +3,8 @@ import { HouseService } from 'src/app/services/house.service';
 import { Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackBar } from '../../snackbar/snackbar.component';
+import { UpdateBuilding } from 'src/app/models/updatebuilding.model';
 
-interface UpdateBuilding extends Array <{
-   building:{  
-    id: number;
-    name: string;
-    addressStreet: string;
-    addressCity: string;
-    addressNumber: any;
-    addressPostalCode: string;
-    addressCountry: string;
-    doorCode: string;
-    updatedAt: string;
-    createdAt: string;
-    rooms: any[];
-   }
-  }> {};
 
 @Component({
   selector: 'updateform',

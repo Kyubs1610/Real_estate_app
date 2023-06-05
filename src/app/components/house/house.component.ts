@@ -7,20 +7,7 @@ import { UpdateFormComponent } from './update/updateform.component';
 import { AddroomsService } from './../../services/rooms/addrooms.service';
 import { Room } from './../../models/room.model';
 import { addRoomComponent } from '../rooms/addRooms/add-rooms/add-rooms.component';
-
-interface building extends Array<{
-  id: number;
-  name: string;
-  addressStreet: string;
-  addressCity: string;
-  addressPostalCode: string;
-  addressCountry: string;
-  doorCode: string;
-  updatedAt: string;
-  createdAt: string;
-  rooms: any[];
-  
-}> {}
+import { Building } from 'src/app/models/building.model';
 
 @Component({
   selector: 'app-house',
@@ -47,7 +34,7 @@ export class buildingComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-      this.HouseService.getbuilding().subscribe((response: building) => {
+      this.HouseService.getbuilding().subscribe((response: Building) => {
         this.buildings = response;
         this.filteredbuildings = response;
       }, (error) => {
@@ -107,7 +94,7 @@ searchBuilding() {
 
   removeBuilding(id: number) {
     this.HouseService.removebuilding(id).subscribe(
-      (response: building) => {
+      (response: Building) => {
         this.buildings = response;
         this.snackBar.deleteSnackBar();
       },

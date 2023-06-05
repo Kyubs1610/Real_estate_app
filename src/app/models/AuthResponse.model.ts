@@ -10,3 +10,11 @@ export interface AuthResponse {
     createdAt: string;
     updatedAt: string;
   }
+
+  export interface  AuthResponseMail{
+    message: string;
+    info: {
+      token: string;
+    };
+    reset: boolean;
+  }

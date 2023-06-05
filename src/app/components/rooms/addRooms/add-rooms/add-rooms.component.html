@@ -1,22 +1,84 @@
 <mat-dialog-content class="dialog-content" [style.max-width.%]="isMobile ? 100 : null" [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null" [style.width.%]="isMobile ? 100 : null">
 
-    <div mat-dialog-title class="dialog-title">
-      <div class="title-container">
-        <button mat-icon-button mat-dialog-close class="close-button">
-          <mat-icon>close</mat-icon>
-        </button><br><br><br>
-        <h2> Add New Room </h2>
-      </div>
-    </div><br>
-    <div class="input"> 
+  <div mat-dialog-title class="dialog-title">
+    <div class="title-container">
+      <button mat-icon-button mat-dialog-close class="close-button">
+        <mat-icon>close</mat-icon>
+      </button><br><br><br>
+      <h2> Add New Room </h2>
+    </div>
+  </div><br>
+  <div>
+
     <mat-form-field appearance="outline">
       <mat-label>Room Name</mat-label>
-        <!-- <input type="text"  matInput [(ngModel)]="let room of rooms" placeholder="Room Name"> -->
+      <input type="text" matInput [(ngModel)]="newRoom.roomInfos.roomNumber" placeholder="Room Name">
+    </mat-form-field><br>
+
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <select matNativeControl [(ngModel)]="newRoom.roomInfos.status" >
+          <option value="free">Free</option>
+          <option value="occupied">Occupied</option>
+          <option value="available from">Available From</option>
+        </select>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Available From</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomInfos.availableFrom" [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field><br>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <select matNativeControl [(ngModel)]="newRoom.roomInfos.type">
+          <option value="room">Room</option>
+          <option value="flat">Flat</option>
+          <option value="studio">Studio</option>
+          <option value="office">Office</option>
+          <option value="commerce">Commerce</option>
+        </select>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Rent</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomInfos.rent" />
+      </mat-form-field><br>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Charges</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomInfos.charges" />
+      </mat-form-field><br>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Rent Review</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomInfos.rentReview" [matDatepicker]="picker2" />
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field><br>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Special Conditions</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomInfos.specialConditions" />
+      </mat-form-field><br>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Door Code</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomInfos.doorCode" />
+      </mat-form-field><br>
+    
   
-      <div mat-dialog-actions style="display: flex; justify-content: center;">
-          <button mat-button mat-dialog-close class="save"  >Save</button>
-      </div>
+    
+      <hr>
     </div>
-  </mat-dialog-content>
+    
+    
+    <div mat-dialog-actions style="display: flex; justify-content: center;">
+      <button mat-button mat-dialog-close class="save" (click)="addRoom(buildingId)">Save</button>
+    
+  </div>
+</mat-dialog-content>
 

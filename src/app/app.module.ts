@@ -32,6 +32,9 @@ import { addformComponent } from './components/house/add/addform.component';
 import { SnackBar } from './components/snackbar/snackbar.component';
 import { UpdateFormComponent } from './components/house/update/updateform.component';
 import { addRoomComponent } from './components/rooms/addRooms/add-rooms/add-rooms.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +50,7 @@ import { addRoomComponent } from './components/rooms/addRooms/add-rooms/add-room
     addformComponent,
     UpdateFormComponent,
     addRoomComponent,
+
    
   ],
   imports: [
@@ -72,6 +76,8 @@ import { addRoomComponent } from './components/rooms/addRooms/add-rooms/add-room
     MatTableModule,
     MatDialogModule,
     SnackBar,
+    MatDatepickerModule,
+    MatNativeDateModule,
     
   ],
   providers: [

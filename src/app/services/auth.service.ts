@@ -4,15 +4,7 @@ import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-
-
-interface AuthResponse {
-  message: string;
-  info: {
-    token: string;
-  };
-  reset: boolean;
-}
+import { AuthResponseMail } from '../models/AuthResponse.model';
 
 const BASEURL = 'http://192.168.1.254:3000/';
  
@@ -30,7 +22,7 @@ export class AuthService {
   ) {}
 
 
-  logIn(email: string, password: string): Observable<AuthResponse> {
+  logIn(email: string, password: string): Observable<AuthResponseMail> {
     const body = { email, password };
     const options = {
       headers: new HttpHeaders({
@@ -38,7 +30,7 @@ export class AuthService {
       }),
       withCredentials: true
      };
-    return this.http.post<AuthResponse>(`${BASEURL}v1/auth/login`, body, options).pipe(
+    return this.http.post<AuthResponseMail>(`${BASEURL}v1/auth/login`, body, options).pipe(
       tap(response => {
         console.log('response from server', response.info.token);
         console.log('response from server', response.reset);

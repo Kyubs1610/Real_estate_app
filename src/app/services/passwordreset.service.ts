@@ -17,7 +17,7 @@ export class PasswordResetService {
   resetPassword(id: number,token: string, body: any, callBack: Function, errorCallBack: Function) {
     
     this.http
-      .patch(`${BASEURL}/v1/auth/resetPassword/id/${id}/token/${token}`, body)
+      .patch(`${BASEURL}/v1/auth/password/id/${id}/token/${token}`, body)
       .subscribe({
         next: (res: any) => {
           callBack(res);

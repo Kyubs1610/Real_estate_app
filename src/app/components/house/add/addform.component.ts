@@ -2,18 +2,7 @@ import {Component} from '@angular/core';
 import { HouseService } from '../../../services/house.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SnackBar } from '../../snackbar/snackbar.component';
-interface building extends Array<{
-    id: number;
-    name: string;
-    addressStreet: string;
-    addressCity: string;
-    addressPostalCode: string;
-    addressCountry: string;
-    doorCode: string;
-    updatedAt: string;
-    createdAt: string;
-    
-  }> {}
+import { Building } from '../../../models/building.model';
 
 @Component({
     selector: 'addform',
@@ -55,7 +44,7 @@ export class addformComponent {
         newBuilding.doorCode = newBuilding.doorCode || '';
        
         this.HouseService.addbuilding(this.newbuilding).subscribe(
-          (response: building) => {
+          (response: Building) => {
             console.log(response); // Log the response object
             this.buildings = [response, ...this.buildings]; // Update buildings array with the response
             // reload the page to see the change

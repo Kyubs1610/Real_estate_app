@@ -2,19 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-
-interface AuthResponse {
-
-  fullname: string;
-  id: number;
-  firstname: string;
-  lastname: string;
-  phoneNumber: string;
-  email: string;
-  isPasswordRequired: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
+import { AuthResponse } from '../models/AuthResponse.model';
 
 
 const BASEURL = 'http://192.168.1.254:3000/';
@@ -34,6 +22,6 @@ export class HomepageService {
       withCredentials: true
      };
     console.log(options)
-    return this.http.get<AuthResponse>(`${BASEURL}v1/Users/user`, options);
+    return this.http.get<AuthResponse>(`${BASEURL}v1/user/userbyid`, options);
   }
 }

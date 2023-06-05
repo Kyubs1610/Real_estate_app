@@ -32,7 +32,7 @@
    
 <mat-card-content *ngIf="building.showDetails">
   <div mat-dialog-actions style="display: flex; justify-content: center;">
-    <button mat-button (click)="openRoomDialog(id)">  {{ '+ Add New Rooms' }}</button><br><br>
+    <button mat-button (click)="openRoomDialog(id)">  {{ '+ Add New Room' }}</button><br><br>
   </div>
   <div *ngFor="let chambre of newbuilding.chambres; let i = index">
 <mat-form-field appearance="outline">

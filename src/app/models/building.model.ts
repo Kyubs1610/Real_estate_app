@@ -1,4 +1,4 @@
-export class building extends Array<{
+export class Building extends Array<{
     id: number;
     name: string;
     addressStreet: string;
@@ -9,5 +9,6 @@ export class building extends Array<{
     doorCode: string;
     updatedAt: string;
     createdAt: string;
-    rooms: any[];
+
+    
   }> {}
