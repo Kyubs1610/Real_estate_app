@@ -10,23 +10,8 @@
 <div class="building-container">
   <button mat-button (click)="openDialog()"> <mat-card-title> {{ '+ Add New building' }}</mat-card-title></button><br><br>
 
-        
       
-        <!-- <button mat-button >Add Room</button>
-        <div *ngFor="let chambre of newbuilding.chambres; let i = index">
-    <mat-form-field appearance="outline">
-      <mat-label>Room Name</mat-label>
-      <input type="text" matInput [(ngModel)]="chambre.nom" placeholder="Room Name">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Locataire Name</mat-label>
-      <input type="text" matInput [(ngModel)]="chambre.locataire" placeholder="Locataire Name">
-    </mat-form-field>
-    <button mat-button >Remove</button>
-  </div> -->
-
-
-  <mat-card class="customize" *ngFor="let building of filteredbuildings">
+ <mat-card class="customize" *ngFor="let building of filteredbuildings">
     <mat-card-header>
       <div class="iconsButton">
         <button mat-icon-button (click)="openUpdateDialog(building.id)">
@@ -42,19 +27,36 @@
           {{ building.addressPostalCode }} {{ building.addressCity }} 
       </mat-card-subtitle>
     </mat-card-header><br>
+
     <button class="details" mat-button (click)="toggleDetails(building)">SEE THE ROOMS</button>
-    <mat-card-content *ngIf="building.showDetails">
-      <mat-list>
-        <mat-list-item *ngFor="let room of building.rooms">
-          {{ room.roomNumber }} occupied by :
-       
-          <span class="room-details" *ngFor="let tenants of room.tenants">
-            {{ tenants.firstname }} {{ tenants.lastname }} <br>
-         
-          </span>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
+   
+<mat-card-content *ngIf="building.showDetails">
+  <div mat-dialog-actions style="display: flex; justify-content: center;">
+    <button mat-button (click)="openRoomDialog(id)">  {{ '+ Add New Rooms' }}</button><br><br>
+  </div>
+  <div *ngFor="let chambre of newbuilding.chambres; let i = index">
+<mat-form-field appearance="outline">
+<mat-label>Room Name</mat-label>
+<input type="text" matInput [(ngModel)]="chambre.nom" placeholder="Room Name">
+</mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Locataire Name</mat-label>
+<input type="text" matInput [(ngModel)]="chambre.locataire" placeholder="Locataire Name">
+</mat-form-field>
+<button mat-button >Remove</button>
+</div>
+
+  <mat-list>
+    <mat-list-item *ngFor="let room of building.rooms">
+      {{ room.roomNumber }} occupied by :
+   
+      <span class="room-details" *ngFor="let tenants of room.tenants">
+        {{ tenants.firstname }} {{ tenants.lastname }} <br>
+     
+      </span>
+    </mat-list-item>
+  </mat-list>
+</mat-card-content>
   </mat-card><br>
  
 </div>

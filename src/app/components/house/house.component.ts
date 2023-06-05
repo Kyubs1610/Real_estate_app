@@ -1,9 +1,12 @@
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { HouseService } from './../../services/house.service';
 import { Component, OnInit } from '@angular/core';
-import { addformComponent } from './addform.component';
+import { addformComponent } from './add/addform.component';
 import { SnackBar } from '../snackbar/snackbar.component';
-import { UpdateFormComponent } from './updateform.component';
+import { UpdateFormComponent } from './update/updateform.component';
+import { AddroomsService } from './../../services/rooms/addrooms.service';
+import { Room } from './../../models/room.model';
+import { addRoomComponent } from '../rooms/addRooms/add-rooms/add-rooms.component';
 
 interface building extends Array<{
   id: number;
@@ -27,28 +30,34 @@ interface building extends Array<{
 
 
 export class buildingComponent implements OnInit {
+
   search: string = '';
   newbuilding: any = {}; // Declare newbuilding property
   showAddBuildingSection: boolean = false;
   buildings:  any[] = [];
   filteredbuildings: any[] = this.buildings;
   id!: number 
-
+  rooms: Room[] = [];
   
   constructor(
     private HouseService : HouseService,
     private dialog: MatDialog,
     private snackBar: SnackBar,
+    private AddroomsService: AddroomsService,
     ) {}
 
     ngOnInit() {
       this.HouseService.getbuilding().subscribe((response: building) => {
-        console.log(response); // Log the response object
-        this.buildings = response; // Assign the response to buildings array
-        this.filteredbuildings = response; // Assign the response to filteredbuildings array
+        this.buildings = response;
+        this.filteredbuildings = response;
       }, (error) => {
         console.error(error);
       });
+      this.AddroomsService.roomsSubject.subscribe((response: Room[]) => {
+        this.rooms = response;
+      }, (error) => {
+          console.error(error);
+        });
     }
 
   toggleDetails(building: any) {
@@ -56,11 +65,13 @@ export class buildingComponent implements OnInit {
   }  
 
   openDialog() {
-   this.dialog.open(addformComponent, { panelClass: 'custom' })
+    this.dialog.open(addformComponent, { panelClass: 'custom' })
   }
 
+  openRoomDialog(id: number) {
+    this.dialog.open(addRoomComponent, { panelClass: 'custom' })
+  }
 
-      
 // Open the update dialog
 openUpdateDialog(id: number) {
   // Find the building to update based on the id
@@ -79,73 +90,32 @@ openUpdateDialog(id: number) {
     // Optional: Subscribe to the dialog's afterClosed event to perform any necessary actions after the dialog is closed
     dialogRef.afterClosed().subscribe(result => {
       // Handle refresh data & show snackbar
-      this.HouseService.getbuilding().subscribe((response: building) => {
-        console.log(response); // Log the response object
-        this.buildings = response; // Assign the response to buildings array
-        this.snackBar.updateSnackBar();
-      }, (error) => {
-        console.error(error);
-      });
     });
   } else {
     console.error(`Building with ID ${id} not found.`);
   }
 }
-        
-       
-  tooglerooms() {
-    this.showAddBuildingSection = !this.showAddBuildingSection;
-    this.newbuilding = {}; // Reset newbuilding object when toggling the section
-  }
+
   // Make the searchbar for looking the building name
 searchBuilding() {
   this.filteredbuildings = this.buildings.filter((building: any) => {
     return building.name.toLowerCase().includes(this.search.toLowerCase());
   });
 }
-    //remove building
 
-    removeBuilding(id: number) {
-      this.HouseService.removebuilding(id).subscribe(
-        (response: building) => {
-          console.log(response); // Log the response object
-          this.buildings = response; // Assign the response to buildings array
-          this.snackBar.deleteSnackBar();
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    }
+  // Remove building
 
-
-
-
-// addRoom() {
-//   if (!this.newbuilding.chambres || this.newbuilding.chambres.length === 0) {
-//     // If chambres array is empty, initialize it with a default room
-//     this.newbuilding.chambres = [
-//       {
-//         id: 1,
-//         nom: '',
-//         locataire: ''
-//       }
-//     ];
-//   } else {
-//     // If chambres array already has rooms, add a new room
-//     const newRoom = {
-//       id: this.newbuilding.chambres.length + 1,
-//       nom: '',
-//       locataire: ''
-//     };
-//     this.newbuilding.chambres.push(newRoom);
-//   }
-// }
-
-
-// removeRoom(index: number) {
-//   this.newbuilding.chambres.splice(index, 1);
-// }
+  removeBuilding(id: number) {
+    this.HouseService.removebuilding(id).subscribe(
+      (response: building) => {
+        this.buildings = response;
+        this.snackBar.deleteSnackBar();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
 
 

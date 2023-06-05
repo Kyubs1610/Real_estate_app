@@ -1,19 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomepageService } from 'src/app/services/homepage.service';
-
-interface AuthResponse {
-   
-  
-  fullname: string;
-  id: number;
-  firstname: string;
-  lastname: string;
-  phoneNumber: string;
-  email: string;
-  isPasswordRequired: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
+import { AuthResponse } from 'src/app/models/AuthResponse.model';
 
 @Component({
   selector: 'app-homepage',

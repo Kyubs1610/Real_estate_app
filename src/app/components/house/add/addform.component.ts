@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import { HouseService } from './../../services/house.service';
+import { HouseService } from '../../../services/house.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { SnackBar } from '../snackbar/snackbar.component';
-
+import { SnackBar } from '../../snackbar/snackbar.component';
 interface building extends Array<{
     id: number;
     name: string;
@@ -25,7 +24,7 @@ interface building extends Array<{
 
 export class addformComponent {
     constructor(
-        public dialogRef: MatDialogRef<addformComponent>,
+        private dialogRef: MatDialogRef<addformComponent>,
         private HouseService : HouseService,
         private snackBar: SnackBar,
     ) {
@@ -72,4 +71,6 @@ export class addformComponent {
       isMobile() {
         return window.innerWidth <= 767;
       }
+
+  
 }

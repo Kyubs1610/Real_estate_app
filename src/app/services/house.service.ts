@@ -1,37 +1,9 @@
+import { UpdateBuilding } from './../models/updatebuilding.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-
-interface building extends Array<{
-  id: number;
-  name: string;
-  addressStreet: string;
-  addressCity: string;
-  addressNumber: any;
-  addressPostalCode: string;
-  addressCountry: string;
-  doorCode: string;
-  updatedAt: string;
-  createdAt: string;
-  rooms: any[];
-}> {}
-
-interface UpdateBuilding extends Array<{
-  building:{  
-    id: number;
-    name: string;
-    addressStreet: string;
-    addressCity: string;
-    addressNumber: any;
-    addressPostalCode: string;
-    addressCountry: string;
-    doorCode: string;
-    updatedAt: string;
-    createdAt: string;
-    rooms: any[];
-   }
-}> {}
+import { building} from '../models/building.model';
 
 const BASEURL = 'http://192.168.1.254:3000/';
 

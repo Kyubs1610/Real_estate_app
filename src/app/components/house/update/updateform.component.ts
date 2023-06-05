@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { HouseService } from './../../services/house.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { HouseService } from 'src/app/services/house.service';
 import { Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { buildingComponent  } from './house.component';
+import { SnackBar } from '../../snackbar/snackbar.component';
 
 interface UpdateBuilding extends Array <{
    building:{  
@@ -27,8 +26,8 @@ interface UpdateBuilding extends Array <{
 })
 export class UpdateFormComponent {
   constructor(
-  public dialogRef: MatDialogRef<UpdateFormComponent>,
-  @Inject(MAT_DIALOG_DATA) public data: any,
+  private snackBar: SnackBar,
+  @Inject(MAT_DIALOG_DATA) private data: any,
   private houseService: HouseService,
 ) {
   this.id = data.id;
@@ -62,6 +61,8 @@ export class UpdateFormComponent {
         (response: UpdateBuilding) => {
           this.buildings = response;
           this.updateBuildings = response;
+          this.snackBar.updateSnackBar();
+
         },
         (error) => {
           console.error(error);
@@ -72,9 +73,6 @@ export class UpdateFormComponent {
     }
   }
   
-  
-  
-
   isMobile() {
     return window.innerWidth <= 767;
   }

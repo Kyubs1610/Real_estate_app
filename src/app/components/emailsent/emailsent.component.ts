@@ -9,7 +9,6 @@ export class EmailsentComponent {
   emailSent = false;
 
   sendEmail() {
-    
     this.emailSent = true;
   }
 }

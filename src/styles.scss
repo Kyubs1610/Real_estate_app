@@ -28,17 +28,35 @@ body::-webkit-scrollbar {
   
  // dialog box for the house component (addform)
 .dialog-content{
-    
     background-color: #7d5add;
-    border: 1px solid #fff;
-    margin: -40px;
+    border: 2px solid #fff;
+    flex-direction: row!important;
+    justify-content: space-between!important;
+    
+
 }
 
 .dialog-title {
+ button{
+position: absolute;
+top:0;
+left: 0;
+ }
     .title-container {
       display: flex!important;
-      justify-content: space-between !important;
+      justify-content: center!important;
       align-items: center;
-      margin: -25px 0;
+      
     }
+
   }
+@media (max-width: 767px){
+
+.input{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+}

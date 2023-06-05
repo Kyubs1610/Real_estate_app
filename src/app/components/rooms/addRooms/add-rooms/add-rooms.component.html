@@ -1,0 +1,22 @@
+<mat-dialog-content class="dialog-content" [style.max-width.%]="isMobile ? 100 : null" [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null" [style.width.%]="isMobile ? 100 : null">
+
+    <div mat-dialog-title class="dialog-title">
+      <div class="title-container">
+        <button mat-icon-button mat-dialog-close class="close-button">
+          <mat-icon>close</mat-icon>
+        </button><br><br><br>
+        <h2> Add New Room </h2>
+      </div>
+    </div><br>
+    <div class="input"> 
+    <mat-form-field appearance="outline">
+      <mat-label>Room Name</mat-label>
+        <!-- <input type="text"  matInput [(ngModel)]="let room of rooms" placeholder="Room Name"> -->
+      </mat-form-field><br>
+  
+      <div mat-dialog-actions style="display: flex; justify-content: center;">
+          <button mat-button mat-dialog-close class="save"  >Save</button>
+      </div>
+    </div>
+  </mat-dialog-content>
+

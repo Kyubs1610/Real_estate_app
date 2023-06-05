@@ -1,13 +1,14 @@
     <mat-dialog-content class="dialog-content" [style.max-width.%]="isMobile ? 100 : null" [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null" [style.width.%]="isMobile ? 100 : null">
-      <button mat-icon-button mat-dialog-close class="close-button">
-        <mat-icon>close</mat-icon>
-      </button>
+
       <div mat-dialog-title class="dialog-title">
         <div class="title-container">
-          <h2> Add Building </h2>
-
+          <button mat-icon-button mat-dialog-close class="close-button">
+            <mat-icon>close</mat-icon>
+          </button><br><br><br>
+          <h2> Add New Building </h2>
         </div>
       </div><br>
+      <div class="input"> 
       <mat-form-field appearance="outline">
         <mat-label>Building Name</mat-label>
           <input type="text"  matInput [(ngModel)]="newbuilding.name" placeholder="Building Name">
@@ -15,7 +16,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Address</mat-label>
           <input type="text"  matInput [(ngModel)]="newbuilding.addressStreet" placeholder="Address">
-        </mat-form-field>&nbsp;
+        </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Number</mat-label>
           <input type="text"  matInput [(ngModel)]="newbuilding.addressNumber" placeholder="Number">
@@ -23,7 +24,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
           <input type="text"  matInput [(ngModel)]="newbuilding.addressPostalCode" placeholder="Zip Code">
-        </mat-form-field>&nbsp;
+        </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
           <input type="text"  matInput [(ngModel)]="newbuilding.addressCity" placeholder="City">
@@ -31,12 +32,13 @@
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
           <input type="text"  matInput [(ngModel)]="newbuilding.addressCountry" placeholder="Country">
-        </mat-form-field>&nbsp;
+        </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Door Code</mat-label>
           <input type="text"  matInput [(ngModel)]="newbuilding.doorCode" placeholder="Door Code">
         </mat-form-field>
-        <div mat-dialog-actions>
-            <button mat-button mat-dialog-close (click)="addBuilding()" >Save</button>
+        <div mat-dialog-actions style="display: flex; justify-content: center;">
+            <button mat-button mat-dialog-close class="save" (click)="addBuilding()" >Save</button>
         </div>
+      </div>
     </mat-dialog-content>
