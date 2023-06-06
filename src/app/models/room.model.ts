@@ -1,4 +1,6 @@
 export class Room {
+
+
   roomInfos: {
     roomNumber: string;
     status: RoomStatus;
@@ -36,4 +38,5 @@ export class Room {
     occupied = 'occupied',
     availableFrom = 'available from',
   }
+  
   

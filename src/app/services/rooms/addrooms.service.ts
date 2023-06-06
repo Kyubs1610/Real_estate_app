@@ -27,14 +27,16 @@ roomsSubject: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
 
 
 
-addRooms( id: number, newRoom: Room): Observable<Room> {
+addRooms( buildingId: number, newRoom: Room): Observable<Room> {
   const options = { 
     headers: new HttpHeaders({
       'Authorization': this.cookieService.get('authToken')
     }),
     withCredentials: true };
+
+    const endpoint = `${BASEURL}v1/room/building/${buildingId}/newroom`;
   
-  return this.http.post<Room>(`${BASEURL}v1/room/building/${id}/newroom`, newRoom, options)
+  return this.http.post<Room>(endpoint, newRoom, options)
     .pipe(
       tap((response: Room) => {
         // Add the new room to the BehaviorSubject

@@ -17,7 +17,7 @@ export class HouseService {
     private cookieService: CookieService ) { }
 
 
-  getbuilding(): Observable<Building> {
+  getbuilding(): Observable<Building[]> {
     const options = {
       headers: new HttpHeaders({
        'Authorization': this.cookieService.get('authToken')
@@ -25,27 +25,27 @@ export class HouseService {
       withCredentials: true
      };
       // send the info with the cookie
-    return this.http.get<Building>(`${BASEURL}v1/building`, options);
+    return this.http.get<Building[]>(`${BASEURL}v1/building`, options);
   }
 
-  addbuilding(newbuilding: Building): Observable<Building> {
+  addbuilding(newbuilding: Building[]): Observable<Building[]> {
     const options = {
       headers: new HttpHeaders({
        'Authorization': this.cookieService.get('authToken')
       }),
       withCredentials: true
      }; // send the info with the cookie
-    return this.http.post<Building>(`${BASEURL}v1/building/building`, newbuilding ,  options);
+    return this.http.post<Building[]>(`${BASEURL}v1/building/newbuilding`, newbuilding ,  options);
   }
 
-  removebuilding(id: number): Observable<Building> {
+  removebuilding(id: number): Observable<Building[]> {
     const options = {
       headers: new HttpHeaders({
        'Authorization': this.cookieService.get('authToken')
       }),
       withCredentials: true
      }; // send the info with the cookie
-    return this.http.delete<Building>(`${BASEURL}v1/building/${id}`, options);
+    return this.http.delete<Building[]>(`${BASEURL}v1/building/${id}`, options);
   }
 
   updatebuilding(id: number, updateBuildings: any): Observable<UpdateBuilding> {

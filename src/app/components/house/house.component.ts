@@ -34,7 +34,7 @@ export class buildingComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-      this.HouseService.getbuilding().subscribe((response: Building) => {
+      this.HouseService.getbuilding().subscribe((response: Building[]) => {
         this.buildings = response;
         this.filteredbuildings = response;
       }, (error) => {
@@ -94,7 +94,7 @@ searchBuilding() {
 
   removeBuilding(id: number) {
     this.HouseService.removebuilding(id).subscribe(
-      (response: Building) => {
+      (response: Building[]) => {
         this.buildings = response;
         this.snackBar.deleteSnackBar();
       },

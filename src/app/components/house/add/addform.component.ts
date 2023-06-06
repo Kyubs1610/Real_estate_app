@@ -44,7 +44,7 @@ export class addformComponent {
         newBuilding.doorCode = newBuilding.doorCode || '';
        
         this.HouseService.addbuilding(this.newbuilding).subscribe(
-          (response: Building) => {
+          (response: Building[]) => {
             console.log(response); // Log the response object
             this.buildings = [response, ...this.buildings]; // Update buildings array with the response
             // reload the page to see the change
