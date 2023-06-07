@@ -27,7 +27,7 @@ roomsSubject: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
 
 
 
-addRooms( buildingId: number, newRoom: Room): Observable<Room> {
+addRooms( buildingId: any, newRoom: Room): Observable<Room> {
   const options = { 
     headers: new HttpHeaders({
       'Authorization': this.cookieService.get('authToken')
@@ -42,6 +42,7 @@ addRooms( buildingId: number, newRoom: Room): Observable<Room> {
         // Add the new room to the BehaviorSubject
         const updatedRooms = this.roomsSubject.getValue().concat(response);
         this.roomsSubject.next(updatedRooms);
+    
       })
     );
 }

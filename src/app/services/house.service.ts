@@ -16,7 +16,6 @@ export class HouseService {
     private http: HttpClient,
     private cookieService: CookieService ) { }
 
-
   getbuilding(): Observable<Building[]> {
     const options = {
       headers: new HttpHeaders({

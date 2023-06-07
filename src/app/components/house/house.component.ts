@@ -8,6 +8,9 @@ import { AddroomsService } from './../../services/rooms/addrooms.service';
 import { Room } from './../../models/room.model';
 import { addRoomComponent } from '../rooms/addRooms/add-rooms/add-rooms.component';
 import { Building } from 'src/app/models/building.model';
+import { BehaviorSubject } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-house',
@@ -25,7 +28,12 @@ export class buildingComponent implements OnInit {
   filteredbuildings: any[] = this.buildings;
   id!: number 
   rooms: Room[] = [];
-  
+  data: any;
+  building!: Building;
+  buildingId!: Building['id'];
+  newRoom: Room = new Room();
+  roomsSubject: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
+
   constructor(
     private HouseService : HouseService,
     private dialog: MatDialog,
@@ -55,9 +63,17 @@ export class buildingComponent implements OnInit {
     this.dialog.open(addformComponent, { panelClass: 'custom' })
   }
 
-  openRoomDialog(id: number) {
-    this.dialog.open(addRoomComponent, { panelClass: 'custom' })
-  }
+openRoomDialog(building: Building) {
+  console.log(building);
+  const dialogRef = this.dialog.open(addRoomComponent, {
+    panelClass: 'custom',
+    data: { building: building }
+   });
+  const buildingId= building.id;
+  // send the buildingID to the addRoomComponent
+  dialogRef.componentInstance.buildingId = buildingId;
+  console.log(dialogRef.componentInstance.buildingId);
+}
 
 // Open the update dialog
 openUpdateDialog(id: number) {
@@ -66,7 +82,7 @@ openUpdateDialog(id: number) {
 
   // If the building is found, open the dialog with the building data
   if (buildingToUpdate) {
-    const dialogRef = this.dialog.open(UpdateFormComponent, {
+  this.dialog.open(UpdateFormComponent, {
       panelClass: 'custom',
       data: {
         id: id,
@@ -74,10 +90,7 @@ openUpdateDialog(id: number) {
       }
     });
 
-    // Optional: Subscribe to the dialog's afterClosed event to perform any necessary actions after the dialog is closed
-    dialogRef.afterClosed().subscribe(result => {
-      // Handle refresh data & show snackbar
-    });
+
   } else {
     console.error(`Building with ID ${id} not found.`);
   }
