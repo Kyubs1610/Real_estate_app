@@ -1,9 +1,9 @@
-import { UpdateBuilding } from './../models/updatebuilding.model';
+import { UpdateBuilding } from '../../models/updatebuilding.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import { Building} from '../models/building.model';
+import { Building} from '../../models/building.model';
 
 const BASEURL = 'http://192.168.1.254:3000/';
 

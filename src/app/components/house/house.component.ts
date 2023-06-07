@@ -1,12 +1,12 @@
 import { MatDialog } from '@angular/material/dialog';
-import { HouseService } from './../../services/house.service';
+import { HouseService } from '../../services/house/house.service';
 import { Component, OnInit } from '@angular/core';
 import { addformComponent } from './add/addform.component';
 import { SnackBar } from '../snackbar/snackbar.component';
 import { UpdateFormComponent } from './update/updateform.component';
 import { AddroomsService } from './../../services/rooms/addrooms.service';
 import { Room } from './../../models/room.model';
-import { addRoomComponent } from '../rooms/addRooms/add-rooms/add-rooms.component';
+import { addRoomComponent } from '../rooms/addRooms/add-rooms.component';
 import { Building } from 'src/app/models/building.model';
 import { BehaviorSubject } from 'rxjs';
 

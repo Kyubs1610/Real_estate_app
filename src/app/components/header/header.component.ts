@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';

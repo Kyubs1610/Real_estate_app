@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HomepageService } from 'src/app/services/homepage.service';
+import { HomepageService } from 'src/app/services/homepage/homepage.service';
 import { AuthResponse } from 'src/app/models/AuthResponse.model';
 
 @Component({

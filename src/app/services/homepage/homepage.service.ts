@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthResponse } from '../models/AuthResponse.model';
+import { AuthResponse } from '../../models/AuthResponse.model';
 
 
 const BASEURL = 'http://192.168.1.254:3000/';

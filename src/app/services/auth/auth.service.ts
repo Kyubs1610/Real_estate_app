@@ -4,7 +4,7 @@ import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthResponseMail } from '../models/AuthResponse.model';
+import { AuthResponseMail } from '../../models/AuthResponse.model';
 
 const BASEURL = 'http://192.168.1.254:3000/';
  

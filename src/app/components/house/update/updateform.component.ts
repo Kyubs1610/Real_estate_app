@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HouseService } from 'src/app/services/house.service';
+import { HouseService } from 'src/app/services/house/house.service';
 import { Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackBar } from '../../snackbar/snackbar.component';

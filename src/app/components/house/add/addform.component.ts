@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { HouseService } from '../../../services/house.service';
+import { HouseService } from '../../../services/house/house.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SnackBar } from '../../snackbar/snackbar.component';
 import { Building } from '../../../models/building.model';
