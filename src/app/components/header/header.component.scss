@@ -68,7 +68,9 @@ header {
     }
     .hamburger{
       display: block;
-    }
+          }
+
+
     button .icon{
       font-size: 30px;
       height: 30px;
@@ -86,6 +88,11 @@ header {
       
     }
 
+   .customized {
+      border: 2px solid white!important;
+      background-color: transparent!important;
+    }
+    
    
     }
   

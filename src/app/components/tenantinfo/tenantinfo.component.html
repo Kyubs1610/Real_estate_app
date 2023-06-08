@@ -1,0 +1,47 @@
+<mat-dialog-content class="dialog-content" style="width:100%" [style.max-width.%]="isMobile ? 100 : null"
+    [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null"
+    [style.width.%]="isMobile ? 100 : null">
+
+    <div mat-dialog-title class="dialog-title">
+        <div class="title-container">
+            <button mat-icon-button mat-dialog-close class="close-button">
+                <mat-icon>close</mat-icon>
+            </button><br><br><br>
+            <h2> TENANT INFO </h2>
+        </div>
+    </div><br>
+    <mat-card class="customize" *ngIf="tenant">
+        <mat-card-header style="width:auto">
+            <mat-card-title style="display:flex ; justify-content: center;  text-transform: uppercase;"> CONTACT OF {{ tenant.fullname }}
+            </mat-card-title><br>
+            <mat-card-subtitle><br>
+                {{tenant.addressStreet}} {{tenant.addressNumber}}, <br>
+                    {{tenant.addressPostalCode}} {{tenant.addressCity}} <br>
+                    <strong> ID Number </strong> {{tenant.idNumber}} <br>
+                    <strong> Birthdate: </strong> {{ tenant.birthdate }} <br>
+                    <strong> Email: </strong> <a href="mailto:{{ tenant.email }}"> {{ tenant.email }} </a> <br><br>
+            </mat-card-subtitle>
+            <mat-card-title style="display:flex ; justify-content: center;  text-transform: uppercase; "> {{tenant.rooms[0].roomNumber }} INFO </mat-card-title>
+            <mat-card-subtitle> <br>
+                <strong>  Type:</strong> {{ tenant.rooms[0].type}} <br>
+                    <strong> Room : </strong>{{ tenant.rooms[0].roomNumber }}<br>
+                        <strong> Status: </strong>{{ tenant.rooms[0].status}}<br>
+
+                            <strong> Arrival: </strong>{{ tenant.arrival | date:'dd/MM/yyyy'}} <br>
+                                <strong> Beginning of the contract:</strong> {{ tenant.contractStart | date:'dd/MM/yyyy'}}<br>
+                                    <strong> End of the contract:</strong> {{ tenant.contractEnd | date:'dd/MM/yyyy' }}<br>
+                                        <strong> Deposit :</strong> {{ tenant.deposit}}<br>
+                                            <strong>  Rent: </strong>{{ tenant.rooms[0].rent }} € <br>
+                                             <strong>  Charges:</strong> {{ tenant.rooms[0].charges}} € <br>
+                                                <strong>Charges Includes:</strong>
+                                                    <ul>
+                                                        <li *ngFor="let charge of tenant.rooms[0].typeOfIncCharges">{{ charge.type }}</li>
+                                                     </ul>
+                                                    <strong>Charges Excludes:</strong>
+                                                         <ul>
+                                                            <li *ngFor="let charge of tenant.rooms[0].typeOfExcCharges">{{ charge.type }}</li>
+                                                        </ul>
+            </mat-card-subtitle>
+        </mat-card-header><br>
+    </mat-card> <br>
+</mat-dialog-content>

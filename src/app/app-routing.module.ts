@@ -6,7 +6,6 @@ import { NofoundComponent } from './components/nofound/nofound.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ResetComponent } from './components/reset/reset.component';
 import { buildingComponent } from './components/house/house.component';
-import { TenantComponent } from './components/tenant/tenant.component';
 import { EmailsentComponent } from './components/emailsent/emailsent.component';
 
 const routes: Routes = [
@@ -38,10 +37,7 @@ const routes: Routes = [
     component : buildingComponent,
     canActivate: [AuthGuard]
   },
-  { path:'tenant',  
-    component : TenantComponent,
-    canActivate: [AuthGuard]
-  },
+
 
 
 ];

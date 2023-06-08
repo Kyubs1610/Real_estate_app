@@ -4,7 +4,6 @@
       <ul>
           <li><a routerLink="/homepage">Home</a></li>
           <li><a routerLink="/house">House</a></li>
-          <li><a routerLink="/tenant">Tenant</a></li>
           <li><a (click)="auth.logOut()"> Logout </a></li>
      </ul>
     </div>
@@ -12,13 +11,12 @@
     <button mat-button [matMenuTriggerFor]="menu">
         <mat-icon  class="icon">menu</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" class="customize" style="background-color: transparent; border: 1px solid white;">
-        <ul>
+    <mat-menu #menu="matMenu" class="customized">
+       <ul>
           <li><a routerLink="/homepage">Home</a></li>
           <li><a routerLink="/house">House</a></li>
-          <li><a routerLink="/tenant">Tenant</a></li>
           <li><a (click)="auth.logOut()"> Logout </a></li>
         </ul>
     </mat-menu>
-    </div>
+</div>
 </header>

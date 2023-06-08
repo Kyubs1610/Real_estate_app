@@ -20,7 +20,6 @@ import { AuthModule } from './auth/auth.module';
 import { ResetComponent } from './components/reset/reset.component';
 import { FormsModule } from '@angular/forms';
 import { buildingComponent } from './components/house/house.component';
-import { TenantComponent } from './components/tenant/tenant.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { EmailsentComponent } from './components/emailsent/emailsent.component';
 import { MatListModule } from '@angular/material/list';
@@ -28,12 +27,13 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule } from '@angular/material/dialog';
-import { addformComponent } from './components/house/add/addform.component';
+import { addformComponent } from './components/house/addbuilding/addform.component';
 import { SnackBar } from './components/snackbar/snackbar.component';
 import { UpdateFormComponent } from './components/house/update/updateform.component';
 import { addRoomComponent } from './components/rooms/addRooms/add-rooms.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TenantinfoComponent } from './components/tenantinfo/tenantinfo.component';
 
 
 @NgModule({
@@ -44,12 +44,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     NofoundComponent,
     ResetComponent,
     buildingComponent,
-    TenantComponent,
     HeaderComponent,
     EmailsentComponent,
     addformComponent,
     UpdateFormComponent,
     addRoomComponent,
+    TenantinfoComponent,
 
    
   ],

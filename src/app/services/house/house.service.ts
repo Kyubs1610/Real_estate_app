@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Building} from '../../models/building.model';
 
-const BASEURL = 'http://192.168.1.254:3000/';
+// const BASEURL = 'http://192.168.1.254:3000/';
+
+const BASEURL = 'http://localhost:3000/'
 
 @Injectable({
   providedIn: 'root'

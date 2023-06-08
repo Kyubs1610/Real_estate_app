@@ -34,25 +34,17 @@
   <div mat-dialog-actions style="display: flex; justify-content: center;">
     <button mat-button  (click)="openRoomDialog(building)" >  {{ '+ Add New Room' }}</button><br><br>
   </div>
-  <div *ngFor="let chambre of newbuilding.chambres; let i = index">
-<mat-form-field appearance="outline">
-<mat-label>Room Name</mat-label>
-<input type="text" matInput [(ngModel)]="chambre.nom" placeholder="Room Name">
-</mat-form-field>
-<mat-form-field appearance="outline">
-<mat-label>Locataire Name</mat-label>
-<input type="text" matInput [(ngModel)]="chambre.locataire" placeholder="Locataire Name">
-</mat-form-field>
-<button mat-button >Remove</button>
-</div>
+
 
   <mat-list>
     <mat-list-item *ngFor="let room of building.rooms">
-      {{ room.roomNumber }} occupied by :
-   
+      <strong> {{ room.roomNumber }} occupied by : </strong>
+      
       <span class="room-details" *ngFor="let tenants of room.tenants">
-        {{ tenants.firstname }} {{ tenants.lastname }} <br>
-     
+        <button mat-icon-button (click)="openTenantDialog(tenants)">
+        <mat-icon class="tenantIcon">person_outline</mat-icon> 
+      </button>
+        {{ tenants.firstname }} {{ tenants.lastname }} 
       </span>
     </mat-list-item>
   </mat-list>

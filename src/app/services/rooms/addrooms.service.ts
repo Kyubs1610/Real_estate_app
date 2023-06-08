@@ -6,7 +6,8 @@ import { Room } from '../../models/room.model';
 import { tap } from 'rxjs/operators';
 import { Building } from 'src/app/models/building.model';
 
-const BASEURL = 'http://192.168.1.254:3000/';
+// const BASEURL = 'http://192.168.1.254:3000/';
+const BASEURL = 'http://localhost:3000/'
 
 @Injectable({
   providedIn: 'root'

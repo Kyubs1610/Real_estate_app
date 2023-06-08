@@ -5,7 +5,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthResponse } from '../../models/AuthResponse.model';
 
 
-const BASEURL = 'http://192.168.1.254:3000/';
+// const BASEURL = 'http://192.168.1.254:3000/';
+const BASEURL = 'http://localhost:3000/'
 
 @Injectable({
   providedIn: 'root'
