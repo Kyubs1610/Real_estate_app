@@ -7,6 +7,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ResetComponent } from './components/reset/reset.component';
 import { buildingComponent } from './components/house/house.component';
 import { EmailsentComponent } from './components/emailsent/emailsent.component';
+import { ContractComponent } from './components/contract/contract.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,9 @@ const routes: Routes = [
     component : buildingComponent,
     canActivate: [AuthGuard]
   },
+  { path:'contract',
+    component : ContractComponent,
+    canActivate: [AuthGuard]}
 
 
 

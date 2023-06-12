@@ -29,6 +29,16 @@ export class HouseService {
     return this.http.get<Building[]>(`${BASEURL}v1/building`, options);
   }
 
+  getbuildingById(id: number): Observable<Building> {
+    const options = {
+      headers: new HttpHeaders({
+        "Authorization": this.cookieService.get('authToken')
+      }),
+      withCredentials: true
+      }; // send the info with the cookie
+    return this.http.get<Building>(`${BASEURL}v1/building/${id}`, options);
+  }
+
   addbuilding(newbuilding: Building[]): Observable<Building[]> {
     const options = {
       headers: new HttpHeaders({

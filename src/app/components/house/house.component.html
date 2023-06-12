@@ -21,7 +21,15 @@
         <mat-icon >delete</mat-icon>
         </button>
       </div>
-      <mat-card-title>{{ building.name }}</mat-card-title>
+      
+     
+
+      <mat-card-title> <span class="building-name">{{ building.name }} </span>
+        <button mat-button  (click)="openBuildingDialog(building)" >
+          <mat-icon class="homeIcon">home</mat-icon> 
+        </button>
+      </mat-card-title>
+   
       <mat-card-subtitle>
           {{ building.addressStreet }} {{ building.addressNumber }}, <br>
           {{ building.addressPostalCode }} {{ building.addressCity }} 
@@ -38,18 +46,20 @@
 
   <mat-list>
     <mat-list-item *ngFor="let room of building.rooms">
-      <strong> {{ room.roomNumber }} occupied by : </strong>
+      <strong> {{ room.roomNumber }}: &nbsp; </strong>
       
       <span class="room-details" *ngFor="let tenants of room.tenants">
-        <button mat-icon-button (click)="openTenantDialog(tenants)">
-        <mat-icon class="tenantIcon">person_outline</mat-icon> 
-      </button>
-        {{ tenants.firstname }} {{ tenants.lastname }} 
+        
+        <span class="tenant-details"> {{ tenants.firstname }} {{ tenants.lastname }} </span>
+        <button mat-button (click)="openTenantDialog(tenants)">
+          <mat-icon class="tenantIcon">person_outline</mat-icon> 
+        </button>
       </span>
+
     </mat-list-item>
   </mat-list>
 </mat-card-content>
-  </mat-card><br>
+</mat-card><br>
  
 </div>
 </main>

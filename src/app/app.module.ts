@@ -34,6 +34,8 @@ import { addRoomComponent } from './components/rooms/addRooms/add-rooms.componen
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TenantinfoComponent } from './components/tenantinfo/tenantinfo.component';
+import { HouseinfoComponent } from './components/house/houseinfo/houseinfo.component';
+import { ContractComponent } from './components/contract/contract.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { TenantinfoComponent } from './components/tenantinfo/tenantinfo.componen
     UpdateFormComponent,
     addRoomComponent,
     TenantinfoComponent,
+    HouseinfoComponent,
+    ContractComponent,
 
    
   ],

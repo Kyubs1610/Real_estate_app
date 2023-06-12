@@ -28,8 +28,6 @@ export class TenantinfoComponent implements OnInit {
  
   }
 
-
-
   isMobile() {
     return window.innerWidth <= 767;
   }

@@ -1,0 +1,39 @@
+<mat-dialog-content class="dialog-content" style="width:100%" [style.max-width.%]="isMobile ? 100 : null"
+    [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null"
+    [style.width.%]="isMobile ? 100 : null">
+
+    <div mat-dialog-title class="dialog-title">
+        <div class="title-container">
+            <button mat-icon-button mat-dialog-close class="close-button">
+                <mat-icon>close</mat-icon>
+            </button><br>
+            <h2> BUILDING INFO </h2>
+        </div>
+      </div><br>
+      <ng-container *ngIf="building">
+        <mat-card>
+          <mat-card-title>
+            <span class="building-name" style="display: flex; justify-content:center ;">{{ building.name }}</span> 
+          </mat-card-title>
+          <mat-card-subtitle><br>
+            <strong>  ADDRESS: </strong><br>
+            {{ building.addressStreet }} {{ building.addressNumber }}, <br>
+            {{ building.addressPostalCode }} {{ building.addressCity }} <br>
+            {{ building.addressCountry }}
+          </mat-card-subtitle>
+          <mat-card-subtitle><br>
+            <strong>  OWNER INFO: </strong><br>
+            <!-- {{ building.companyId }} <br>
+            {{ building.companyName }} <br>
+            {{ building.companyEmail }} <br>
+            {{ building.companyPhone }} <br>
+            {{ building.companyAddressStreet }} {{ building.companyAddressNumber }}, <br>
+            {{ building.companyAddressPostalCode }} {{ building.companyAddressCity }} <br>
+            {{ building.companyAddressCountry }} <br> -->
+          </mat-card-subtitle>
+        </mat-card>
+      </ng-container>
+      
+</mat-dialog-content>
+
+    

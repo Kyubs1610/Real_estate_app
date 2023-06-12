@@ -19,6 +19,9 @@
                     {{tenant.addressPostalCode}} {{tenant.addressCity}} <br>
                     <strong> ID Number </strong> {{tenant.idNumber}} <br>
                     <strong> Birthdate: </strong> {{ tenant.birthdate }} <br>
+                    <strong> Phone: </strong>
+                        <a href="tel:{{ tenant.phoneNumber }}" *ngIf="isMobile()">{{ tenant.phoneNumber }}</a>
+                        <span *ngIf="!isMobile()">{{ tenant.phoneNumber }}</span><br>
                     <strong> Email: </strong> <a href="mailto:{{ tenant.email }}"> {{ tenant.email }} </a> <br><br>
             </mat-card-subtitle>
             <mat-card-title style="display:flex ; justify-content: center;  text-transform: uppercase; "> {{tenant.rooms[0].roomNumber }} INFO </mat-card-title>
@@ -30,6 +33,8 @@
                             <strong> Arrival: </strong>{{ tenant.arrival | date:'dd/MM/yyyy'}} <br>
                                 <strong> Beginning of the contract:</strong> {{ tenant.contractStart | date:'dd/MM/yyyy'}}<br>
                                     <strong> End of the contract:</strong> {{ tenant.contractEnd | date:'dd/MM/yyyy' }}<br>
+                                      <strong> Rent Increase: </strong> {{ tenant.rooms[0].rentReview | date:'dd/MM/yyyy'}}<br>
+                                       <strong> Special Conditions: </strong> {{ tenant.rooms[0].specialConditions}}<br>
                                         <strong> Deposit :</strong> {{ tenant.deposit}}<br>
                                             <strong>  Rent: </strong>{{ tenant.rooms[0].rent }} € <br>
                                              <strong>  Charges:</strong> {{ tenant.rooms[0].charges}} € <br>
@@ -41,6 +46,7 @@
                                                          <ul>
                                                             <li *ngFor="let charge of tenant.rooms[0].typeOfExcCharges">{{ charge.type }}</li>
                                                         </ul>
+                                                        <strong>  Total: </strong>{{ tenant.rooms[0].rent + tenant.rooms[0].charges}} € <br>
             </mat-card-subtitle>
         </mat-card-header><br>
     </mat-card> <br>

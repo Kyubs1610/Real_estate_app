@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-
 import { Tenant } from 'src/app/models/tenant.model';
 
 // const BASEURL = 'http://192.168.1.254:3000/';

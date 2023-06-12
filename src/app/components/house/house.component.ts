@@ -11,6 +11,7 @@ import { Room } from './../../models/room.model';
 import { addRoomComponent } from '../rooms/addRooms/add-rooms.component';
 import { Building } from 'src/app/models/building.model';
 import { BehaviorSubject } from 'rxjs';
+import { HouseinfoComponent } from './houseinfo/houseinfo.component';
 
 
 
@@ -60,6 +61,8 @@ export class buildingComponent implements OnInit {
     }, (error) => {
       console.error(error);
     });
+    
+    
   }
 
   toggleDetails(building: any) {
@@ -111,6 +114,17 @@ export class buildingComponent implements OnInit {
     // send the tenantID to the tenantinfoComponent
     dialogRef.componentInstance.id = tenantId;
 
+  }
+
+  openBuildingDialog(building:Building) {
+    const buildingId = building.id
+    console.log(buildingId)
+
+    const dialogRef = this.dialog.open(HouseinfoComponent, {
+      panelClass: 'custom',
+    });
+    
+    dialogRef.componentInstance.id = buildingId;
   }
 
   // Make the searchbar for looking the building name
