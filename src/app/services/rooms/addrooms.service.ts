@@ -15,6 +15,9 @@ const BASEURL = 'http://localhost:3000/'
 export class AddroomsService {
 
 buildings!: Building[];
+buildingId!: number;
+room!: Room;
+rooms!: Room[];
 
   constructor(
     private http: HttpClient,
@@ -29,6 +32,7 @@ roomsSubject: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
 
 
 addRooms( buildingId: any, newRoom: Room): Observable<Room> {
+  
   const options = { 
     headers: new HttpHeaders({
       'Authorization': this.cookieService.get('authToken')
@@ -47,5 +51,6 @@ addRooms( buildingId: any, newRoom: Room): Observable<Room> {
       })
     );
 }
+
 
 }

@@ -1,4 +1,4 @@
-import { Tenant } from './../../models/tenant.model';
+import { Tenants } from './../../models/tenant.model';
 import { TenantinfoComponent } from './../tenantinfo/tenantinfo.component';
 import { MatDialog } from '@angular/material/dialog';
 import { HouseService } from '../../services/house/house.service';
@@ -37,7 +37,7 @@ export class buildingComponent implements OnInit {
   buildingId!: Building['id'];
   newRoom: Room = new Room();
   roomsSubject: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
-  tenant!: Tenant
+  tenant!: Tenants;
 
 
 
@@ -104,7 +104,7 @@ export class buildingComponent implements OnInit {
   }
 
   // Open Tenant info dialog
-  openTenantDialog(tenant: Tenant) {
+  openTenantDialog(tenant: Tenants) {
     const tenantId = tenant.tenantRoom.tenantId
 
     const dialogRef = this.dialog.open(TenantinfoComponent, {

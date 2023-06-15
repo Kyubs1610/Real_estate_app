@@ -1,0 +1,60 @@
+<main>
+    <div class="customize"> 
+        <h1 style="display: flex; justify-content: center;"> Create a Tenant</h1>
+    <mat-card-content  [style.max-width.%]="isMobile ? 100 : null"
+        [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null"
+        [style.width.%]="isMobile ? 100 : null">
+        <div mat-dialog-title class="dialog-title"> 
+            <div class="title-container">
+            </div>
+        </div> 
+        <div class="input">
+            <mat-form-field appearance="outline">
+                <mat-label>Building</mat-label>
+                <select matNativeControl [(ngModel)]="selectedBuilding" (change)="findRoomsByBuilding()">
+                    <option *ngFor="let building of buildings" [value]="building.id">{{ building.name }}</option>
+                  </select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Room</mat-label>
+                <select matNativeControl [(ngModel)]="selectedRoom" (change)="findIdByRoom()">
+                  <option *ngFor="let roomNumber of filteredRooms" [value]="roomNumber">{{ roomNumber }}</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Tenant First Name</mat-label>
+                <input type="text" matInput placeholder="Tenant First Name" [(ngModel)]="newTenant.firstname">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Tenant Last Name</mat-label>
+                <input type="text" matInput placeholder="Tenant Last Name" [(ngModel)]="newTenant.lastname">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input type="text" matInput placeholder="Phone Number" [(ngModel)]="newTenant.phoneNumber">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input type="text" matInput placeholder="Email" [(ngModel)]="newTenant.email">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Contract Start</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="newTenant.contractStart" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Contract End</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="newTenant.contractEnd" />
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+          <div mat-dialog-actions style="display: flex; justify-content: center;">
+            <button mat-button class="save" (click)="addTenant()">Save</button>
+          </div >
+    </mat-card-content>
+
+    </div>
+    
+</main>

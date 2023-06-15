@@ -60,7 +60,7 @@ export class addRoomComponent implements OnInit {
 
     this.addroomsService.addRooms(buildingId, newRoom).subscribe((response: Room) => {
       console.log(response);
-      this.rooms = [...this.rooms, response];
+      this.rooms.push(response);
       this.roomsSubject.next(this.rooms);
 
 

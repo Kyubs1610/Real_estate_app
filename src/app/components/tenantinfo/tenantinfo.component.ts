@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tenant } from 'src/app/models/tenant.model';
+import { Tenants } from 'src/app/models/tenant.model';
 import { TenantsService } from 'src/app/services/tenant/tenant.service';
 
 @Component({
@@ -9,16 +9,16 @@ import { TenantsService } from 'src/app/services/tenant/tenant.service';
 })
 export class TenantinfoComponent implements OnInit {
   id!: number;
-  tenant!: Tenant ;
-  tenants: Tenant[] = [];
-  tenantId!: Tenant;
+  tenant!: Tenants ;
+  tenants: Tenants[] = [];
+  tenantId!: Tenants;
 
   constructor(private tenantService: TenantsService) {}
 
   ngOnInit() {
     console.log('ID:', this.id);
     
-    this.tenantService.getTenant(this.id).subscribe((response: Tenant) => {
+    this.tenantService.getTenant(this.id).subscribe((response: Tenants) => {
       this.tenant = response;
     },
       (error) => {

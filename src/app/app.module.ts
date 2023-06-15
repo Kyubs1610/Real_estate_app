@@ -36,7 +36,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TenantinfoComponent } from './components/tenantinfo/tenantinfo.component';
 import { HouseinfoComponent } from './components/house/houseinfo/houseinfo.component';
 import { ContractComponent } from './components/contract/contract.component';
-
+import { TenantComponent } from './components/tenant/tenant.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +54,7 @@ import { ContractComponent } from './components/contract/contract.component';
     TenantinfoComponent,
     HouseinfoComponent,
     ContractComponent,
+    TenantComponent,
 
    
   ],
@@ -88,6 +89,8 @@ import { ContractComponent } from './components/contract/contract.component';
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},
     CookieService, SnackBar
   ],
+  
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

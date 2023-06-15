@@ -8,6 +8,7 @@ import { ResetComponent } from './components/reset/reset.component';
 import { buildingComponent } from './components/house/house.component';
 import { EmailsentComponent } from './components/emailsent/emailsent.component';
 import { ContractComponent } from './components/contract/contract.component';
+import { TenantComponent } from './components/tenant/tenant.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,9 @@ const routes: Routes = [
   },
   { path:'contract',
     component : ContractComponent,
+    canActivate: [AuthGuard]},
+  { path: 'tenant',
+    component: TenantComponent,
     canActivate: [AuthGuard]}
 
 

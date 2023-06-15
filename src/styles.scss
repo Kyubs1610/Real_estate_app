@@ -26,6 +26,11 @@ body::-webkit-scrollbar {
     display: none;
   }
 
+  main{
+    min-height: 100dvh;
+    color: #fff;
+
+}
   
  // dialog box for the house component (addform)
 .dialog-content{

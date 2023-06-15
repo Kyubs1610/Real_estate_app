@@ -1,30 +1,33 @@
-export class Tenant {
-    id: number = 0;
-    firstname: string = '';
-    lastname: string = '';
-    fullname: string = '';
-    email: string = '';
-    deposit: number | null = null;
-    birthdate: Date | null = null;
-    idNumber: string = '';
-    phoneNumber: string = '';
-    addressStreet: string = '';
-    addressNumber: string = '';
-    addressCity: string = '';
-    addressPostalCode: string = '';
-    addressCountry: string = '';
-    arrival: Date = new Date();
-    contractStart: Date = new Date();
-    contractEnd: Date = new Date();
-    tenantRoom: {
-      tenantId: number;
-    } = {
-      tenantId: 0,
-    };
-    rooms: Room [] = [];
+export class Tenants {
+  id: number = 0;
+  firstname: string = '';
+  lastname: string = '';
+  fullname: string = '';
+  email: string = '';
+  deposit: string = '';
+  birthdate: string = '';
+  idNumber: string = '';
+  phoneNumber: string = '';
+  addressStreet: string = '';
+  addressNumber: string = '';
+  addressCity: string = '';
+  addressPostalCode: string = '';
+  addressCountry: string = '';
+  arrival: Date = new Date();
+  contractStart: Date = new Date();
+  contractEnd: Date = new Date();
+  
+  tenantRoom: {
+    tenantId: number;
+    roomId: string;
+  } = {
+    tenantId: 0,
+    roomId: '',
+  };
+  rooms: Room[] = [];
 
-        constructor() {}
-    }
+  constructor() {}
+}
     
     export interface Room {
         totalRent: number;
@@ -93,3 +96,5 @@ export class Tenant {
       
         
         }
+
+  

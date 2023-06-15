@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
-
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
-  
+
 })
+
 
 
 export class LoginPageComponent implements OnInit {
@@ -22,6 +22,7 @@ export class LoginPageComponent implements OnInit {
 
     ) {}
   
+    
 
 
   ngOnInit(): void {
@@ -75,4 +76,7 @@ export class LoginPageComponent implements OnInit {
     }
     return this.password?.hasError('pattern') ? 'Not a valid password' : '';
   }
+
+  
+
 }
