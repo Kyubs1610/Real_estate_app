@@ -21,15 +21,22 @@ export interface Room {
   tenants: Tenant[];
   typeOfIncCharges: Charge[];
   typeOfExcCharges: Charge[];
+  
 }
 
 export interface Tenant {
+  tenantInfos: {
   firstname: string;
   lastname: string;
   email: string;
-  phoneNumber: string;
   contractStart: string;
   contractEnd: string;
+  deposit: string;
+},
+// specialConditions:{
+//   title: string;
+//   content: string;
+// }
 }
 
 export interface TenantRoom {

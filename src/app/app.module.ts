@@ -37,6 +37,14 @@ import { TenantinfoComponent } from './components/tenantinfo/tenantinfo.componen
 import { HouseinfoComponent } from './components/house/houseinfo/houseinfo.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { TenantComponent } from './components/tenant/tenant.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DatePipe } from '@angular/common';
+import { MAT_DATE_LOCALE  } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
+import { TenantformComponent } from './components/tenantform/tenantform.component';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +63,7 @@ import { TenantComponent } from './components/tenant/tenant.component';
     HouseinfoComponent,
     ContractComponent,
     TenantComponent,
-
+    TenantformComponent,
    
   ],
   imports: [
@@ -83,11 +91,21 @@ import { TenantComponent } from './components/tenant/tenant.component';
     SnackBar,
     MatDatepickerModule,
     MatNativeDateModule,
-    
+    MatCheckboxModule,
+    DatePipe,
+    MatSelectModule,
   ],
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},
-    CookieService, SnackBar
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } },
+    CookieService,
+    MatSnackBar,
+    DatePipe,
+    SnackBar,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOption,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   
   bootstrap: [AppComponent]

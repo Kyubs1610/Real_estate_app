@@ -9,6 +9,7 @@ import { buildingComponent } from './components/house/house.component';
 import { EmailsentComponent } from './components/emailsent/emailsent.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { TenantComponent } from './components/tenant/tenant.component';
+import { TenantformComponent } from './components/tenantform/tenantform.component';
 
 const routes: Routes = [
   {
@@ -42,9 +43,13 @@ const routes: Routes = [
   { path:'contract',
     component : ContractComponent,
     canActivate: [AuthGuard]},
+
   { path: 'tenant',
     component: TenantComponent,
-    canActivate: [AuthGuard]}
+    canActivate: [AuthGuard]},
+    
+  {path: 'registrationform',
+ component: TenantformComponent,}
 
 
 

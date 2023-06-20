@@ -15,7 +15,6 @@ import { HouseinfoComponent } from './houseinfo/houseinfo.component';
 
 
 
-
 @Component({
   selector: 'app-house',
   templateUrl: './house.component.html',
@@ -34,7 +33,7 @@ export class buildingComponent implements OnInit {
   rooms: Room[] = [];
   data: any;
   building!: Building;
-  buildingId!: Building['id'];
+  buildingId!:Building['id'];
   newRoom: Room = new Room();
   roomsSubject: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
   tenant!: Tenants;
@@ -61,8 +60,7 @@ export class buildingComponent implements OnInit {
     }, (error) => {
       console.error(error);
     });
-    
-    
+
   }
 
   toggleDetails(building: any) {
@@ -71,6 +69,7 @@ export class buildingComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(addformComponent, { panelClass: 'custom' })
+    
   }
 
   openRoomDialog(building: Building) {
@@ -80,10 +79,20 @@ export class buildingComponent implements OnInit {
       data: { building: building }
     });
     const buildingId = building.id;
+    console.log(buildingId)
     // send the buildingID to the addRoomComponent
     dialogRef.componentInstance.buildingId = buildingId;
     console.log(dialogRef.componentInstance.buildingId);
   }
+
+  // openDeleteRoomDialog(room: Room) {
+  //   console.log(room);
+  //   const dialogRef = this.dialog.open(DeleteroomComponent, {
+  //     panelClass: 'custom',
+  //     data: { room: room }
+  //   });
+
+  // }
 
   // Open the update dialog
   openUpdateDialog(id: number) {

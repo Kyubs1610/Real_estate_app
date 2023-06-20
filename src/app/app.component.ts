@@ -15,6 +15,7 @@ export class AppComponent {
   isValid(): boolean {
     if (
       this.router.url !== '/' &&
+      this.router.url !== '/registrationform' &&
       this.router.url !== '/unauthorized' &&
       this.router.url !== '/email' &&
       !this.router.url.startsWith('/reset')

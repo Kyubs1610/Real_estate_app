@@ -3,9 +3,12 @@
                 <h2>Hello {{ fullname }}, </h2>
                 <p> Here you can enter the email address of the new tenant.<br>
                  The new tenant will receive an email with a link to register and sign the contract.</p>
-                <mat-form-field appearance="outline">
+               <div style="text-align: center;">
+                  <mat-form-field appearance="outline">
                     <mat-label>Email of the new tenant</mat-label>
-                    <input type="text" matInput placeholder="Email of the new tenant">
-                  </mat-form-field><br>
+                    <input type="text"[(ngModel)]="emailAddress" matInput placeholder="Email of the new tenant">
+                  </mat-form-field>&nbsp;&nbsp;
+                  <button mat-button class="save" (click)="sendContract()" >Send</button>
+               </div>
         </div>
     </main>

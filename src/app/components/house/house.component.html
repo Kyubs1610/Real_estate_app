@@ -1,4 +1,4 @@
-<main> 
+<main>
   <form class="example-form">
     <mat-form-field class="example-full-width" appearance="outline">
       <span matPrefix></span>
@@ -7,59 +7,63 @@
     </mat-form-field>
   </form>
 
-<div class="building-container">
-  <button mat-button (click)="openDialog()"> <mat-card-title> {{ '+ Add New building' }}</mat-card-title></button><br><br>
+  <div class="building-container">
+    <button mat-button (click)="openDialog()"> <mat-card-title> {{ '+ Add New building' }}</mat-card-title></button><br><br>
 
-      
- <mat-card class="customize" *ngFor="let building of filteredbuildings">
-    <mat-card-header>
-      <div class="iconsButton">
-        <button mat-icon-button (click)="openUpdateDialog(building.id)">
-          <mat-icon>edit</mat-icon>
+
+    <mat-card class="customize" *ngFor="let building of filteredbuildings">
+      <mat-card-header>
+        <div class="iconsButton">
+          <button mat-icon-button (click)="openUpdateDialog(building.id)">
+            <mat-icon>edit</mat-icon>
           </button>
-        <button mat-icon-button (click)="removeBuilding(building.id)" >
-        <mat-icon >delete</mat-icon>
-        </button>
-      </div>
-      
-     
+          <button mat-icon-button (click)="removeBuilding(building.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
 
-      <mat-card-title> <span class="building-name">{{ building.name }} </span>
-        <button mat-button  (click)="openBuildingDialog(building)" >
-          <mat-icon class="homeIcon">home</mat-icon> 
-        </button>
-      </mat-card-title>
-   
-      <mat-card-subtitle>
+
+
+        <mat-card-title> <span class="building-name">{{ building.name }} </span>
+          <button mat-button (click)="openBuildingDialog(building)">
+            <mat-icon class="homeIcon">home</mat-icon>
+          </button>
+        </mat-card-title>
+
+        <mat-card-subtitle>
           {{ building.addressStreet }} {{ building.addressNumber }}, <br>
-          {{ building.addressPostalCode }} {{ building.addressCity }} 
-      </mat-card-subtitle>
-    </mat-card-header><br>
+          {{ building.addressPostalCode }} {{ building.addressCity }}
+        </mat-card-subtitle>
+      </mat-card-header><br>
 
-    <button class="details" mat-button (click)="toggleDetails(building)">SEE THE ROOMS</button>
-   
-<mat-card-content *ngIf="building.showDetails">
-  <div mat-dialog-actions style="display: flex; justify-content: center;">
-    <button mat-button  (click)="openRoomDialog(building)" >  {{ '+ Add New Room' }}</button><br><br>
+      <button class="details" mat-button (click)="toggleDetails(building)">SEE THE ROOMS</button>
+
+      <mat-card-content *ngIf="building.showDetails">
+        <div class="room-button" style="display: flex; justify-content: center;">
+          <div mat-dialog-actions>
+            <button mat-button (click)="openRoomDialog(building)"> {{ '+ Add New Room' }}</button><br><br>
+          </div>
+          <!-- <div mat-dialog-actions>
+            <button mat-button (click)="openDeleteRoomDialog(building)"> {{ '- Remove a Room' }}</button><br><br>
+          </div> -->
+        </div>
+
+        <mat-list>
+          <mat-list-item *ngFor="let room of building.rooms">
+            <strong> {{ room.roomNumber }}: &nbsp; </strong>
+
+            <span class="room-details" *ngFor="let tenants of room.tenants">
+
+              <span class="tenant-details"> {{ tenants.firstname }} {{ tenants.lastname }} </span>
+              <button mat-button (click)="openTenantDialog(tenants)">
+                <mat-icon class="tenantIcon">person_outline</mat-icon>
+              </button>
+            </span>
+
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card><br>
+
   </div>
-
-
-  <mat-list>
-    <mat-list-item *ngFor="let room of building.rooms">
-      <strong> {{ room.roomNumber }}: &nbsp; </strong>
-      
-      <span class="room-details" *ngFor="let tenants of room.tenants">
-        
-        <span class="tenant-details"> {{ tenants.firstname }} {{ tenants.lastname }} </span>
-        <button mat-button (click)="openTenantDialog(tenants)">
-          <mat-icon class="tenantIcon">person_outline</mat-icon> 
-        </button>
-      </span>
-
-    </mat-list-item>
-  </mat-list>
-</mat-card-content>
-</mat-card><br>
- 
-</div>
 </main>

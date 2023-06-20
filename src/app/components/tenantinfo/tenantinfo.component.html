@@ -34,7 +34,7 @@
                                 <strong> Beginning of the contract:</strong> {{ tenant.contractStart | date:'dd/MM/yyyy'}}<br>
                                     <strong> End of the contract:</strong> {{ tenant.contractEnd | date:'dd/MM/yyyy' }}<br>
                                       <strong> Rent Increase: </strong> {{ tenant.rooms[0].rentReview | date:'dd/MM/yyyy'}}<br>
-                                       <strong> Special Conditions: </strong> {{ tenant.rooms[0].specialConditions}}<br>
+                                       <strong> Special Conditions: </strong> {{ tenant.specialCondition.content}}<br>
                                         <strong> Deposit :</strong> {{ tenant.deposit}}<br>
                                             <strong>  Rent: </strong>{{ tenant.rooms[0].rent }} € <br>
                                              <strong>  Charges:</strong> {{ tenant.rooms[0].charges}} € <br>

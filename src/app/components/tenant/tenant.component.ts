@@ -1,3 +1,4 @@
+import { ContractmailService } from './../../services/contract/contractmail.service';
 import { TenantsService } from 'src/app/services/tenant/tenant.service';
 import { Component } from '@angular/core';
 import { Building, Room } from 'src/app/models/building.model';
@@ -5,14 +6,12 @@ import { HouseService } from 'src/app/services/house/house.service';
 import { Tenant } from 'src/app/models/newtenant.model';
 import {   MatSnackBar,
   MatSnackBarHorizontalPosition,
-  MatSnackBarModule,
   MatSnackBarVerticalPosition, } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tenant',
   templateUrl: './tenant.component.html',
-  styleUrls: ['./tenant.component.scss']
-})
+  styleUrls: ['./tenant.component.scss']})
 export class TenantComponent {
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -23,16 +22,7 @@ export class TenantComponent {
   roomId!: number;
 
   
-  newTenant: Tenant = {
-    firstname: '',
-    lastname: '',
-    email: '',
-    phoneNumber: '',
-    contractStart: '',
-    contractEnd: '',
-   
-
-};
+  newTenant: Tenant["tenantInfos"] = {} as Tenant["tenantInfos"];
   
   buildings: Building[] = [];
   filteredbuildings: Building[] = this.buildings;
@@ -40,14 +30,15 @@ export class TenantComponent {
   selectedBuilding!: Building;
 
   rooms: Room[] = [];
-  selectedRoom!: string 
-  filteredRooms!: string[];
+  selectedRoom!: number; 
+  filteredRooms!: number[];
   room: Room[] = [];
   
 
   constructor(private tenantsService: TenantsService,
               private HouseService : HouseService,
-              private _snackBar: MatSnackBar
+              private _snackBar: MatSnackBar,
+              private contractMailService: ContractmailService,
               
               ) {}
 
@@ -59,7 +50,9 @@ export class TenantComponent {
       console.error(error);
     });
     this.tenants = [];
-  }
+    //  this.contractMailService.generateContract(this.roomId)
+     console.log(this.roomId)
+    }
 
   findRoomsByBuilding() {
     const selectedBuildingId = this.selectedBuilding;
@@ -105,46 +98,72 @@ opensnackbarbusy() {
         if (roomBusy === "rented") {
           this.opensnackbarbusy()
           // this.TenantpopupComponent.openBusyDialog()
-        }
-      } else {
-        console.error("Room not found.");
-      }
+        } 
     }
-  }
+  }}
+  
 
+
+  dateFormat() {
+    const contractStart: string = this.newTenant.contractStart; // Assuming this.newTenant.contractStart is of type string
+    const contractStartDate: Date = new Date(contractStart); // Convert string to Date object
+    const formattedDate: string = contractStartDate.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+    console.log(formattedDate);
+  }
+  
 
 
   addTenant() {
+
+
+
     const newTenant: Tenant = {
+      tenantInfos:{
       firstname: this.newTenant.firstname,
       lastname: this.newTenant.lastname,
       email: this.newTenant.email,
-      phoneNumber: this.newTenant.phoneNumber,
       contractStart: this.newTenant.contractStart ,
       contractEnd: this.newTenant.contractEnd,
-     
+      deposit: this.newTenant.deposit,
+      },
+      // specialConditions:{
+      //   title: this.title,
+      //   content: this.newTenant.content,
+      // }
     };
 
-    newTenant.firstname = this.newTenant.firstname|| '';
-    newTenant.lastname = this.newTenant.lastname|| '';
-    newTenant.email = this.newTenant.email|| '';
-    newTenant.phoneNumber = this.newTenant.phoneNumber|| '';
-    newTenant.contractStart = this.newTenant.contractStart|| '';
-    newTenant.contractEnd = this.newTenant.contractEnd|| '';
-  
-    // const room: any = this.selectedRoom;
-    // const buildingId: any = this.selectedBuilding; // Assuming 'this.selectedBuilding' contains the selected building object with a 'buildingId' property
-  
+    newTenant.tenantInfos.firstname = this.newTenant.firstname ;
+    newTenant.tenantInfos.lastname = this.newTenant.lastname ;
+    newTenant.tenantInfos.email = this.newTenant.email ;
+    newTenant.tenantInfos.contractStart = this.newTenant.contractStart;
+    newTenant.tenantInfos.contractEnd = this.newTenant.contractEnd;
+    newTenant.tenantInfos.deposit = this.newTenant.deposit;
+    // newTenant.specialConditions.title = this.newTenant.title;
+    // newTenant.specialConditions.content = this.newTenant.content;
+
+    console.log(newTenant);  
     this.tenantsService.addTenant(this.roomId,  newTenant).subscribe(
       (response: Tenant) => {
         console.log(response);
         this.tenants.push(response);
         this.tenants = [response, ...this.tenants];
       },
-      (error) => {
-        console.error(error);
-      }
     );
+
+      // this.contractMailService.generateContract(this.roomId).subscribe(
+      //   (response: Object) => {
+      //     console.log(response);
+
+      //   },
+        
+    
+
+      
+    
   }
 
   

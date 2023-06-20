@@ -1,3 +1,4 @@
+import { ContractmailService } from './../../services/contract/contractmail.service';
 import { Component } from '@angular/core';
 import { HomepageService } from 'src/app/services/homepage/homepage.service';
 import { AuthResponse } from 'src/app/models/AuthResponse.model';
@@ -9,8 +10,10 @@ import { AuthResponse } from 'src/app/models/AuthResponse.model';
 })
 export class ContractComponent {
   fullname!: string;
+  emailAddress!: string;
 
-  constructor(private homepageService: HomepageService) {}
+  constructor(private homepageService: HomepageService,
+              private contractMailService: ContractmailService) {}
 
  ngOnInit() {
     this.homepageService.getFirstname().subscribe((response: AuthResponse) => {
@@ -21,5 +24,21 @@ export class ContractComponent {
     });
   }
 
+  sendContract() {
+    if (this.emailAddress) {
+      this.contractMailService.sendContract(this.emailAddress).subscribe(
+        (response) => {
+          console.log('Email sent successfully!');
+        },
+        (error) => {
+          console.error('Failed to send email:', error);
+        }
+      );
+    }
+  }
+
+
+  
 
 }
+

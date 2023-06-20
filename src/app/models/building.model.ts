@@ -10,16 +10,30 @@ export interface Building {
   updatedAt: string;
   createdAt: string;
   rooms: Room[];
-  manager: string;
-  owners: string;
-  company: string;
+  bic: string;
+  iban: string;
+  managers: managers[];
+  owners: owners[];
+  company: number;
 
+}
+
+export interface owners {
+  id: number;
+  ownerId: string;
+  fullname: string;
+}
+
+export interface managers {
+  id: number;
+  managerId: string;
+  fullname: string;
 }
 
 export interface Room {
   totalRent: number;
   id: number;
-  roomNumber: string;
+  roomNumber: number;
   status: string;
   availableFrom: string;
   type: string;
@@ -32,6 +46,7 @@ export interface Room {
   updatedAt: string;
   buildingId: number;
   tenants: Tenant[];
+  deposit: string;
 }
 
 interface Tenant {

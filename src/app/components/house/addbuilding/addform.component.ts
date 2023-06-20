@@ -1,8 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { HouseService } from '../../../services/house/house.service';
-import { MatDialogRef } from '@angular/material/dialog';
 import { SnackBar } from '../../snackbar/snackbar.component';
-import { Building } from '../../../models/building.model';
+import { addBuilding, user } from 'src/app/models/addBuilding.model';
 
 @Component({
     selector: 'addform',
@@ -10,56 +9,91 @@ import { Building } from '../../../models/building.model';
 }) 
 
 
-
-export class addformComponent {
+export class addformComponent implements OnInit {
     constructor(
-        private dialogRef: MatDialogRef<addformComponent>,
         private HouseService : HouseService,
         private snackBar: SnackBar,
     ) {
     }
 
-    newbuilding: any = {}; // Declare newbuilding property
-    showAddBuildingSection: boolean = false;
-    buildings:  any[] = [];
-
-    addBuilding() {
-        const newBuilding = {
-          id: this.buildings.length + 1 ,
-          name: '', // Initialize with empty values
-          addressStreet: '',
-          addressNumber: '',
-          addressCity: '',
-          addressPostalCode: '',
-          addressCountry: '',
-          doorCode: '',
-        };
-        // Assign input values if they are not null or empty strings
-        newBuilding.name = newBuilding.name || '';
-        newBuilding.addressStreet = newBuilding.addressStreet || '';
-        newBuilding.addressNumber = newBuilding.addressNumber || '';
-        newBuilding.addressCity = newBuilding.addressCity || '';
-        newBuilding.addressPostalCode = newBuilding.addressPostalCode || '';
-        newBuilding.addressCountry = newBuilding.addressCountry || '';
-        newBuilding.doorCode = newBuilding.doorCode || '';
-       
-        this.HouseService.addbuilding(this.newbuilding).subscribe(
-          (response: Building[]) => {
-            console.log(response); // Log the response object
-            this.buildings = [response, ...this.buildings]; // Update buildings array with the response
-            // reload the page to see the change
-            this.snackBar.openSnackBar();
-          },
-          (error) => {
-            console.error(error);
-            this.snackBar.openSnackBarError();
-          }
-        );
+    ngOnInit() {
+      this.HouseService.getUsers().subscribe((response: user[]) => {
+        this.users = response;
+        this.selectedManagerIds =  this.users.map(user => user.id);
+        this.selectedOwnerIds = this.users.map(user => user.id);
       }
+      );
+      
+    }
 
-      isMobile() {
-        return window.innerWidth <= 767;
+  newBuilding: addBuilding['buildingInfos'] = {} as addBuilding['buildingInfos'];
+  showAddBuildingSection: boolean = false;
+  buildings: addBuilding['buildingInfos'][] = [];
+  selectedManagers: user[] = [];
+  selectedOwners: user []=[];
+  users: user[] = [];
+  user: user[] = [];
+  selectedManagerIds: number[] = [];
+  selectedOwnerIds: number[] = [];
+  companyIds: string = '';
+
+  addBuilding() {
+    const newBuilding: addBuilding =  {
+      buildingInfos: {
+        name: '',
+        addressStreet: '',
+        addressNumber: '',
+        addressCity: '',
+        addressPostalCode: '',
+        addressCountry: '',
+        doorCode: '',
+        bic: '',
+        iban: '',
+      },
+        managersIds: [],
+        ownersIds: [],
+        // companyIds:'',
+    };
+
+    newBuilding.buildingInfos.name = this.newBuilding.name;
+    newBuilding.buildingInfos.addressStreet = this.newBuilding.addressStreet;
+    newBuilding.buildingInfos.addressNumber = this.newBuilding.addressNumber;
+    newBuilding.buildingInfos.addressCity = this.newBuilding.addressCity;
+    newBuilding.buildingInfos.addressPostalCode = this.newBuilding.addressPostalCode;
+    newBuilding.buildingInfos.addressCountry = this.newBuilding.addressCountry;
+    newBuilding.buildingInfos.doorCode = this.newBuilding.doorCode;
+    newBuilding.buildingInfos.iban = this.newBuilding.iban;
+    newBuilding.buildingInfos.bic = this.newBuilding.bic;
+    newBuilding.managersIds = this.selectedManagerIds;
+    newBuilding.ownersIds = this.selectedOwnerIds;  
+    // newBuilding.companyIds = this.companyIds;
+
+    this.HouseService.addbuilding(newBuilding).subscribe(
+      (response: addBuilding) => {
+        console.log(response);
+        this.buildings = [...this.buildings, ...this.buildings];
+        this.snackBar.openSnackBar();
+      },
+      (error) => {
+        console.error(error);
+        this.snackBar.openSnackBarError();
       }
+    );
+  }
 
-  
+  getUsers() {
+    this.HouseService.getUsers().subscribe(
+      (response: user[]) => {
+        this.users = response;
+        console.log(this.users);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  isMobile() {
+    return window.innerWidth <= 767;
+  }
 }

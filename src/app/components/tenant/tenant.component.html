@@ -30,16 +30,25 @@
                 <input type="text" matInput placeholder="Tenant Last Name" [(ngModel)]="newTenant.lastname">
               </mat-form-field>
               <mat-form-field appearance="outline">
-                <mat-label>Phone Number</mat-label>
-                <input type="text" matInput placeholder="Phone Number" [(ngModel)]="newTenant.phoneNumber">
-              </mat-form-field>
-              <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input type="text" matInput placeholder="Email" [(ngModel)]="newTenant.email">
               </mat-form-field>
               <mat-form-field appearance="outline">
+                <mat-label> Deposit </mat-label>
+                <input type="text" matInput placeholder="Deposit" [(ngModel)]="newTenant.deposit" >
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label> Special conditions </mat-label>
+                <input type="text" matInput placeholder="Special Conditions"[(ngModel)]="newTenant.deposit" >
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label> Conditions </mat-label>
+                <input type="text" matInput placeholder="Conditions" [(ngModel)]="newTenant.deposit" >
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline">
                 <mat-label>Contract Start</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="newTenant.contractStart" />
+                <input matInput [matDatepicker]="picker" [(ngModel)]="newTenant.contractStart" (ngModelChange)="dateFormat()" />
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>

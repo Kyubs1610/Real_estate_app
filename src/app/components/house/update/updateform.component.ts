@@ -22,29 +22,30 @@ export class UpdateFormComponent {
 
 
   showAddBuildingSection: boolean = false;
-  buildings: any[] = [];
+  buildings: UpdateBuilding[] = [];
   id!: number;
   updateBuildings: any = {};
+
   
 
 
   updateBuilding(id: any, updateBuilding: any) {
     //find the building to update based on the id
-  const buildingToUpdate = this.buildings.find((building) => building.id === id);
+  const buildingToUpdate = this.buildings.find(() => id === id);
 
     if (buildingToUpdate) {
       const updateBuildings = {
-        name: updateBuilding.name || buildingToUpdate.name,
-        addressStreet: updateBuilding.addressStreet || buildingToUpdate.addressStreet,
-        addressNumber: updateBuilding.addressNumber || buildingToUpdate.addressNumber,
-        addressCity: updateBuilding.addressCity || buildingToUpdate.addressCity,
-        addressPostalCode: updateBuilding.addressPostalCode || buildingToUpdate.addressPostalCode,
-        addressCountry: updateBuilding.addressCountry || buildingToUpdate.addressCountry,
-        doorCode: updateBuilding.doorCode || buildingToUpdate.doorCode,
+        name: updateBuilding.name || buildingToUpdate.building.name,
+        addressStreet: updateBuilding.addressStreet || buildingToUpdate.building.addressStreet,
+        addressNumber: updateBuilding.addressNumber || buildingToUpdate.building.addressNumber,
+        addressCity: updateBuilding.addressCity || buildingToUpdate.building.addressCity,
+        addressPostalCode: updateBuilding.addressPostalCode || buildingToUpdate.building.addressPostalCode,
+        addressCountry: updateBuilding.addressCountry || buildingToUpdate.building.addressCountry,
+        doorCode: updateBuilding.doorCode || buildingToUpdate.building.doorCode,
       };
       console.log(buildingToUpdate);
       this.houseService.updatebuilding(id, updateBuildings).subscribe(
-        (response: UpdateBuilding) => {
+        (response: UpdateBuilding[]) => {
           this.buildings = response;
           this.updateBuildings = response;
           this.snackBar.updateSnackBar();

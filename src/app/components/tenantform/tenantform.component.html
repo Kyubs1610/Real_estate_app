@@ -1,0 +1,58 @@
+<main>
+    <div class="customize"> 
+        <h1 style="display: flex; justify-content: center;"> Enter your informations</h1>
+    <mat-card-content  [style.max-width.%]="isMobile ? 100 : null"
+        [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null"
+        [style.width.%]="isMobile ? 100 : null">
+          
+        <div class="input">
+              <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput placeholder="First Name" >
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input type="text" matInput placeholder="Last Name" >
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label> Street </mat-label>
+                <input type="text" matInput placeholder="Street" >
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Number</mat-label>
+                <input type="text" matInput placeholder="Number" >
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label> Zip Code </mat-label>
+                <input type="text" matInput placeholder="Zip"  >
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label> City  </mat-label>
+                <input type="text" matInput placeholder="City">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label> Coutnry </mat-label>
+                <input type="text" matInput placeholder="Country">
+              </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label> Phone Number </mat-label>
+                    <input type="text" matInput placeholder="Phone Number">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label> Email </mat-label>
+                    <input type="text" matInput placeholder="Email">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label> Id Number </mat-label>
+                    <input type="text" matInput placeholder="Id Number">
+                </mat-form-field>
+   
+            </div>
+          <div mat-dialog-actions style="display: flex; justify-content: center;">
+            <button mat-button class="save" >Save</button>
+          </div >
+    </mat-card-content>
+
+    </div>
+    
+</main>

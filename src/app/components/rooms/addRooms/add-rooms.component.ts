@@ -42,7 +42,6 @@ export class addRoomComponent implements OnInit {
         type: RoomType.room,
         rent: '',
         rentReview: '',
-        specialConditions: '',
         doorCode: '',
         charges: '',
       }
@@ -54,7 +53,6 @@ export class addRoomComponent implements OnInit {
     newRoom.roomInfos.type = this.newRoom.roomInfos.type;
     newRoom.roomInfos.rent = this.newRoom.roomInfos.rent;
     newRoom.roomInfos.rentReview = this.newRoom.roomInfos.rentReview;
-    newRoom.roomInfos.specialConditions = this.newRoom.roomInfos.specialConditions;
     newRoom.roomInfos.doorCode = this.newRoom.roomInfos.doorCode;
     newRoom.roomInfos.charges = this.newRoom.roomInfos.charges;
 

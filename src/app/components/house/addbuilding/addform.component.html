@@ -11,32 +11,62 @@
   <div class="input"> 
     <mat-form-field appearance="outline">
       <mat-label>Building Name</mat-label>
-      <input type="text" matInput [(ngModel)]="newbuilding.name" placeholder="Building Name">
+      <input matInput [(ngModel)]="newBuilding.name" placeholder="Building Name" name="buildingName">
     </mat-form-field><br>
     <mat-form-field appearance="outline">
       <mat-label>Address</mat-label>
-      <input type="text" matInput [(ngModel)]="newbuilding.addressStreet" placeholder="Address">
+      <input matInput [(ngModel)]="newBuilding.addressStreet" placeholder="Address" name="Address">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Number</mat-label>
-      <input type="text" matInput [(ngModel)]="newbuilding.addressNumber" placeholder="Number">
+      <input matInput [(ngModel)]="newBuilding.addressNumber" placeholder="Number" name="number">
     </mat-form-field><br>
     <mat-form-field appearance="outline">
       <mat-label>Zip Code</mat-label>
-      <input type="text" matInput [(ngModel)]="newbuilding.addressPostalCode" placeholder="Zip Code">
+      <input matInput [(ngModel)]="newBuilding.addressPostalCode" placeholder="Zip Code" name="Zip">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>City</mat-label>
-      <input type="text" matInput [(ngModel)]="newbuilding.addressCity" placeholder="City">
+      <input matInput [(ngModel)]="newBuilding.addressCity" placeholder="City" name="city">
     </mat-form-field><br>
     <mat-form-field appearance="outline">
       <mat-label>Country</mat-label>
-      <input type="text" matInput [(ngModel)]="newbuilding.addressCountry" placeholder="Country">
+      <input matInput [(ngModel)]="newBuilding.addressCountry" placeholder="Country" name="country">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Door Code</mat-label>
-      <input type="text" matInput [(ngModel)]="newbuilding.doorCode" placeholder="Door Code">
+      <input matInput [(ngModel)]="newBuilding.doorCode" placeholder="Door Code" name='doorCode'>
     </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>IBAN</mat-label>
+      <input matInput [(ngModel)]="newBuilding.iban" placeholder="IBAN" name="iban">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>BIC</mat-label>
+      <input matInput [(ngModel)]="newBuilding.bic" placeholder="BIC" name="bic">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Manager</mat-label>
+      <mat-select [(ngModel)]="selectedManagers" multiple name="managers" >
+        <mat-option *ngFor="let user of users" [value]="user.id"> {{ user.fullname}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Owner</mat-label>
+      <mat-select [(ngModel)]="selectedOwners" multiple name="owners">
+        <mat-option *ngFor="let user of users" [value]="user.id"> {{ user.fullname}} </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Company</mat-label>
+      <input matInput [(ngModel)]="companyIds" placeholder="Company" name="Company">
+    </mat-form-field> -->
+
+
     <div mat-dialog-actions style="display: flex; justify-content: center;">
       <button mat-button mat-dialog-close class="save" (click)="addBuilding()">Save</button>
     </div>

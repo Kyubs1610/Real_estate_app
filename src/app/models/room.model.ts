@@ -8,9 +8,9 @@ export class Room {
     type: RoomType;
     rent: string;
     rentReview: string;
-    specialConditions: string;
     doorCode: string;
     charges: string;
+    
   } = {
     roomNumber: '',
     status: RoomStatus.free,
@@ -18,7 +18,6 @@ export class Room {
     type: RoomType.room,
     rent: '',
     rentReview: '',
-    specialConditions: '',
     doorCode: '',
     charges: '',
   };

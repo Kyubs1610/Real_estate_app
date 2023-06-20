@@ -20,6 +20,7 @@ export class TenantinfoComponent implements OnInit {
     
     this.tenantService.getTenant(this.id).subscribe((response: Tenants) => {
       this.tenant = response;
+      console.log('Tenant:', this.tenant);
     },
       (error) => {
         console.error('Error retrieving tenant:', error);

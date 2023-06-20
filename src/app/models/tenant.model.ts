@@ -16,6 +16,15 @@ export class Tenants {
   arrival: Date = new Date();
   contractStart: Date = new Date();
   contractEnd: Date = new Date();
+  specialCondition: {
+    id: number;
+    title: string;
+    content: string;
+  } = {
+    id: 0,
+    title: '',
+    content: '',
+  };
   
   tenantRoom: {
     tenantId: number;

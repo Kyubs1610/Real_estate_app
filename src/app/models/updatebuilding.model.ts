@@ -1,4 +1,4 @@
-export class UpdateBuilding extends Array< {
+export interface UpdateBuilding  {
     building:{  
         id: number;
         name: string;
@@ -11,5 +11,8 @@ export class UpdateBuilding extends Array< {
         updatedAt: string;
         createdAt: string;
         rooms: any[];
+        iban: string;
+        bic: string;
+
        }
-    }> {}
+      }    

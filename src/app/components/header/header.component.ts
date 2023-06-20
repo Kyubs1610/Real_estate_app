@@ -3,13 +3,15 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { DatePipe } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  providers: [DatePipe]
 })
 
 export class HeaderComponent {
@@ -32,6 +34,9 @@ export class HeaderComponent {
    
     } 
     
+    isMobile() {
+      return window.innerWidth <= 767;
+    }
    
 }
 
