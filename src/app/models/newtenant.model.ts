@@ -33,10 +33,10 @@ export interface Tenant {
   contractEnd: string;
   deposit: string;
 },
-// specialConditions:{
-//   title: string;
-//   content: string;
-// }
+specialCondition:{
+  title: string;
+  content: string;
+}
 }
 
 export interface TenantRoom {

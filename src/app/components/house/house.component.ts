@@ -85,14 +85,7 @@ export class buildingComponent implements OnInit {
     console.log(dialogRef.componentInstance.buildingId);
   }
 
-  // openDeleteRoomDialog(room: Room) {
-  //   console.log(room);
-  //   const dialogRef = this.dialog.open(DeleteroomComponent, {
-  //     panelClass: 'custom',
-  //     data: { room: room }
-  //   });
 
-  // }
 
   // Open the update dialog
   openUpdateDialog(id: number) {

@@ -9,6 +9,7 @@
 
   <div class="building-container">
     <button mat-button (click)="openDialog()"> <mat-card-title> {{ '+ Add New building' }}</mat-card-title></button><br><br>
+    
 
 
     <mat-card class="customize" *ngFor="let building of filteredbuildings">
@@ -43,9 +44,7 @@
           <div mat-dialog-actions>
             <button mat-button (click)="openRoomDialog(building)"> {{ '+ Add New Room' }}</button><br><br>
           </div>
-          <!-- <div mat-dialog-actions>
-            <button mat-button (click)="openDeleteRoomDialog(building)"> {{ '- Remove a Room' }}</button><br><br>
-          </div> -->
+
         </div>
 
         <mat-list>

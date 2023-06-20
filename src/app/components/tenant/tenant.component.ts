@@ -1,4 +1,3 @@
-import { ContractmailService } from './../../services/contract/contractmail.service';
 import { TenantsService } from 'src/app/services/tenant/tenant.service';
 import { Component } from '@angular/core';
 import { Building, Room } from 'src/app/models/building.model';
@@ -22,7 +21,8 @@ export class TenantComponent {
   roomId!: number;
 
   
-  newTenant: Tenant["tenantInfos"] = {} as Tenant["tenantInfos"];
+  newTenant: Tenant["tenantInfos"] & { specialCondition: Tenant["specialCondition"] } = {} as Tenant["tenantInfos"] & { specialCondition: Tenant["specialCondition"] };
+  specialCondition: Tenant["specialCondition"] = {} as Tenant["specialCondition"]; 
   
   buildings: Building[] = [];
   filteredbuildings: Building[] = this.buildings;
@@ -38,7 +38,6 @@ export class TenantComponent {
   constructor(private tenantsService: TenantsService,
               private HouseService : HouseService,
               private _snackBar: MatSnackBar,
-              private contractMailService: ContractmailService,
               
               ) {}
 
@@ -50,6 +49,7 @@ export class TenantComponent {
       console.error(error);
     });
     this.tenants = [];
+    
     //  this.contractMailService.generateContract(this.roomId)
      console.log(this.roomId)
     }
@@ -101,6 +101,7 @@ opensnackbarbusy() {
         } 
     }
   }}
+
   
 
 
@@ -118,9 +119,6 @@ opensnackbarbusy() {
 
 
   addTenant() {
-
-
-
     const newTenant: Tenant = {
       tenantInfos:{
       firstname: this.newTenant.firstname,
@@ -130,10 +128,10 @@ opensnackbarbusy() {
       contractEnd: this.newTenant.contractEnd,
       deposit: this.newTenant.deposit,
       },
-      // specialConditions:{
-      //   title: this.title,
-      //   content: this.newTenant.content,
-      // }
+        specialCondition: {
+          title: this.specialCondition.title,
+          content: this.specialCondition.content,
+      }
     };
 
     newTenant.tenantInfos.firstname = this.newTenant.firstname ;
@@ -142,8 +140,8 @@ opensnackbarbusy() {
     newTenant.tenantInfos.contractStart = this.newTenant.contractStart;
     newTenant.tenantInfos.contractEnd = this.newTenant.contractEnd;
     newTenant.tenantInfos.deposit = this.newTenant.deposit;
-    // newTenant.specialConditions.title = this.newTenant.title;
-    // newTenant.specialConditions.content = this.newTenant.content;
+    newTenant.specialCondition.title = this.specialCondition.title
+    newTenant.specialCondition.content = this.specialCondition.content,
 
     console.log(newTenant);  
     this.tenantsService.addTenant(this.roomId,  newTenant).subscribe(
@@ -159,10 +157,7 @@ opensnackbarbusy() {
       //     console.log(response);
 
       //   },
-        
-    
-
-      
+ 
     
   }
 
