@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Building } from 'src/app/models/building.model';
 import { HouseService } from 'src/app/services/house/house.service';
+import { user } from 'src/app/models/addBuilding.model';
 
 @Component({
   selector: 'app-houseinfo',
@@ -12,6 +13,9 @@ export class HouseinfoComponent implements OnInit {
   buildings: Building[] = [];
   id!: number;
   building!: Building 
+
+  selectedManagers: user[] = [];
+  selectedOwners: user []=[];
 
   constructor(private HouseService: HouseService) { }
   ngOnInit() {

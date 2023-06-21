@@ -13,11 +13,9 @@ export interface addBuilding {
     managersIds:number[];
     ownersIds:number[]
     // companyIds:string;
-
-
-
-    
+  
   }
+  
 export interface manager {
     id: number;
     managerId: string;

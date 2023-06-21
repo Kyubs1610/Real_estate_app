@@ -44,6 +44,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
 import { TenantformComponent } from './components/tenantform/tenantform.component';
+import { ConfirmDialogComponent } from './components/house/removebuilding/confirm-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -64,6 +66,7 @@ import { TenantformComponent } from './components/tenantform/tenantform.componen
     ContractComponent,
     TenantComponent,
     TenantformComponent,
+    ConfirmDialogComponent,
    
   ],
   imports: [
@@ -94,6 +97,7 @@ import { TenantformComponent } from './components/tenantform/tenantform.componen
     MatCheckboxModule,
     DatePipe,
     MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } },

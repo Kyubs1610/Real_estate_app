@@ -48,7 +48,7 @@ const routes: Routes = [
     component: TenantComponent,
     canActivate: [AuthGuard]},
     
-  {path: 'registrationform',
+  {path: 'tenant/registration/:id/token/:token',
  component: TenantformComponent,}
 
 

@@ -47,7 +47,6 @@ export class LoginPageComponent implements OnInit {
  
 
   onSubmit() {
-    // const { email, password } = this.loginForm.value;
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.authService.logIn(email, password ).subscribe({

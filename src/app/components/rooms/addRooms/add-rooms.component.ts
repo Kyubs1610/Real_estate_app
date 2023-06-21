@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Room, RoomStatus, RoomType } from 'src/app/models/room.model';
 import { AddroomsService } from 'src/app/services/rooms/addrooms.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Building } from 'src/app/models/building.model';
 
 
 @Component({
   selector: 'app-add-rooms',
   templateUrl: './add-rooms.component.html',
+  styleUrls: ['./add-rooms.component.scss']
 })
 
 
@@ -44,7 +45,8 @@ export class addRoomComponent implements OnInit {
         rentReview: '',
         doorCode: '',
         charges: '',
-      }
+      },
+      typeCharges: [],
     };
 
     newRoom.roomInfos.roomNumber = this.newRoom.roomInfos.roomNumber;
@@ -55,6 +57,8 @@ export class addRoomComponent implements OnInit {
     newRoom.roomInfos.rentReview = this.newRoom.roomInfos.rentReview;
     newRoom.roomInfos.doorCode = this.newRoom.roomInfos.doorCode;
     newRoom.roomInfos.charges = this.newRoom.roomInfos.charges;
+
+    newRoom.typeCharges.push(...this.newRoom.typeCharges);
 
     this.addroomsService.addRooms(buildingId, newRoom).subscribe((response: Room) => {
       console.log(response);

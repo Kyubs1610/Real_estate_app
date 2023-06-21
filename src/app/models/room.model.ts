@@ -11,7 +11,9 @@ export class Room {
     doorCode: string;
     charges: string;
     
-  } = {
+  }
+  
+  = {
     roomNumber: '',
     status: RoomStatus.free,
     availableFrom: '',
@@ -21,7 +23,8 @@ export class Room {
     doorCode: '',
     charges: '',
   };
- 
+
+ typeCharges: string[] = []; 
 }
  
   export enum RoomType {

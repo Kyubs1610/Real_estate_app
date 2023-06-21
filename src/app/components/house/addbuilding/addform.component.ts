@@ -6,7 +6,7 @@ import { addBuilding, user } from 'src/app/models/addBuilding.model';
 @Component({
     selector: 'addform',
     templateUrl: 'addform.component.html',
-}) 
+    styleUrls: ['addform.component.scss']}) 
 
 
 export class addformComponent implements OnInit {

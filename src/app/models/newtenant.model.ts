@@ -19,8 +19,8 @@ export interface Room {
   updatedAt: string;
   buildingId: number;
   tenants: Tenant[];
-  typeOfIncCharges: Charge[];
-  typeOfExcCharges: Charge[];
+  typeOfIncCharges: ChargesIncludeRoom[];
+  typeOfExcCharges: ChargesExcludeRoom[];
   
 }
 
@@ -45,25 +45,37 @@ export interface TenantRoom {
   tenantId: number;
 }
 
-export interface Charge {
+export interface ChargesIncludeRoom {
   id: number;
   type: string;
-  createdAt: string;
-  updatedAt: string;
-  chargesIncludeRooms?: ChargesIncludeRooms;
-  chargesExcludeRooms?: ChargesExcludeRooms;
+  createdAt: Date;
+  updatedAt: Date;
+  chargesIncludeRooms: ChargesIncludeRooms;
 }
 
 export interface ChargesIncludeRooms {
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   roomId: number;
   chargeId: number;
 }
 
+export interface ChargesExcludeRoom {
+  id: number;
+  type: string;
+  createdAt: Date;
+  updatedAt: Date;
+  chargesExcludeRooms: ChargesExcludeRooms;
+
+ 
+}
+
 export interface ChargesExcludeRooms {
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   roomId: number;
   chargeId: number;
-}
+
+  
+  }
+

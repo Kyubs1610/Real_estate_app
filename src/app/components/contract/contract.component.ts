@@ -1,7 +1,10 @@
-import { ContractmailService } from './../../services/contract/contractmail.service';
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomepageService } from 'src/app/services/homepage/homepage.service';
 import { AuthResponse } from 'src/app/models/AuthResponse.model';
+import { HttpClient } from '@angular/common/http';
+
+const BASEURL = 'http://localhost:3000/';
 
 @Component({
   selector: 'app-contract',
@@ -12,33 +15,48 @@ export class ContractComponent {
   fullname!: string;
   emailAddress!: string;
 
-  constructor(private homepageService: HomepageService,
-              private contractMailService: ContractmailService) {}
+  constructor(
+    private homepageService: HomepageService,
+    private http: HttpClient,
+    private snackBar: MatSnackBar
+  ) {}
 
- ngOnInit() {
-    this.homepageService.getFirstname().subscribe((response: AuthResponse) => {
-      console.log(response.fullname); // Log the firstname property of the first object
-      this.fullname = response.fullname; // Assign the firstname property to the template variable
-    }, (error) => {
-      console.error(error);
-    });
+  ngOnInit() {
+    this.homepageService.getFirstname().subscribe(
+      (response: AuthResponse) => {
+        console.log(response.fullname);
+        this.fullname = response.fullname;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
-  sendContract() {
-    if (this.emailAddress) {
-      this.contractMailService.sendContract(this.emailAddress).subscribe(
+  sendEmail(tenantEmail: string) {
+    const body = { tenantEmail };
+    const options = {
+      withCredentials: true
+    };
+    console.log(body);
+
+    return this.http
+      .post<any>(`${BASEURL}v1/tenant/registrationform`, body, options)
+      .subscribe(
         (response) => {
-          console.log('Email sent successfully!');
+          console.log('Email sent successfully!', response);
+          this.snackBar.open('Email sent successfully!', 'Close', {
+            duration: 2000
+          });
         },
         (error) => {
-          console.error('Failed to send email:', error);
+          console.error('Error sending email:', error);
+          this.snackBar.open('Error sending email!', 'Close', {
+            duration: 2000
+          });
         }
       );
-    }
   }
 
-
-  
-
+  generateContract() {}
 }
-

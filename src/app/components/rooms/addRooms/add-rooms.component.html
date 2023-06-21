@@ -8,30 +8,20 @@
       <h2> Add New Room </h2>
     </div>
   </div><br>
-  <div>
-
+  <div class="input">
     <mat-form-field appearance="outline">
       <mat-label>Room Name</mat-label>
       <input type="text" matInput [(ngModel)]="newRoom.roomInfos.roomNumber" placeholder="Room Name">
-    </mat-form-field><br>
+    </mat-form-field>
 
-    
-      <mat-form-field appearance="outline">
-        <mat-label>Status</mat-label>
-        <select matNativeControl [(ngModel)]="newRoom.roomInfos.status" >
-          <option value="free">Free</option>
-          <option value="rented">Rented</option>
-          <option value="available from">Available From</option>
-        </select>
-      </mat-form-field>
-    
+  
       <mat-form-field appearance="outline">
         <mat-label>Available From</mat-label>
         <input matInput [(ngModel)]="newRoom.roomInfos.availableFrom" [matDatepicker]="picker" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field><br>
-    
+      </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label>Type</mat-label>
         <select matNativeControl [(ngModel)]="newRoom.roomInfos.type">
@@ -42,36 +32,58 @@
           <option value="commerce">Commerce</option>
         </select>
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <select matNativeControl [(ngModel)]="newRoom.roomInfos.status" >
+          <option value="free">Free</option>
+          <option value="rented">Rented</option>
+          <option value="available from">Available From</option>
+        </select>
+      </mat-form-field>
     
+ 
       <mat-form-field appearance="outline">
         <mat-label>Rent</mat-label>
         <input matInput [(ngModel)]="newRoom.roomInfos.rent" />
-      </mat-form-field><br>
+      </mat-form-field>
 
 
 
       <mat-form-field appearance="outline">
         <mat-label>Charges</mat-label>
         <input matInput [(ngModel)]="newRoom.roomInfos.charges" />
-      </mat-form-field><br>
-    
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Charges Include</mat-label>
+        <mat-select multiple [(ngModel)]="newRoom.typeCharges">
+          <mat-option value="gaz">Gaz</mat-option>
+          <mat-option value="eau">Eau</mat-option>
+          <mat-option value="electricite">Electricite</mat-option>
+          <mat-option value="internet">Internet</mat-option>
+          <mat-option value="nettoyage des communs">Nettoyage des communs</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+
       <mat-form-field appearance="outline">
         <mat-label>Rent Review</mat-label>
         <input matInput [(ngModel)]="newRoom.roomInfos.rentReview" [matDatepicker]="picker2" />
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field><br>
+      </mat-form-field>
     
 
     
       <mat-form-field appearance="outline">
         <mat-label>Door Code</mat-label>
         <input matInput [(ngModel)]="newRoom.roomInfos.doorCode" />
-      </mat-form-field><br>
+      </mat-form-field>
     
   
     
-      <hr>
+      
     </div>
     
     

@@ -12,6 +12,7 @@ import { addRoomComponent } from '../rooms/addRooms/add-rooms.component';
 import { Building } from 'src/app/models/building.model';
 import { BehaviorSubject } from 'rxjs';
 import { HouseinfoComponent } from './houseinfo/houseinfo.component';
+import { ConfirmDialogComponent } from './removebuilding/confirm-dialog.component';
 
 
 
@@ -139,17 +140,26 @@ export class buildingComponent implements OnInit {
   // Remove building
 
   removeBuilding(id: number) {
-    this.HouseService.removebuilding(id).subscribe(
-      (response: Building[]) => {
-        this.buildings = response;
-        this.snackBar.deleteSnackBar();
-      },
-      (error) => {
-        console.error(error);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: 'Are you sure you want to delete the building and all the information?'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'yes') {
+        this.HouseService.removebuilding(id).subscribe(
+          (response: Building[]) => {
+            this.buildings = response;
+            this.snackBar.deleteSnackBar();
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       }
-    );
+    });
   }
-
+  
 
 
 }

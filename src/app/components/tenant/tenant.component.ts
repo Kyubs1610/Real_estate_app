@@ -34,6 +34,7 @@ export class TenantComponent {
   filteredRooms!: number[];
   room: Room[] = [];
   
+ 
 
   constructor(private tenantsService: TenantsService,
               private HouseService : HouseService,
@@ -49,9 +50,7 @@ export class TenantComponent {
       console.error(error);
     });
     this.tenants = [];
-    
-    //  this.contractMailService.generateContract(this.roomId)
-     console.log(this.roomId)
+
     }
 
   findRoomsByBuilding() {
@@ -76,13 +75,14 @@ export class TenantComponent {
     }
   }
 
-opensnackbarbusy() {
-  this._snackBar.open('This room is occupied, please select another one', 'CLOSE', {
-    horizontalPosition: this.horizontalPosition,
-    verticalPosition: this.verticalPosition,
-  });
-}
-
+  opensnackbarbusy(tenantName: string) {
+    const message = `This room is occupied by ${tenantName} `;
+    this._snackBar.open(message, 'CLOSE', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+  
   findIdByRoom() {
     const selectedRoomId = this.selectedRoom;
     console.log(selectedRoomId);
@@ -93,14 +93,21 @@ opensnackbarbusy() {
         console.log(roomId);
         // Use the room ID as needed
         this.roomId = roomId;
-        const roomBusy = room.status
+        const roomBusy = room.status;
         console.log(roomBusy);
         if (roomBusy === "rented") {
-          this.opensnackbarbusy()
-          // this.TenantpopupComponent.openBusyDialog()
-        } 
+          const tenant = room.tenants[0]; // Assuming there is only one tenant per room
+          console.log(tenant)
+          const tenantName = `${tenant.firstname} ${tenant.lastname}`;
+          
+          this.opensnackbarbusy(tenantName);
+          // Alternatively, you can pass the 'tenant' object to the dialog component and extract the required information there
+          // this.TenantpopupComponent.openBusyDialog(tenant);
+        }
+      }
     }
-  }}
+  }
+  
 
   
 
@@ -115,6 +122,7 @@ opensnackbarbusy() {
     });
     console.log(formattedDate);
   }
+
   
 
 
@@ -152,11 +160,6 @@ opensnackbarbusy() {
       },
     );
 
-      // this.contractMailService.generateContract(this.roomId).subscribe(
-      //   (response: Object) => {
-      //     console.log(response);
-
-      //   },
  
     
   }

@@ -13,12 +13,14 @@ export class AppComponent {
 
 
   isValid(): boolean {
+    const tenantRegistrationPattern = /^\/tenant\/registration\/\d+\/token\/[a-zA-Z0-9]+$/;
     if (
       this.router.url !== '/' &&
-      this.router.url !== '/registrationform' &&
+      this.router.url !== '/tenant/registration/:id/token/:token' &&
       this.router.url !== '/unauthorized' &&
       this.router.url !== '/email' &&
-      !this.router.url.startsWith('/reset')
+      !this.router.url.startsWith('/reset') &&
+      !tenantRegistrationPattern.test(this.router.url)
     ) {
       return true;
     }

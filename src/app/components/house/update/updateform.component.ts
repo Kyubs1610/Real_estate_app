@@ -9,6 +9,7 @@ import { UpdateBuilding } from 'src/app/models/updatebuilding.model';
 @Component({
   selector: 'updateform',
   templateUrl: 'updateform.component.html',
+  styleUrls: ['updateform.component.scss'],
 })
 export class UpdateFormComponent {
   constructor(
