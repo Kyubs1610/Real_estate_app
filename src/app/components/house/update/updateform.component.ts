@@ -24,30 +24,37 @@ export class UpdateFormComponent {
   showAddBuildingSection: boolean = false;
   buildings: UpdateBuilding[] = [];
   id!: number;
-  updateBuildings: any = {};
-
-  
-
+  updateBuildings: UpdateBuilding['building'] = {} as UpdateBuilding['building']
+  buildingToUpdate: UpdateBuilding['building'] = {} as UpdateBuilding['building']
 
   updateBuilding(id: any, updateBuilding: any) {
     //find the building to update based on the id
-  const buildingToUpdate = this.buildings.find(() => id === id);
-
+    const buildingToUpdate: UpdateBuilding['building'] = {
+      id: this.id, // Initialize with a default value or provide the correct ID
+      name: this.data.name,
+      addressStreet: this.data.addressStreet,
+      addressCity: this.data.addressCity,
+      addressNumber: this.data.addressNumber,
+      addressPostalCode: this.data.addressPostalCode,
+      addressCountry: this.data.addressCountry,
+      doorCode: this.data.doorCode,
+  
+    };
     if (buildingToUpdate) {
       const updateBuildings = {
-        name: updateBuilding.name || buildingToUpdate.building.name,
-        addressStreet: updateBuilding.addressStreet || buildingToUpdate.building.addressStreet,
-        addressNumber: updateBuilding.addressNumber || buildingToUpdate.building.addressNumber,
-        addressCity: updateBuilding.addressCity || buildingToUpdate.building.addressCity,
-        addressPostalCode: updateBuilding.addressPostalCode || buildingToUpdate.building.addressPostalCode,
-        addressCountry: updateBuilding.addressCountry || buildingToUpdate.building.addressCountry,
-        doorCode: updateBuilding.doorCode || buildingToUpdate.building.doorCode,
+        name: updateBuilding.name || buildingToUpdate.name ,
+        addressStreet: updateBuilding.addressStreet || buildingToUpdate.addressStreet,
+        addressNumber: updateBuilding.addressNumber || buildingToUpdate.addressNumber,
+        addressCity: updateBuilding.addressCity || buildingToUpdate.addressCity,
+        addressPostalCode: updateBuilding.addressPostalCode || buildingToUpdate.addressPostalCode,
+        addressCountry: updateBuilding.addressCountry || buildingToUpdate.addressCountry,
+        doorCode: updateBuilding.doorCode || buildingToUpdate.doorCode,
       };
       console.log(buildingToUpdate);
       this.houseService.updatebuilding(id, updateBuildings).subscribe(
         (response: UpdateBuilding[]) => {
           this.buildings = response;
-          this.updateBuildings = response;
+          this.buildingToUpdate = response[0].building;
           this.snackBar.updateSnackBar();
 
         },
@@ -59,6 +66,8 @@ export class UpdateFormComponent {
       console.error(`Building with ID ${id} not found.`);
     }
   }
+
+ 
   
   isMobile() {
     return window.innerWidth <= 767;

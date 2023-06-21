@@ -8,11 +8,6 @@ export interface UpdateBuilding  {
         addressPostalCode: string;
         addressCountry: string;
         doorCode: string;
-        updatedAt: string;
-        createdAt: string;
-        rooms: any[];
-        iban: string;
-        bic: string;
 
        }
       }    
