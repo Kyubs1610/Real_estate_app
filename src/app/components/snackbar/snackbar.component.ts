@@ -59,4 +59,21 @@ export class SnackBar {
       window.location.reload();
     });
   }
+  openSnackBarRoom() {
+    let snackBarRef = this._snackBar.open('Room well added to the database', 'confirmed', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  snackBarRef.onAction().subscribe(() => {
+    window.location.reload();
+  });
+}
+openSnackbarRoomError() {
+ this._snackBar.open('Room has not been add', 'ERROR', {
+   horizontalPosition: this.horizontalPosition,
+  verticalPosition: this.verticalPosition,
+})
+}
+
+
 }

@@ -26,7 +26,7 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
-import {MatDialogModule } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { addformComponent } from './components/house/addbuilding/addform.component';
 import { SnackBar } from './components/snackbar/snackbar.component';
 import { UpdateFormComponent } from './components/house/update/updateform.component';
@@ -46,7 +46,6 @@ import { MatOption } from '@angular/material/core';
 import { TenantformComponent } from './components/tenantform/tenantform.component';
 import { ConfirmDialogComponent } from './components/house/removebuilding/confirm-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
 
 @NgModule({
   declarations: [
@@ -97,7 +96,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCheckboxModule,
     DatePipe,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } },
@@ -109,6 +108,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     MatSelectModule,
     MatOption,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   

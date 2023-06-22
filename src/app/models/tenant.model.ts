@@ -5,7 +5,7 @@ export class Tenants {
   fullname: string = '';
   email: string = '';
   deposit: string = '';
-  birthdate: string = '';
+  birthdate: Date = new Date();
   idNumber: string = '';
   phoneNumber: string = '';
   addressStreet: string = '';

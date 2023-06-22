@@ -1,20 +1,25 @@
+import { SnackBar } from './../../snackbar/snackbar.component';
 import { Component, OnInit } from '@angular/core';
 import { Room, RoomStatus, RoomType } from 'src/app/models/room.model';
 import { AddroomsService } from 'src/app/services/rooms/addrooms.service';
 import { BehaviorSubject } from 'rxjs';
 import { Building } from 'src/app/models/building.model';
 
-
 @Component({
   selector: 'app-add-rooms',
   templateUrl: './add-rooms.component.html',
-  styleUrls: ['./add-rooms.component.scss']
+  styleUrls: ['./add-rooms.component.scss'],
+ 
+
 })
 
 
 export class addRoomComponent implements OnInit {
+
+
   constructor(
     private addroomsService: AddroomsService,
+    private snackBar: SnackBar,
 
   ) { }
   roomsSubject: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
@@ -64,6 +69,8 @@ export class addRoomComponent implements OnInit {
       console.log(response);
       this.rooms.push(response);
       this.roomsSubject.next(this.rooms);
+      this.snackBar.openSnackBarRoom();
+
 
 
     }, (error) => {
@@ -71,5 +78,7 @@ export class addRoomComponent implements OnInit {
     });
 
   }
+
+
 
 }        

@@ -6,6 +6,7 @@ import { Tenant } from 'src/app/models/newtenant.model';
 import {   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition, } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tenant',
@@ -39,7 +40,8 @@ export class TenantComponent {
   constructor(private tenantsService: TenantsService,
               private HouseService : HouseService,
               private _snackBar: MatSnackBar,
-              
+              private router: Router,
+
               ) {}
 
   ngOnInit() {
@@ -83,6 +85,17 @@ export class TenantComponent {
     });
   }
   
+
+  openSnackbarTenant() {
+    let snackBarRef = this._snackBar.open('Tenant well added to the database', 'confirmed', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  snackBarRef.onAction().subscribe(() => {
+    this.router.navigate(['/house']);
+  });
+  }
+
   findIdByRoom() {
     const selectedRoomId = this.selectedRoom;
     console.log(selectedRoomId);
@@ -157,15 +170,12 @@ export class TenantComponent {
         console.log(response);
         this.tenants.push(response);
         this.tenants = [response, ...this.tenants];
+        this.openSnackbarTenant();
+
       },
     );
-
  
-    
   }
-
-  
-  
 
   isMobile() {
     return window.innerWidth <= 767;

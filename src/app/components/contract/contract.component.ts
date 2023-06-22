@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomepageService } from 'src/app/services/homepage/homepage.service';
 import { AuthResponse } from 'src/app/models/AuthResponse.model';
 import { HttpClient } from '@angular/common/http';
+import { Tenant } from 'src/app/models/newtenant.model';
 
 const BASEURL = 'http://localhost:3000/';
 
@@ -52,11 +53,10 @@ export class ContractComponent {
         (error) => {
           console.error('Error sending email:', error);
           this.snackBar.open('Error sending email!', 'Close', {
-            duration: 2000
+            duration: 10000
           });
         }
       );
   }
 
-  generateContract() {}
 }

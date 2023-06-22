@@ -8,48 +8,50 @@
         <div class="input">
               <mat-form-field appearance="outline">
                 <mat-label>First Name</mat-label>
-                <input type="text" matInput placeholder="First Name" >
+                <input type="text" matInput placeholder="First Name"  [(ngModel)]="tenantInfo.firstname" >
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Last Name</mat-label>
-                <input type="text" matInput placeholder="Last Name" >
+                <input type="text" matInput placeholder="Last Name" [(ngModel)]="tenantInfo.lastname">
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label> Street </mat-label>
-                <input type="text" matInput placeholder="Street" >
+                <input type="text" matInput placeholder="Street"[(ngModel)]="tenantInfo.addressStreet" >
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Number</mat-label>
-                <input type="text" matInput placeholder="Number" >
+                <input type="text" matInput placeholder="Number"[(ngModel)]="tenantInfo.addressNumber" >
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label> Zip Code </mat-label>
-                <input type="text" matInput placeholder="Zip"  >
+                <input type="text" matInput placeholder="Zip" [(ngModel)]="tenantInfo.addressPostalCode" >
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label> City  </mat-label>
-                <input type="text" matInput placeholder="City">
+                <input type="text" matInput placeholder="City"[(ngModel)]="tenantInfo.addressCity">
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label> Coutnry </mat-label>
-                <input type="text" matInput placeholder="Country">
+                <input type="text" matInput placeholder="Country"[(ngModel)]="tenantInfo.addressCountry">
               </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label> Phone Number </mat-label>
-                    <input type="text" matInput placeholder="Phone Number">
+                    <input type="text" matInput placeholder="Phone Number"[(ngModel)]="tenantInfo.phoneNumber">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label> Email </mat-label>
-                    <input type="text" matInput placeholder="Email">
-                </mat-form-field>
+                    <mat-label> Birthdate </mat-label>
+                    <input matInput [matDatepicker]="picker"[(ngModel)]="tenantInfo.birthdate"  />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label> Id Number </mat-label>
-                    <input type="text" matInput placeholder="Id Number">
+                    <input type="text" matInput placeholder="Id Number"[(ngModel)]="tenantInfo.idNumber">
                 </mat-form-field>
    
             </div>
           <div mat-dialog-actions style="display: flex; justify-content: center;">
-            <button mat-button class="save" >Save</button>
+            <button mat-button class="save" (click)="generateContract(id,updateTenant)" >Save</button>
           </div >
     </mat-card-content>
 
