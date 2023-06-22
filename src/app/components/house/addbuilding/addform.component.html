@@ -48,7 +48,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Manager</mat-label>
-      <mat-select [(ngModel)]="selectedManagers" multiple name="managers" >
+      <mat-select multiple [(ngModel)]="selectedManagers" name="managers" >
         <mat-option *ngFor="let user of users" [value]="user.id"> {{ user.fullname}} </mat-option>
       </mat-select>
     </mat-form-field>

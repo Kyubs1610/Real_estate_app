@@ -64,8 +64,11 @@ export class addformComponent implements OnInit {
     newBuilding.buildingInfos.doorCode = this.newBuilding.doorCode;
     newBuilding.buildingInfos.iban = this.newBuilding.iban;
     newBuilding.buildingInfos.bic = this.newBuilding.bic;
-    newBuilding.managersIds = this.selectedManagerIds;
-    newBuilding.ownersIds = this.selectedOwnerIds;  
+
+    newBuilding.managersIds.push(...this.selectedManagerIds);
+    newBuilding.ownersIds.push(...this.selectedOwnerIds);
+
+
     // newBuilding.companyIds = this.companyIds;
 
     this.HouseService.addbuilding(newBuilding).subscribe(

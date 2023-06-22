@@ -1,7 +1,7 @@
 <mat-dialog-content class="dialog-content" style="width:100%" [style.max-width.%]="isMobile ? 100 : null"
     [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null"
     [style.width.%]="isMobile ? 100 : null">
-
+    <div style="max-height: 100dvh;">
     <div mat-dialog-title class="dialog-title">
         <div class="title-container">
             <button mat-icon-button mat-dialog-close class="close-button">
@@ -15,6 +15,7 @@
             <mat-card-title style="display:flex ; justify-content: center;  text-transform: uppercase;"> CONTACT OF {{ tenant.fullname }}
             </mat-card-title><br>
             <mat-card-subtitle><br>
+                <strong> Address: </strong><br>
                 {{tenant.addressStreet}} {{tenant.addressNumber}}, <br>
                     {{tenant.addressPostalCode}} {{tenant.addressCity}} <br>
                     <strong> ID Number </strong> {{tenant.idNumber}} <br>
@@ -29,8 +30,6 @@
                 <strong>  Type:</strong> {{ tenant.rooms[0].type}} <br>
                     <strong> Room : </strong>{{ tenant.rooms[0].roomNumber }}<br>
                         <strong> Status: </strong>{{ tenant.rooms[0].status}}<br>
-
-                            <strong> Arrival: </strong>{{ tenant.arrival | date:'dd/MM/yyyy'}} <br>
                                 <strong> Beginning of the contract:</strong> {{ tenant.contractStart | date:'dd/MM/yyyy'}}<br>
                                     <strong> End of the contract:</strong> {{ tenant.contractEnd | date:'dd/MM/yyyy' }}<br>
                                       <strong> Rent Increase: </strong> {{ tenant.rooms[0].rentReview | date:'dd/MM/yyyy'}}<br>
@@ -50,4 +49,5 @@
             </mat-card-subtitle>
         </mat-card-header><br>
     </mat-card> <br>
+    </div>
 </mat-dialog-content>
