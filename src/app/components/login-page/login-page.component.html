@@ -1,12 +1,12 @@
 
 <main class="gradient"> 
 <section>
-        <img src="assets/y_white.png" alt="Logo" class="pulse-animation" />
+        <img src="assets/y_white (2).png" alt="Logo" class="pulse-animation" />
         <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="example-container">
             <mat-form-field appearance="outline">
               <mat-label>Enter your email</mat-label>
-              <input matInput placeholder="ama@example.com" [formControl]="email" required>
+              <input matInput placeholder="email@example.com" [formControl]="email" required>
               <mat-error *ngIf="email?.invalid">{{ getErrorMessage() }}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+// PasswordResetpage
+
 @Component({
   selector: 'app-emailsent',
   templateUrl: './emailsent.component.html',

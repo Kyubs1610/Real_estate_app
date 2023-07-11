@@ -5,6 +5,7 @@ import { Observable, first } from 'rxjs';
 import { Tenants } from 'src/app/models/tenant.model';
 import { TenantInfo } from 'src/app/models/TenantInfo.model';
 
+// form send to the tenant to enter their information
 
 const BASEURL = 'http://localhost:3000/';
 

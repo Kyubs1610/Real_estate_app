@@ -12,7 +12,7 @@ export interface addBuilding {
     }
     managersIds:number[];
     ownersIds:number[]
-    // companyIds:string;
+    companyId:number;
   
   }
   
@@ -28,6 +28,7 @@ export interface owner {
     fullname: string;
 }
 
+
 export interface user {
     fullname: string;
     id: number;
@@ -37,6 +38,7 @@ export interface user {
     email: string;
 }
 export interface company{
+    id: number;
     name: string;
     siren: string;
     tva: string;

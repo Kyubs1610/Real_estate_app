@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Building} from '../../models/building.model';
 import { addBuilding } from 'src/app/models/addBuilding.model';
 import { user } from 'src/app/models/user.model';
+import { company } from 'src/app/models/company.model';
 
 // const BASEURL = 'http://192.168.1.254:3000/';
 
@@ -73,7 +74,6 @@ export class HouseService {
 }
 
 getUsers(): Observable<user[]> {
-  console.log('kikou')
   const options = {
     headers: new HttpHeaders({
       "Authorization": this.cookieService.get('authToken')
@@ -83,4 +83,16 @@ getUsers(): Observable<user[]> {
   return this.http.get<user[]>(`${BASEURL}v1/user`, options);
 
 }
+
+getCompanies(): Observable<company[]> {
+  console.log('kikou')
+  const options = {
+    headers: new HttpHeaders({
+      "Authorization": this.cookieService.get('authToken')
+    }),
+    withCredentials: true
+    }; // send the info with the cookie
+  return this.http.get<company[]>(`${BASEURL}v1/company`, options);
+}
+
 }

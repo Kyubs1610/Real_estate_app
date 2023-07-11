@@ -3,7 +3,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomepageService } from 'src/app/services/homepage/homepage.service';
 import { AuthResponse } from 'src/app/models/AuthResponse.model';
 import { HttpClient } from '@angular/common/http';
-import { Tenant } from 'src/app/models/newtenant.model';
 
 const BASEURL = 'http://localhost:3000/';
 
@@ -34,6 +33,7 @@ export class ContractComponent {
     );
   }
 
+  // Send the email to the tenant with the form to fill in
   sendEmail(tenantEmail: string) {
     const body = { tenantEmail };
     const options = {

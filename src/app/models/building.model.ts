@@ -14,7 +14,7 @@ export interface Building {
   iban: string;
   managers: managers[];
   owners: owners[];
-  company: number;
+  company: any;
 
 }
 

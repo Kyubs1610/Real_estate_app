@@ -1,6 +1,6 @@
-<mat-dialog-content class="dialog-content" [style.max-width.%]="isMobile ? 100 : null" [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null" [style.width.%]="isMobile ? 100 : null">
-
-  <div mat-dialog-title class="dialog-title">
+<mat-dialog-content class="dialog-content" sytle="width:100%" [style.max-width.%]="isMobile ? 100 : null" [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null" [style.width.%]="isMobile ? 100 : null">
+<div style="max-height: 100dvh;">
+  <div mat-dialog-title class="dialog-title" >
     <div class="title-container">
       <button mat-icon-button mat-dialog-close class="close-button">
         <mat-icon>close</mat-icon>
@@ -48,27 +48,30 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Manager</mat-label>
-      <mat-select multiple [(ngModel)]="selectedManagers" name="managers" >
-        <mat-option *ngFor="let user of users" [value]="user.id"> {{ user.fullname}} </mat-option>
+      <mat-select [(ngModel)]="selectedManagers" multiple name="managers" >
+        <mat-option *ngFor="let user of users" [value]="user"> {{ user.fullname}} </mat-option>
       </mat-select>
     </mat-form-field>
     
     <mat-form-field appearance="outline">
       <mat-label>Owner</mat-label>
       <mat-select [(ngModel)]="selectedOwners" multiple name="owners">
-        <mat-option *ngFor="let user of users" [value]="user.id"> {{ user.fullname}} </mat-option>
+        <mat-option *ngFor="let user of users" [value]="user"> {{ user.fullname}} </mat-option>
 
       </mat-select>
     </mat-form-field>
-<!-- 
+
     <mat-form-field appearance="outline">
       <mat-label>Company</mat-label>
-      <input matInput [(ngModel)]="companyIds" placeholder="Company" name="Company">
-    </mat-form-field> -->
+      <mat-select [(ngModel)]="selectedCompany" name="companies" (selectionChange)="onSelectionChange($event)">
+        <mat-option *ngFor="let company  of companies " [value]="company"> {{ company.name }} </mat-option>
+      </mat-select>
+    </mat-form-field>
 
 
     <div mat-dialog-actions style="display: flex; justify-content: center;">
       <button mat-button mat-dialog-close class="save" (click)="addBuilding()">Save</button>
     </div>
   </div>
+</div>
 </mat-dialog-content>

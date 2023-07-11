@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { HouseService } from '../../../services/house/house.service';
 import { SnackBar } from '../../snackbar/snackbar.component';
-import { addBuilding, user } from 'src/app/models/addBuilding.model';
+import { addBuilding, company, user } from 'src/app/models/addBuilding.model';
 
 @Component({
     selector: 'addform',
@@ -17,13 +17,8 @@ export class addformComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.HouseService.getUsers().subscribe((response: user[]) => {
-        this.users = response;
-        this.selectedManagerIds =  this.users.map(user => user.id);
-        this.selectedOwnerIds = this.users.map(user => user.id);
-      }
-      );
-      
+      this.getUsers();
+      this.getCompanies();
     }
 
   newBuilding: addBuilding['buildingInfos'] = {} as addBuilding['buildingInfos'];
@@ -31,45 +26,49 @@ export class addformComponent implements OnInit {
   buildings: addBuilding['buildingInfos'][] = [];
   selectedManagers: user[] = [];
   selectedOwners: user []=[];
+  selectedCompanies: company[] = [];
   users: user[] = [];
   user: user[] = [];
   selectedManagerIds: number[] = [];
   selectedOwnerIds: number[] = [];
-  companyIds: string = '';
+  selectedCompanyIds!: number
+  companies: company[] = [];  
+  selectedCompany!: number ;
 
+  
+
+selectManagers(event: any) {
+    this.selectedManagers = event.value;
+  }
+selectOwners(event: any) {
+    this.selectedOwners = event.value;
+  }
+  selectCompanies(event: any) {
+    this.selectedCompanies = event.value;
+    console.log(this.selectedCompanies);
+  }
+
+  onSelectionChange(event: any) {
+    this.selectedCompany = event.value.id;
+    console.log('Selected company:', this.selectedCompany);
+  }
   addBuilding() {
-    const newBuilding: addBuilding =  {
+    const newBuilding: addBuilding = {
       buildingInfos: {
-        name: '',
-        addressStreet: '',
-        addressNumber: '',
-        addressCity: '',
-        addressPostalCode: '',
-        addressCountry: '',
-        doorCode: '',
-        bic: '',
-        iban: '',
+        name: this.newBuilding.name,
+        addressStreet: this.newBuilding.addressStreet,
+        addressNumber: this.newBuilding.addressNumber,
+        addressCity: this.newBuilding.addressCity,
+        addressPostalCode: this.newBuilding.addressPostalCode,
+        addressCountry: this.newBuilding.addressCountry,
+        doorCode: this.newBuilding.doorCode,
+        bic: this.newBuilding.bic,
+        iban: this.newBuilding.iban,
       },
-        managersIds: [],
-        ownersIds: [],
-        // companyIds:'',
+      managersIds: this.selectedManagers.map(manager => manager.id),
+      ownersIds: this.selectedOwners.map(owner => owner.id),
+      companyId: this.selectedCompany || 0,
     };
-
-    newBuilding.buildingInfos.name = this.newBuilding.name;
-    newBuilding.buildingInfos.addressStreet = this.newBuilding.addressStreet;
-    newBuilding.buildingInfos.addressNumber = this.newBuilding.addressNumber;
-    newBuilding.buildingInfos.addressCity = this.newBuilding.addressCity;
-    newBuilding.buildingInfos.addressPostalCode = this.newBuilding.addressPostalCode;
-    newBuilding.buildingInfos.addressCountry = this.newBuilding.addressCountry;
-    newBuilding.buildingInfos.doorCode = this.newBuilding.doorCode;
-    newBuilding.buildingInfos.iban = this.newBuilding.iban;
-    newBuilding.buildingInfos.bic = this.newBuilding.bic;
-
-    newBuilding.managersIds.push(...this.selectedManagerIds);
-    newBuilding.ownersIds.push(...this.selectedOwnerIds);
-
-
-    // newBuilding.companyIds = this.companyIds;
 
     this.HouseService.addbuilding(newBuilding).subscribe(
       (response: addBuilding) => {
@@ -84,11 +83,24 @@ export class addformComponent implements OnInit {
     );
   }
 
+
   getUsers() {
     this.HouseService.getUsers().subscribe(
       (response: user[]) => {
         this.users = response;
         console.log(this.users);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getCompanies() {
+    this.HouseService.getCompanies().subscribe(
+      (response: company[]) => {
+        this.companies = response;
+        console.log(this.companies);
       },
       (error) => {
         console.error(error);

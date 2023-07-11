@@ -1,4 +1,5 @@
 <mat-dialog-content class="dialog-content" [style.max-width.%]="isMobile ? 100 : null" [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null" [style.width.%]="isMobile ? 100 : null">
+  <div style="max-height: 100dvh;">
 
   <div mat-dialog-title class="dialog-title">
     <div class="title-container">
@@ -14,15 +15,12 @@
       <input type="text" matInput [(ngModel)]="newRoom.roomInfos.roomNumber" placeholder="Room Name">
     </mat-form-field>
 
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Available From</mat-label>
-        <input matInput [(ngModel)]="newRoom.roomInfos.availableFrom" [matDatepicker]="picker" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Rent</mat-label>
+      <input matInput [(ngModel)]="newRoom.roomInfos.rent" />
+    </mat-form-field>
 
-      <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline">
         <mat-label>Type</mat-label>
         <select matNativeControl [(ngModel)]="newRoom.roomInfos.type">
           <option value="room">Room</option>
@@ -42,15 +40,7 @@
         </select>
       </mat-form-field>
     
- 
-      <mat-form-field appearance="outline">
-        <mat-label>Rent</mat-label>
-        <input matInput [(ngModel)]="newRoom.roomInfos.rent" />
-      </mat-form-field>
-
-
-
-      <mat-form-field appearance="outline">
+     <mat-form-field appearance="outline">
         <mat-label>Charges</mat-label>
         <input matInput [(ngModel)]="newRoom.roomInfos.charges" />
       </mat-form-field>
@@ -66,22 +56,26 @@
         </mat-select>
       </mat-form-field>
       
+   
+      <mat-form-field appearance="outline">
+        <mat-label>Door Code</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomInfos.doorCode" />
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Available From</mat-label>
+        <input matInput [(ngModel)]="newRoom.roomInfos.availableFrom" [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
+      
       <mat-form-field appearance="outline">
         <mat-label>Rent Review</mat-label>
         <input matInput [(ngModel)]="newRoom.roomInfos.rentReview" [matDatepicker]="picker2" />
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
-    
-
-    
-      <mat-form-field appearance="outline">
-        <mat-label>Door Code</mat-label>
-        <input matInput [(ngModel)]="newRoom.roomInfos.doorCode" />
-      </mat-form-field>
-    
-  
     
       
     </div>
@@ -90,6 +84,7 @@
     <div mat-dialog-actions style="display: flex; justify-content: center;">
       <button mat-button mat-dialog-close class="save" (click)="addRoom(buildingId)">Save</button>
     
+  </div>
   </div>
   
 </mat-dialog-content>

@@ -1,5 +1,5 @@
-<main>
-    <div class="customize"> 
+<main >
+    <div class="customize" > 
         <h1 style="display: flex; justify-content: center;"> Enter your informations</h1>
     <mat-card-content  [style.max-width.%]="isMobile ? 100 : null"
         [style.max-height.%]="isMobile ? 100 : null" [style.height.%]="isMobile ? 100 : null"
@@ -38,16 +38,19 @@
                     <mat-label> Phone Number </mat-label>
                     <input type="text" matInput placeholder="Phone Number"[(ngModel)]="tenantInfo.phoneNumber">
                 </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label> Id Number </mat-label>
+                  <input type="text" matInput placeholder="Id Number"[(ngModel)]="tenantInfo.idNumber">
+              </mat-form-field>
+
                 <mat-form-field appearance="outline">
                     <mat-label> Birthdate </mat-label>
                     <input matInput [matDatepicker]="picker"[(ngModel)]="tenantInfo.birthdate"  />
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label> Id Number </mat-label>
-                    <input type="text" matInput placeholder="Id Number"[(ngModel)]="tenantInfo.idNumber">
-                </mat-form-field>
+
    
             </div>
           <div mat-dialog-actions style="display: flex; justify-content: center;">

@@ -18,8 +18,8 @@
                 <strong> Address: </strong><br>
                 {{tenant.addressStreet}} {{tenant.addressNumber}}, <br>
                     {{tenant.addressPostalCode}} {{tenant.addressCity}} <br>
-                    <strong> ID Number </strong> {{tenant.idNumber}} <br>
-                    <strong> Birthdate: </strong> {{ tenant.birthdate }} <br>
+                    <strong> ID Number </strong> {{tenant.idNumber | uppercase}} <br>
+                    <strong> Birthdate: </strong> {{ tenant.birthdate | date:'dd/MM/yyyy' }} <br>
                     <strong> Phone: </strong>
                         <a href="tel:{{ tenant.phoneNumber }}" *ngIf="isMobile()">{{ tenant.phoneNumber }}</a>
                         <span *ngIf="!isMobile()">{{ tenant.phoneNumber }}</span><br>

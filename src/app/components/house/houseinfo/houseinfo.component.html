@@ -26,8 +26,8 @@
           <mat-card-subtitle style="margin-left: 10%;"><br>
             <strong>  OWNER INFO: </strong><br><br>
             <ul> 
-          <li>  BIC: {{ building.bic }} <br></li> 
-          <li> IBAN: {{ building.iban }} <br></li> 
+          <li>  BIC: {{ building.bic | uppercase }} <br></li> 
+          <li> IBAN: {{ building.iban | uppercase }} <br></li> 
            <li> OWNER: 
                 <ul>
                   <li *ngFor="let owner of building.owners">   {{ owner.fullname }} <br></li> 
@@ -36,7 +36,7 @@
                 <ul>
                   <li *ngFor="let manager of building.managers">  {{ manager.fullname }}  <br></li>  
                 </ul>
-                <li> COMPANY: {{ building.company }} <br><br><br></li> 
+                <li > COMPANY: {{ building.company.name }} <br><br><br></li> 
           </ul>
 
   
