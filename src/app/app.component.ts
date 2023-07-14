@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'elivy_app';
+  title = 'Real Estate app';
   constructor(private router: Router) {}
 
 
